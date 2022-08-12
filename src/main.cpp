@@ -12,30 +12,100 @@
 
 using namespace Menu;
 
-#define LEDPIN LED_BUILTIN
-#define MAX_DEPTH 1
-
-int timeOn=10;
-int timeOff=90;
-int fokus = 0;
-int fokusFein = 0;
-int dimmer = 0;
-
+#define MAX_DEPTH 4
 
 Adafruit_RA8875 gfx(10, 9);
 
-MENU(mainMenu, "Blink menu ", Menu::doNothing, Menu::noEvent, Menu::noStyle
+int timeOn = 0;
+
+MENU(shutter, "Shutter", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(fokus,"fokus","ms",0,10000,10,1,Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(fokusFein,"fokusFein","ms",0,10000,10,1,Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(dimmer,"dimmer","ms",0,10000,10,1,Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
-MENU(subMenu, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
+MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(fokus,"fokus","ms",0,10000,10,1,Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
 );
+  
+
+MENU(colour, "Colour", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  
+  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
+MENU(gobo, "Gobo", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  
+  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
+MENU(prisma, "Prisma", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  
+  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
+MENU(iris, "Iris", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  
+  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
+MENU(focus, "Focus", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  
+  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
+MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  
+  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
+
+MENU(position, "Position", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  
+  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
+MENU(light, "Intensity and colour", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  ,SUBMENU(shutter)
+  ,SUBMENU(dimmer)
+  ,SUBMENU(colour)
+  ,EXIT("<Back")
+);
+
+MENU(beam, "Beam", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  ,SUBMENU(gobo)
+  ,SUBMENU(prisma)
+  ,SUBMENU(iris)
+  ,SUBMENU(focus)
+  ,SUBMENU(profilfilter)
+  ,EXIT("<Back")
+);
+
+MENU(parameterMenu, "Parameter", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  ,SUBMENU(light)
+  ,SUBMENU(beam)
+  ,SUBMENU(position)
+  ,EXIT("<Back")
+);
+
+MENU(effectMenu, "Effects", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
+MENU(mainMenu, "Main Menu", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+  ,SUBMENU(parameterMenu)  
+  ,SUBMENU(effectMenu)
+);
+
 
 serialIn serial(Serial);
 ClickEncoder clickEncoder(4,5,6);
@@ -100,8 +170,5 @@ void setup() {
 
 void loop() {
   nav.poll();
-  fokus = enc.read();
-  fokusFein = enc2.read();
-  dimmer = enc3.read();
   nav.doInput();
 }
