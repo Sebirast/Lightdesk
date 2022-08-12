@@ -17,7 +17,6 @@ using namespace Menu;
 
 #define MAX_DEPTH 4
 
-Adafruit_RA8875 gfx(10, 9);
 
 serialIn serial(Serial);
 ClickEncoder clickEncoder(4,5,6);
@@ -79,8 +78,8 @@ void setup() {
   Timer3.attachInterrupt(timerIsr);
 }
 
-
 void loop() {
   nav.poll();
   nav.doInput();
+  Serial.println(dimmer.getText());
 }
