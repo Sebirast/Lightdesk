@@ -1,7 +1,8 @@
-neu-rah/PCINT r-site.net@^4.0.8
-adafruit/Adafruit GFX Library@^1.10.15
-paulstoffregen/Encoder@^1.4.2
 paulstoffregen/TimerThree@^1.1
-soligen2010/ClickEncoder@0.0.0-alpha+sha.9337a0c46c
 adafruit/Adafruit RA8875@^1.4.0
+soligen2010/ClickEncoder@0.0.0-alpha+sha.9337a0c46c
 neu-rah/ArduinoMenu library@^4.21.4
+neu-rah/PCINT r-site.net@^4.0.8
+paulstoffregen/Encoder@^1.4.2
+ssilverman/TeensyDMX@^4.3.0-snapshot
+adafruit/Adafruit GFX Library@^1.10.15
