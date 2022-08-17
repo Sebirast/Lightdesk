@@ -24,5 +24,5 @@ void Fixture::set(uint16_t channel, uint8_t value)
     return;
 
   // this->currentValues. //TODO write value into currentValue 
-  this->dmx->set(this->address + channel, value);
+  this->dmx->set(this->address + channel - 1, value);
 }

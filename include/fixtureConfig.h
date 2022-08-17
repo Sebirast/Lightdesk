@@ -47,3 +47,25 @@ fixture::Fixture::Param MAC600E_config =
   4, 
   5
 };
+
+fixture::Fixture::Param GENERIGDIMMER_config = 
+{
+  0, 
+  1, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0, 
+  0
+};

@@ -37,7 +37,8 @@ namespace fixture
       enum FixtureType
       {
         MAC550, 
-        MAC600E
+        MAC600E, 
+        GENERICDIMMER
       };
 
       Fixture::Param* channels = NULL;
