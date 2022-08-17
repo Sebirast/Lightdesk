@@ -1,19 +1,12 @@
-#include <menu.h>
-#include <menuIO/adafruitGfxOutRA8875.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_RA8875.h>
-#include <menuIO/chainStream.h>
-#include <menuIO/serialIn.h>
-#include <menuIO/encoderIn.h>
-#include <ClickEncoder.h>
-#include <menuIO/clickEncoderIn.h>
-#include <TimerThree.h>
-#include <Encoder.h>
-
-// menus
-
-
 #include "paramterMenu.h"
+#include "fixture.h"
+#include <TeensyDMX.h>
+
+using namespace fixture;
+
+qindesign::teensydmx::Sender dmx(Serial5);
+
+fixture::Fixture* fixture1 = NULL;
 
 Encoder enc(7, 8);
 Encoder enc2(2, 3);
@@ -36,13 +29,17 @@ void setup() {
   Serial.println("Use keys + - * /");
   Serial.println("to control the menu navigation");
 
+  fixture1 = new fixture::Fixture(&dmx, 0, 1);
+
   // enc.begin();
   Timer3.initialize(1000);
   Timer3.attachInterrupt(timerIsr);
+
+  fixture1->set(fixture1->channels->dimmer, 255);
 }
 
 void loop() {
   nav.poll();
   nav.doInput();
-  Serial.print(nav.active().getText());
+  // Serial.print(nav.active().getText());
 }
