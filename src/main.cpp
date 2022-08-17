@@ -29,7 +29,7 @@ void setup() {
   Serial.println("Use keys + - * /");
   Serial.println("to control the menu navigation");
 
-  fixture1 = new fixture::Fixture(&dmx, 0, 1);
+  fixture1 = new fixture::Fixture(&dmx, fixture::Fixture::FixtureType::MAC550, 1);
 
   // enc.begin();
   Timer3.initialize(1000);

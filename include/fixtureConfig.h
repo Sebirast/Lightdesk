@@ -1,6 +1,7 @@
 #pragma once
 
-#define IGNITE_LAMP 232
+#include "fixture.h"
+
 
 fixture::Fixture::Param MAC550_config =
 {

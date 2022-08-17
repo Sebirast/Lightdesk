@@ -46,6 +46,7 @@ namespace fixture
       Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, uint16_t address);
       void set(uint16_t channel, uint8_t value);
       void igniteLamp();
+      void extinguishLamp();
       uint8_t get(fixture::Fixture::Param channel);
       void play();
 

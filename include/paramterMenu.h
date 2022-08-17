@@ -9,19 +9,32 @@
 #include <menuIO/clickEncoderIn.h>
 #include <TimerThree.h>
 #include <Encoder.h>
+#include "channelConfig.h"
 
 using namespace Menu;
 
-#define MAX_DEPTH 4
+#define MAX_DEPTH 5
 
 int timeOn = 0;
 
 Adafruit_RA8875 gfx(10, 9);
 
+
 int foo = 0;
-// paramter
-MENU(shutter, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(foo,"Intensity","",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+
+unsigned uint8_t shutter = SHUTTER_CLOSED;
+unsigned uint8_t strobe = 0;
+unsigned uint8_t pulse = 0;
+
+TOGGLE(shutter, shutterOpenOrClosed, "Open / closed ", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,VALUE("Open", SHUTTER_OPEN, Menu::doNothing, Menu::noEvent)
+  ,VALUE("Closed", SHUTTER_CLOSED, Menu::doNothing, Menu::noEvent)
+);  
+
+MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,SUBMENU(shutterOpenOrClosed)
+  ,FIELD(strobe,"Strobe","",0,255,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(pulse,"Pulse","",0,255,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
@@ -103,7 +116,7 @@ result drawBackGround()
 
 
 MENU(light, "Intensity and colour", drawBackGround, Menu::enterEvent | Menu::exitEvent, Menu::noStyle
-  ,SUBMENU(shutter)
+  ,SUBMENU(shutterMenu)
   ,SUBMENU(dimmer)
   ,SUBMENU(colour)
   ,EXIT("<Back")

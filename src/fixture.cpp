@@ -1,5 +1,6 @@
 #include "fixture.h"
 #include "fixtureConfig.h"
+#include "channelConfig.h"
 
 using namespace fixture;
 
@@ -39,4 +40,13 @@ void Fixture::igniteLamp()
     default:
       Serial.println("This lamp cannot be ignited!");
   }
+}
+
+// TODO
+void Fixture::extinguishLamp()
+{
+  // switch(type)
+  // {
+  //   case(MAC550):
+  // }
 }
