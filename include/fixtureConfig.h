@@ -1,5 +1,7 @@
 #pragma once
 
+#define IGNITE_LAMP 232
+
 fixture::Fixture::Param MAC550_config =
 {
   1, // shutter
