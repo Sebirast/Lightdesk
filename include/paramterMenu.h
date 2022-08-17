@@ -1,4 +1,14 @@
 #include <menu.h>
+#include <menuIO/adafruitGfxOutRA8875.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_RA8875.h>
+#include <menuIO/chainStream.h>
+#include <menuIO/serialIn.h>
+#include <menuIO/encoderIn.h>
+#include <ClickEncoder.h>
+#include <menuIO/clickEncoderIn.h>
+#include <TimerThree.h>
+#include <Encoder.h>
 
 using namespace Menu;
 
@@ -22,9 +32,30 @@ MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
   ,FIELD(intensityFine,"Intensity Fine","",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
-  
+
+uint8_t c = 0;
+uint8_t m = 0;
+uint8_t y = 0;
+
+MENU(cmy, "CMY", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,FIELD(c, "C", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(m, "M", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(y, "Y", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
+uint8_t firstColorwheel = 0;
+uint8_t secondColowheel = 0;
+
+MENU(colorwheel, "Colorwheel", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,FIELD(firstColorwheel, "Colorwheel 1", "", 0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(secondColowheel, "Colorwheel 2", "", 0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
 MENU(colour, "Colour", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
-  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,SUBMENU(cmy)
+  ,SUBMENU(colorwheel)
   ,EXIT("<Back")
 );
 
