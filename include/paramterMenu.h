@@ -20,14 +20,14 @@ Adafruit_RA8875 gfx(10, 9);
 
 int foo = 0;
 // paramter
-MENU(shutter, "Shutter", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+MENU(shutter, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(foo,"Intensity","",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 int intensity = 0;
 int intensityFine = 0;
-MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(intensity,"Intensity","",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,FIELD(intensityFine,"Intensity Fine","",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
@@ -53,23 +53,23 @@ MENU(colorwheel, "Colorwheel", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
-MENU(colour, "Colour", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+MENU(colour, "Colour", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(cmy)
   ,SUBMENU(colorwheel)
   ,EXIT("<Back")
 );
 
-MENU(gobo, "Gobo", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+MENU(gobo, "Gobo", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
-MENU(prisma, "Prisma", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+MENU(prisma, "Prisma", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
-MENU(iris, "Iris", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+MENU(iris, "Iris", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
@@ -80,12 +80,12 @@ result printHello()
   return 0;
 }
 
-MENU(focus, "Focus", printHello, Menu::enterEvent, Menu::wrapStyle
+MENU(focus, "Focus", printHello, Menu::enterEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
-MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
@@ -102,14 +102,14 @@ result drawBackGround()
 };
 
 
-MENU(light, "Intensity and colour", drawBackGround, Menu::enterEvent | Menu::exitEvent, Menu::wrapStyle
+MENU(light, "Intensity and colour", drawBackGround, Menu::enterEvent | Menu::exitEvent, Menu::noStyle
   ,SUBMENU(shutter)
   ,SUBMENU(dimmer)
   ,SUBMENU(colour)
   ,EXIT("<Back")
 );
 
-MENU(beam, "Beam", drawBackGround, Menu::enterEvent | Menu::exitEvent , Menu::wrapStyle
+MENU(beam, "Beam", drawBackGround, Menu::enterEvent | Menu::exitEvent , Menu::noStyle
   ,SUBMENU(gobo)
   ,SUBMENU(prisma)
   ,SUBMENU(iris)
@@ -118,19 +118,19 @@ MENU(beam, "Beam", drawBackGround, Menu::enterEvent | Menu::exitEvent , Menu::wr
   ,EXIT("<Back")
 );
 
-MENU(parameterMenu, "Parameter", drawBackGround, Menu::enterEvent | Menu::exitEvent, Menu::wrapStyle
+MENU(parameterMenu, "Parameter", drawBackGround, Menu::enterEvent | Menu::exitEvent, Menu::noStyle
   ,SUBMENU(light)
   ,SUBMENU(beam)
   ,SUBMENU(position)
   ,EXIT("<Back")
 );
 
-MENU(effectMenu, "Effects", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+MENU(effectMenu, "Effects", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
-MENU(mainMenu, "Main Menu", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+MENU(mainMenu, "Main Menu", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(parameterMenu)  
   ,SUBMENU(effectMenu)
 );
