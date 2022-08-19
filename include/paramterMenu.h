@@ -22,9 +22,15 @@ Adafruit_RA8875 gfx(10, 9);
 
 int foo = 0;
 
-unsigned uint8_t shutter = SHUTTER_CLOSED;
-unsigned uint8_t strobe = 0;
-unsigned uint8_t pulse = 0;
+uint8_t shutter = SHUTTER_CLOSED;
+uint8_t strobe = 0;
+uint8_t pulse = 0;
+
+result hello()
+{
+  Serial.println("Hello World");
+  return proceed;
+}
 
 TOGGLE(shutter, shutterOpenOrClosed, "Open / closed ", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,VALUE("Open", SHUTTER_OPEN, Menu::doNothing, Menu::noEvent)
@@ -33,7 +39,7 @@ TOGGLE(shutter, shutterOpenOrClosed, "Open / closed ", Menu::doNothing, Menu::no
 
 MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(shutterOpenOrClosed)
-  ,FIELD(strobe,"Strobe","",0,255,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(strobe,"Strobe","",0,255,10,1, hello, Menu::changeEvent, Menu::noStyle)
   ,FIELD(pulse,"Pulse","",0,255,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
@@ -87,6 +93,7 @@ MENU(iris, "Iris", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
+
 result printHello()
 {
   Serial.println("Hello World");
@@ -97,6 +104,8 @@ MENU(focus, "Focus", printHello, Menu::enterEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
+
+
 
 MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
@@ -121,6 +130,7 @@ MENU(light, "Intensity and colour", drawBackGround, Menu::enterEvent | Menu::exi
   ,SUBMENU(colour)
   ,EXIT("<Back")
 );
+
 
 MENU(beam, "Beam", drawBackGround, Menu::enterEvent | Menu::exitEvent , Menu::noStyle
   ,SUBMENU(gobo)

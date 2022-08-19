@@ -123,6 +123,7 @@ www.r-site.net
       selFocusEvent=1<<6,//TODO:child just gained focus
       selBlurEvent=1<<7,//TODO:child about to lose focus
       updateEvent=1<<8,//Field value has been updated
+      changeEvent=1<<9,
       anyEvent=~0
     };
     //events for the idle function

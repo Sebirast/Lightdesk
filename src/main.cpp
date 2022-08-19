@@ -13,6 +13,7 @@ Encoder enc2(2, 3);
 Encoder enc3(14, 15);
 
 void setup() {
+  dmx.begin();
   gfx.begin(RA8875_800x480);
   gfx.displayOn(true);
   gfx.GPIOX(true);      // Enable TFT - display enable tied to GPIOX
@@ -29,13 +30,27 @@ void setup() {
   Serial.println("Use keys + - * /");
   Serial.println("to control the menu navigation");
 
-  fixture1 = new fixture::Fixture(&dmx, fixture::Fixture::FixtureType::MAC550, 1);
+  // profilfilter[0].;
+
+  fixture1 = new fixture::Fixture(&dmx, fixture::Fixture::FixtureType::MAC600E, 200);
+  // fixture1->igniteLamp();
+  // delay(100);
+  // fixture1->set(fixture1->channels->shutter, 21);
+
+  // fixture1->set(fixture1->channels->dimmer, 255);
+
+  // fixture1->set(fixture1->channels->tilt, 100);
+  fixture1->set(fixture1->channels->shutter, 250);
 
   // enc.begin();
   Timer3.initialize(1000);
   Timer3.attachInterrupt(timerIsr);
 
-  fixture1->set(fixture1->channels->dimmer, 255);
+  // fixture1->set(fixture1->channels->colorWheel1, 255);
+  // long start = millis();
+  // long end = millis();
+  // Serial.print("Setup time: ");
+  // Serial.println(end - start);
 }
 
 void loop() {

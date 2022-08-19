@@ -22,10 +22,13 @@ Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, u
 void Fixture::set(uint16_t channel, uint8_t value)
 {
   if(channel == 0)
+  {
     Serial.println("This fixture does not have this function");
     return;
+  }
 
   // this->currentValues. //TODO write value into currentValue 
+  Serial.println("lol");
   this->dmx->set(address + channel - 1, value);
 }
 
