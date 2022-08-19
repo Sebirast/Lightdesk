@@ -29,28 +29,30 @@ fixture::Fixture::Param MAC550_config =
 
 fixture::Fixture::Param MAC600E_config =
 {
-  1, // shutter
-  2, // dimmer
-  0, 
-  6, // colorWheel1
-  0, 
-  0, 
-  0, 
-  0, 
-  0,
-  9,
-  10,
-  11, 
-  12,
-  0,
-  13,
-  7, 
-  8, 
-  3, 
-  4, 
-  5
-};
-
+  1,  // shutter;  
+  2,  // dimmer;   
+  0,  // dimmerFine;  
+  6,  // colorWheel1; 
+  0,  // colorWheel2;  
+  0,  // goboWheel1;  
+  0,  // goboWheel2;  
+  0,  // prisma;  
+  0,  // iris; 
+  0,  // irisDiameter; 
+  0,  // focus; // TODO focusfine  
+  9,  // pan;   
+  10, // panFine;  
+  11, // tilt; 
+  12, // tiltFine;  
+  0,  // zoom;  
+  13, // panAndTiltSpeed;  
+  7,  // profilFilter1;  
+  8,  // profilFilter2;  
+  3,  // cyan;
+  4,  // magenta;
+  5   // yellow;
+};    
+      
 fixture::Fixture::Param GENERIGDIMMER_config = 
 {
   0, 
