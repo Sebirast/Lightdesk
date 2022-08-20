@@ -63,7 +63,6 @@ MENU(mac600Color, "MAC600", Menu::doNothing, Menu::noEvent, Menu::noStyle
 );
 
 // uint16_t firstColorwheel = 153;
-uint16_t secondColowheel = 0;
 
 
 uint16_t colorWheel1 = OPEN;//some variable used by your code (not necessarily an int)
@@ -79,13 +78,25 @@ CHOOSE(colorWheel1,colorwheel1Menu,"Colorwheel 1",Menu::doNothing,Menu::noEvent,
   ,VALUE("PURPUR 2",MAC550_PURPUR_2,Menu::doNothing,Menu::noEvent)
 );
 
-MENU(mac550Color, "MAC550", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  // ,SUBMENU(firstColorWheel)
-  ,SUBMENU(colorwheel1Menu)
-  ,FIELD(secondColowheel, "Colorwheel 2", "", 0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,EXIT("<Back")
+uint16_t colorWheel2 = OPEN;//some variable used by your code (not necessarily an int)
+CHOOSE(colorWheel1,colorwheel2Menu,"Colorwheel 1",Menu::doNothing,Menu::noEvent,Menu::noStyle
+  ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
+  ,VALUE("GREEN",MAC550_GREEN_2,Menu::doNothing,Menu::noEvent)
+  ,VALUE("BLUE",MAC550_BLUE_2,Menu::doNothing,Menu::noEvent)
+  ,VALUE("PINK",MAC550_PINK,Menu::doNothing,Menu::noEvent)
+  ,VALUE("RED",MAC550_RED_2,Menu::doNothing,Menu::noEvent)
+  ,VALUE("YELLOW",MAC550_YELLOW_2,Menu::doNothing,Menu::noEvent)
+  ,VALUE("HALF MINUS GREEN",MAC550_HALF_MINUS_GREEN,Menu::doNothing,Menu::noEvent)
+  ,VALUE("CTC 55",MAC550_CTC55,Menu::doNothing,Menu::noEvent)
+  ,VALUE("CTC 32",MAC550_CTC32,Menu::doNothing,Menu::noEvent)
 );
 
+
+MENU(mac550Color, "MAC550", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,SUBMENU(colorwheel1Menu)
+  ,SUBMENU(colorwheel2Menu)
+  ,EXIT("<Back")
+);
 
 MENU(colour, "Colour", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(mac600Color)
@@ -119,8 +130,6 @@ MENU(focus, "Focus", printHello, Menu::enterEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
-
-
 
 MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)

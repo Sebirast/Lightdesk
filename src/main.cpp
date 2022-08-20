@@ -47,7 +47,6 @@ void setup() {
   // long end = millis();
   // Serial.print("Setup time: ");
   // Serial.println(end - start);
-  nav.useMenu(mac550Color);
 }
 
 void loop() {
