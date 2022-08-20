@@ -192,7 +192,7 @@ const colorDef<uint16_t> colors[6] MEMMODE={
   {{(uint16_t)RA8875_WHITE,(uint16_t)RA8875_YELLOW},{(uint16_t)RA8875_BLUE,  (uint16_t)RA8875_RED,   (uint16_t)RA8875_RED}},//titleColor
 };
 
-uint16_t textScale = 3;
+uint16_t textScale = 2;
 
 
 #define GFX_HEIGHT 480
@@ -201,7 +201,7 @@ uint16_t textScale = 3;
 #define FONTH 21
 
 MENU_OUTPUTS(out,MAX_DEPTH
-  ,ADAGFX_OUT(gfx,colors,160*textScale,FONTW*textScale,{0,0,GFX_WIDTH / FONTW, GFX_HEIGHT / FONTH})
+  ,ADAGFX_OUT(gfx,colors,160*textScale,23*textScale,{0,0,GFX_WIDTH / FONTW, GFX_HEIGHT / FONTH})
   ,NONE
 )
 
