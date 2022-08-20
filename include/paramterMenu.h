@@ -131,16 +131,26 @@ MENU(gobo, "Gobo", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
-MENU(prisma, "Prisma", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+uint16_t prismaOnOff = 0;
+int16_t prismaRotation = 0;
+TOGGLE(prismaOnOff, prismaOnOffMenu, "Prisma ", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,VALUE("On", PRISMA_ON, Menu::doNothing, Menu::noEvent)
+  ,VALUE("Off", PRISMA_OFF, Menu::doNothing, Menu::noEvent)
+);
+
+MENU(prismaMenu, "Prisma", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,SUBMENU(prismaOnOffMenu)
+  ,FIELD(prismaRotation, "Rotation", "", -50, 50, 5, 5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
-MENU(iris, "Iris", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+uint16_t iris = 0;
+uint16_t irisFine = 0;
+MENU(irisMenu, "Iris", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,FIELD(iris,"Diameter","",0,100,5,5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(irisFine, "Diameter fine", "", 0, 100, 5, 5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
-
 
 result printHello()
 {
@@ -148,8 +158,10 @@ result printHello()
   return 0;
 }
 
-MENU(focus, "Focus", printHello, Menu::enterEvent, Menu::noStyle
-  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+uint16_t focus = 0;
+
+MENU(focusMenu, "Focus", printHello, Menu::enterEvent, Menu::noStyle
+  ,FIELD(focus,"Focus","",0,100,5,5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
@@ -158,8 +170,11 @@ MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
+uint16_t xPosition = 0;
+uint16_t yPosition = 0;
 MENU(position, "Position", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
-  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(xPosition,"x-Position","",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(yPosition, "y-Postion","",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 )
 
@@ -180,9 +195,9 @@ MENU(light, "Intensity and colour", drawBackGround, Menu::enterEvent | Menu::exi
 
 MENU(beam, "Beam", drawBackGround, Menu::enterEvent | Menu::exitEvent , Menu::noStyle
   ,SUBMENU(gobo)
-  ,SUBMENU(prisma)
-  ,SUBMENU(iris)
-  ,SUBMENU(focus)
+  ,SUBMENU(prismaMenu)
+  ,SUBMENU(irisMenu)
+  ,SUBMENU(focusMenu)
   ,SUBMENU(profilfilter)
   ,EXIT("<Back")
 );
