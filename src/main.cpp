@@ -3,6 +3,7 @@
 #include <TeensyDMX.h>
 
 using namespace fixture;
+#define MENU_DEBUG
 
 qindesign::teensydmx::Sender dmx(Serial5);
 
@@ -22,7 +23,7 @@ void setup() {
 
   gfx.textMode();
   gfx.fillScreen(RA8875_BLACK);
-  gfx.textEnlarge(3);
+  gfx.textEnlarge(2);
 
   Serial.begin(9600);
   // while(!Serial);
@@ -46,6 +47,7 @@ void setup() {
   // long end = millis();
   // Serial.print("Setup time: ");
   // Serial.println(end - start);
+  nav.useMenu(mac550Color);
 }
 
 void loop() {

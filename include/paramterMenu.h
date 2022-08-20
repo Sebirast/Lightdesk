@@ -13,7 +13,7 @@
 
 using namespace Menu;
 
-#define MAX_DEPTH 5
+#define MAX_DEPTH 6
 
 int timeOn = 0;
 
@@ -21,9 +21,9 @@ Adafruit_RA8875 gfx(10, 9);
 
 int foo = 0;
 
-uint8_t shutter = SHUTTER_CLOSED;
-uint8_t strobe = 0;
-uint8_t pulse = 0;
+uint16_t shutter = SHUTTER_CLOSED;
+uint16_t strobe = 0;
+uint16_t pulse = 0;
 
 result hello()
 {
@@ -51,29 +51,45 @@ MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
-uint8_t c = 0;
-uint8_t m = 0;
-uint8_t y = 0;
+uint16_t c = 0;
+uint16_t m = 0;
+uint16_t y = 0;
 
-MENU(cmy, "CMY", Menu::doNothing, Menu::noEvent, Menu::noStyle
+MENU(mac600Color, "MAC600", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(c, "C", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,FIELD(m, "M", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,FIELD(y, "Y", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
-uint8_t firstColorwheel = 0;
-uint8_t secondColowheel = 0;
+// uint16_t firstColorwheel = 153;
+uint16_t secondColowheel = 0;
 
-MENU(colorwheel, "Colorwheel", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(firstColorwheel, "Colorwheel 1", "", 0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+
+uint16_t colorWheel1 = OPEN;//some variable used by your code (not necessarily an int)
+CHOOSE(colorWheel1,colorwheel1Menu,"Colorwheel 1",Menu::doNothing,Menu::noEvent,Menu::noStyle
+  ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
+  ,VALUE("RED",MAC550_RED_1,Menu::doNothing,Menu::noEvent)
+  ,VALUE("MAGENTA",MAC550_MAGENTA,Menu::doNothing,Menu::noEvent)
+  ,VALUE("PURPUR 1",MAC550_PURPUR_1,Menu::doNothing,Menu::noEvent)
+  ,VALUE("BLUE",MAC550_BLUE_1,Menu::doNothing,Menu::noEvent)
+  ,VALUE("GREEN",MAC550_GREEN_1,Menu::doNothing,Menu::noEvent)
+  ,VALUE("YELLOW",MAC550_YELLOW_1,Menu::doNothing,Menu::noEvent)
+  ,VALUE("ORANGE",MAC550_ORANGE,Menu::doNothing,Menu::noEvent)
+  ,VALUE("PURPUR 2",MAC550_PURPUR_2,Menu::doNothing,Menu::noEvent)
+);
+
+MENU(mac550Color, "MAC550", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  // ,SUBMENU(firstColorWheel)
+  ,SUBMENU(colorwheel1Menu)
   ,FIELD(secondColowheel, "Colorwheel 2", "", 0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
+
 MENU(colour, "Colour", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,SUBMENU(cmy)
-  ,SUBMENU(colorwheel)
+  ,SUBMENU(mac600Color)
+  ,SUBMENU(mac550Color)
   ,EXIT("<Back")
 );
 
