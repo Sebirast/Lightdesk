@@ -27,9 +27,28 @@ void Fixture::set(uint16_t channel, uint8_t value)
     return;
   }
 
-  // this->currentValues. //TODO write value into currentValue 
   Serial.println("lol");
   this->dmx->set(address + channel - 1, value);
+}
+
+void Fixture::set(uint16_t channel, uint8_t value, bool recording)
+{
+  if(channel == 0)
+  {
+    Serial.println("This fixture does not have this function");
+    return;
+  }
+
+  if(recording)
+    this->currentValues[channel] = value;
+
+  this->dmx->set(address + channel - 1, value);
+
+}
+
+uint8_t Fixture::get(uint16_t channel)
+{
+  return currentValues[channel];
 }
 
 void Fixture::igniteLamp()

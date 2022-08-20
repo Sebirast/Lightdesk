@@ -33,14 +33,9 @@ void setup() {
   // profilfilter[0].;
 
   fixture1 = new fixture::Fixture(&dmx, fixture::Fixture::FixtureType::MAC600E, 200);
-  // fixture1->igniteLamp();
-  // delay(100);
-  // fixture1->set(fixture1->channels->shutter, 21);
 
-  // fixture1->set(fixture1->channels->dimmer, 255);
-
-  // fixture1->set(fixture1->channels->tilt, 100);
-  fixture1->set(fixture1->channels->shutter, 250);
+  fixture1->set(fixture1->channels->shutter, 250, true);
+  Serial.println(fixture1->get(fixture1->channels->shutter));
 
   // enc.begin();
   Timer3.initialize(1000);

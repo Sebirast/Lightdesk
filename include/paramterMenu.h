@@ -19,7 +19,6 @@ int timeOn = 0;
 
 Adafruit_RA8875 gfx(10, 9);
 
-
 int foo = 0;
 
 uint8_t shutter = SHUTTER_CLOSED;

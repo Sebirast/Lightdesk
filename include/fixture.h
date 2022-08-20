@@ -42,18 +42,22 @@ namespace fixture
       };
 
       Fixture::Param* channels = NULL;
+      int currentValues[22];
 
       Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, uint16_t address);
+
       void set(uint16_t channel, uint8_t value);
+      void set(uint16_t channel, uint8_t value, bool recording);
+      uint8_t get(uint16_t channel);
+
+      void play();
+
       void igniteLamp();
       void extinguishLamp();
-      uint8_t get(fixture::Fixture::Param channel);
-      void play();
 
     private:
       qindesign::teensydmx::Sender* dmx;
       uint16_t address;
-      Fixture::Param currentValues;
       Fixture::FixtureType type;
   };
 }
