@@ -51,19 +51,6 @@ MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
-uint16_t c = 0;
-uint16_t m = 0;
-uint16_t y = 0;
-
-MENU(mac600Color, "MAC600", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(c, "C", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(m, "M", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(y, "Y", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,EXIT("<Back")
-);
-
-// uint16_t firstColorwheel = 153;
-
 
 uint16_t colorWheel1 = OPEN;//some variable used by your code (not necessarily an int)
 CHOOSE(colorWheel1,colorwheel1Menu,"Colorwheel 1",Menu::doNothing,Menu::noEvent,Menu::noStyle
@@ -91,10 +78,19 @@ CHOOSE(colorWheel1,colorwheel2Menu,"Colorwheel 1",Menu::doNothing,Menu::noEvent,
   ,VALUE("CTC 32",MAC550_CTC32,Menu::doNothing,Menu::noEvent)
 );
 
-
+uint16_t c = 0;
+uint16_t m = 0;
+uint16_t y = 0;
 MENU(mac550Color, "MAC550", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(colorwheel1Menu)
   ,SUBMENU(colorwheel2Menu)
+  ,EXIT("<Back")
+);
+
+MENU(mac600Color, "MAC600", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,FIELD(c, "C", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(m, "M", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(y, "Y", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
@@ -104,8 +100,34 @@ MENU(colour, "Colour", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
+uint16_t gobowheel1 = OPEN;
+uint16_t gobowheel2 = OPEN;
+CHOOSE(gobowheel1,gobowheel1Menu,"Gobowheel 1",Menu::doNothing,Menu::noEvent,Menu::noTitle
+  ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
+  ,VALUE("FIRE SUN",FIRE_SUN,Menu::doNothing,Menu::noEvent)
+  ,VALUE("ROTATOR",ROTATOR,Menu::doNothing,Menu::noEvent)
+  ,VALUE("INDIGO WAVES",INDIGO_WAVES,Menu::doNothing,Menu::noEvent)
+  ,VALUE("LIMBO",LIMBO,Menu::doNothing,Menu::noEvent)
+  ,VALUE("WATER",WATER,Menu::doNothing,Menu::noEvent)
+  ,VALUE("FLAMES",FLAMES,Menu::doNothing,Menu::noEvent)
+);
+
+CHOOSE(gobowheel2,gobowheel2Menu,"Gobowheel 2",Menu::doNothing,Menu::noEvent,Menu::noTitle
+  ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
+  ,VALUE("CRACKLE",CRACKLE, Menu::doNothing, Menu::noEvent)
+  ,VALUE("TRIANGLES",TRIANGLES,Menu::doNothing,Menu::noEvent)
+  ,VALUE("TYE DYE",TYE_DYE,Menu::doNothing,Menu::noEvent)
+  ,VALUE("SPLODGE",SPLODGE,Menu::doNothing,Menu::noEvent)
+  ,VALUE("NINESTAR",NINESTAR,Menu::doNothing,Menu::noEvent)
+  ,VALUE("BIO",BIO,Menu::doNothing,Menu::noEvent)
+  ,VALUE("LEAF BREAKUP",LEAF_BREAKUP,Menu::doNothing,Menu::noEvent)
+  ,VALUE("ZIG ZAGS",ZIG_ZAGS,Menu::doNothing,Menu::noEvent)
+  ,VALUE("TWO TONE",TWO_TONE,Menu::doNothing,Menu::noEvent)
+);
+
 MENU(gobo, "Gobo", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,SUBMENU(gobowheel1Menu)
+  ,SUBMENU(gobowheel2Menu)
   ,EXIT("<Back")
 );
 
