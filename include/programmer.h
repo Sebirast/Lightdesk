@@ -2,6 +2,7 @@
 #include "fixture.h"
 #include <menu.h>
 #include <map>
+#include "titleConfig.h"
 
 namespace programmer
 {
@@ -30,7 +31,7 @@ namespace programmer
         std::map<const char*, fixture::Fixture::Param> fromNavTargetToParam = 
         {
             {"Shutter", fixture::Fixture::Param::SHUTTER},
-            {"Strobe", fixture::Fixture::Param::SHUTTER},
+            {STROBE, fixture::Fixture::Param::SHUTTER},
             {"Pulse", fixture::Fixture::Param::SHUTTER},
             {"Intensity", fixture::Fixture::Param::DIMMER},
             {"Intensity Fine", fixture::Fixture::Param::DIMMERFINE},

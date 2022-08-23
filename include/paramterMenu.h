@@ -12,6 +12,7 @@
 #include "channelConfig.h"
 #include "programmer.h"
 #include <map>
+#include "titleConfig.h"
 
 using namespace Menu;
 
@@ -46,7 +47,7 @@ TOGGLE(shutter, shutterOpenOrClosed, "Open / closed ", Menu::doNothing, Menu::no
 
 MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(shutterOpenOrClosed)
-  ,FIELD(strobe,"Strobe","",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(strobe,STROBE,"",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
   ,FIELD(pulse,"Pulse","",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
