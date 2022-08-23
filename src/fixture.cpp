@@ -57,7 +57,7 @@ void Fixture::igniteLamp()
   {
     case(MAC550): 
     case(MAC600E): 
-      dmx->set(address + channels[shutter] - 1, IGNITE_LAMP); break;
+      dmx->set(address + channels[SHUTTER] - 1, IGNITE_LAMP); break;
     case(GENERICDIMMER):
     default:
       Serial.println("This lamp cannot be ignited!");

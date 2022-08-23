@@ -168,16 +168,19 @@ MENU(focusMenu, "Focus", printHello, Menu::enterEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
+u_int16_t profilfilter1 = 0;
+u_int16_t profilfilter2 = 0;
 MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(profilfilter1,"Profilfilter 1","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(profilfilter2,"Profilfilter 2","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
-uint16_t xPosition = 0;
-uint16_t yPosition = 0;
+uint16_t pan = 0;
+uint16_t tilt = 0;
 MENU(position, "Position", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
-  ,FIELD(xPosition,"x-Position","",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(yPosition, "y-Postion","",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(pan,"Pan","",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(tilt, "Tilt","",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 )
 
