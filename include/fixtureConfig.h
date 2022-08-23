@@ -1,9 +1,10 @@
 #pragma once
 
 #include "fixture.h"
+#include <array>
 
 
-fixture::Fixture::Param MAC550_config =
+std::array<uint8_t, 22> MAC550_config =
 {
   1, // shutter
   2, // dimmer 
@@ -24,10 +25,12 @@ fixture::Fixture::Param MAC550_config =
   0, 
   0, 
   0, 
+  0,
+  0,
   0
 };
 
-fixture::Fixture::Param MAC600E_config =
+std::array<uint8_t, 22> MAC600E_config =
 {
   1,  // shutter;  
   2,  // dimmer;   
@@ -53,10 +56,14 @@ fixture::Fixture::Param MAC600E_config =
   5   // yellow;
 };    
       
-fixture::Fixture::Param GENERIGDIMMER_config = 
+std::array<uint8_t, 22> GENERIGDIMMER_config = 
 {
   0, 
   1, 
+  0, 
+  0, 
+  0, 
+  0, 
   0, 
   0, 
   0, 
