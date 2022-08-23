@@ -21,19 +21,18 @@ Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, u
 
 void Fixture::set(Param channel, uint8_t value)
 {
-  if(channel == 0)
+  if(channels[channel] == 0)
   {
     Serial.println("This fixture does not have this function");
     return;
   }
 
-  Serial.println("lol");
   this->dmx->set(address + channels[channel] - 1, value);
 }
 
 void Fixture::set(Param channel, uint8_t value, bool recording)
 {
-  if(channel == 0)
+  if(channels[channel] == 0)
   {
     Serial.println("This fixture does not have this function");
     return;

@@ -1,4 +1,6 @@
-#include "paramterMenu.h"
+
+
+
 #include "fixture.h"
 #include <TeensyDMX.h>
 #include <map>
@@ -9,6 +11,8 @@ using namespace fixture;
 qindesign::teensydmx::Sender dmx(Serial5);
 
 fixture::Fixture* fixture1 = NULL;
+
+#include "paramterMenu.h"
 
 Encoder enc(7, 8);
 Encoder enc2(2, 3);
@@ -33,8 +37,8 @@ void setup() {
 
   fixture1 = new fixture::Fixture(&dmx, fixture::Fixture::FixtureType::MAC600E, 200);
 
-  fixture1->set(fixture1->channels->shutter, 250, true);
-  Serial.println(fixture1->get(fixture1->channels->shutter));
+  fixture1->set(fixture::Fixture::SHUTTER, 250, true);
+  Serial.println(fixture1->get(Fixture::SHUTTER));
 
   Timer3.initialize(1000);
   Timer3.attachInterrupt(timerIsr);

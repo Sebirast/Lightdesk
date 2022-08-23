@@ -23,15 +23,20 @@ Adafruit_RA8875 gfx(10, 9);
 
 int foo = 0;
 
-programmer::Programmer();
+fixture::Fixture one(&dmx, fixture::Fixture::MAC550, 200);
+fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250);
+fixture::Fixture three(&dmx, fixture::Fixture::MAC600E, 300);
+fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 350);
+
+programmer::Programmer programmer_1(&one, &two, &three, &four);
 
 uint16_t shutter = SHUTTER_CLOSED;
 uint16_t strobe = 0;
 uint16_t pulse = 0;
 
-result hello(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
-  // programmers[&n].func(e, p)
-  Serial.println(n.selected().getText());
+result wrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
+  programmer_1.doOutputFromField(p);
+  return proceed;
 }
 
 TOGGLE(shutter, shutterOpenOrClosed, "Open / closed ", Menu::doNothing, Menu::noEvent, Menu::noStyle
@@ -41,22 +46,22 @@ TOGGLE(shutter, shutterOpenOrClosed, "Open / closed ", Menu::doNothing, Menu::no
 
 MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(shutterOpenOrClosed)
-  ,FIELD(strobe,"Strobe","",0,255,10,1, hello, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(pulse,"Pulse","",0,255,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(strobe,"Strobe","",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(pulse,"Pulse","",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 uint16_t intensity = 0;
 uint16_t intensityFine = 0;
 MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(intensity,"Intensity","",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(intensity,"Intensity","",0,100,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
   ,FIELD(intensityFine,"Intensity Fine","",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 
 uint16_t colorWheel1 = OPEN;//some variable used by your code (not necessarily an int)
-CHOOSE(colorWheel1,colorwheel1Menu,"Colorwheel 1",Menu::doNothing,Menu::noEvent,Menu::noStyle
+CHOOSE(colorWheel1,colorwheel1Menu,"Colorwheel 1",wrapper,Menu::enterEvent | exitEvent,Menu::noStyle
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
   ,VALUE("RED",MAC550_RED_1,Menu::doNothing,Menu::noEvent)
   ,VALUE("MAGENTA",MAC550_MAGENTA,Menu::doNothing,Menu::noEvent)
@@ -69,7 +74,7 @@ CHOOSE(colorWheel1,colorwheel1Menu,"Colorwheel 1",Menu::doNothing,Menu::noEvent,
 );
 
 uint16_t colorWheel2 = OPEN;//some variable used by your code (not necessarily an int)
-CHOOSE(colorWheel1,colorwheel2Menu,"Colorwheel 1",Menu::doNothing,Menu::noEvent,Menu::noStyle
+CHOOSE(colorWheel2,colorwheel2Menu,"Colorwheel 1",Menu::doNothing,Menu::noEvent,Menu::noStyle
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
   ,VALUE("GREEN",MAC550_GREEN_2,Menu::doNothing,Menu::noEvent)
   ,VALUE("BLUE",MAC550_BLUE_2,Menu::doNothing,Menu::noEvent)

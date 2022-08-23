@@ -50,8 +50,9 @@ namespace programmer
             {"Tilt", fixture::Fixture::Param::TILT}
         };
 
-        Programmer(fixture::Fixture* mac500_1, fixture::Fixture* mac500_2, fixture::Fixture* mac600E_1, fixture::Fixture* mac600E_2);
-        void select();
-        result doOutputFromField(Menu::prompt p);
+        public:
+            Programmer(fixture::Fixture* mac500_1, fixture::Fixture* mac500_2, fixture::Fixture* mac600E_1, fixture::Fixture* mac600E_2);
+            void select();
+            void doOutputFromField(Menu::prompt p);
     };
 }

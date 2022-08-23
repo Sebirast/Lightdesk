@@ -5,6 +5,14 @@
         "fstream": "cpp",
         "istream": "cpp",
         "streambuf": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "exception": "cpp",
+        "algorithm": "cpp",
+        "functional": "cpp",
+        "iterator": "cpp",
+        "memory": "cpp",
+        "limits": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp"
     }
 }
