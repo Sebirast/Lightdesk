@@ -1,6 +1,7 @@
 #include "paramterMenu.h"
 #include "fixture.h"
 #include <TeensyDMX.h>
+#include <map>
 
 using namespace fixture;
 #define MENU_DEBUG
@@ -17,8 +18,8 @@ void setup() {
   dmx.begin();
   gfx.begin(RA8875_800x480);
   gfx.displayOn(true);
-  gfx.GPIOX(true);      // Enable TFT - display enable tied to GPIOX
-  gfx.PWM1config(true, RA8875_PWM_CLK_DIV1024); // PWM output for backlight
+  gfx.GPIOX(true);
+  gfx.PWM1config(true, RA8875_PWM_CLK_DIV1024); 
   gfx.PWM1out(255);
 
   gfx.textMode();
@@ -26,31 +27,23 @@ void setup() {
   gfx.textEnlarge(2);
 
   Serial.begin(9600);
-  // while(!Serial);
   Serial.println("Menu 4.x");
   Serial.println("Use keys + - * /");
   Serial.println("to control the menu navigation");
-
-  // profilfilter[0].;
 
   fixture1 = new fixture::Fixture(&dmx, fixture::Fixture::FixtureType::MAC600E, 200);
 
   fixture1->set(fixture1->channels->shutter, 250, true);
   Serial.println(fixture1->get(fixture1->channels->shutter));
 
-  // enc.begin();
   Timer3.initialize(1000);
   Timer3.attachInterrupt(timerIsr);
-
-  // fixture1->set(fixture1->channels->colorWheel1, 255);
-  // long start = millis();
-  // long end = millis();
-  // Serial.print("Setup time: ");
-  // Serial.println(end - start);
 }
 
 void loop() {
   nav.poll();
   nav.doInput();
+
+  // nav.active(
   // Serial.print(nav.active().getText());
 }

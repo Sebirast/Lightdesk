@@ -10,6 +10,8 @@
 #include <TimerThree.h>
 #include <Encoder.h>
 #include "channelConfig.h"
+#include "programmer.h"
+#include <map>
 
 using namespace Menu;
 
@@ -21,14 +23,15 @@ Adafruit_RA8875 gfx(10, 9);
 
 int foo = 0;
 
+programmer::Programmer();
+
 uint16_t shutter = SHUTTER_CLOSED;
 uint16_t strobe = 0;
 uint16_t pulse = 0;
 
-result hello()
-{
-  Serial.println("Hello World");
-  return proceed;
+result hello(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
+  // programmers[&n].func(e, p)
+  Serial.println(n.selected().getText());
 }
 
 TOGGLE(shutter, shutterOpenOrClosed, "Open / closed ", Menu::doNothing, Menu::noEvent, Menu::noStyle
@@ -43,8 +46,8 @@ MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
-int intensity = 0;
-int intensityFine = 0;
+uint16_t intensity = 0;
+uint16_t intensityFine = 0;
 MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(intensity,"Intensity","",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,FIELD(intensityFine,"Intensity Fine","",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)

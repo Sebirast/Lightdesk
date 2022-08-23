@@ -43,6 +43,7 @@ namespace fixture
 
       Fixture::Param* channels = NULL;
       int currentValues[22];
+      bool selected;
 
       Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, uint16_t address);
 
@@ -54,6 +55,8 @@ namespace fixture
 
       void igniteLamp();
       void extinguishLamp();
+      
+      void select(bool selected);
 
     private:
       qindesign::teensydmx::Sender* dmx;

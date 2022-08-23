@@ -72,3 +72,8 @@ void Fixture::extinguishLamp()
   //   case(MAC550):
   // }
 }
+
+void Fixture::select(bool selected)
+{
+  this->selected = selected;
+}
