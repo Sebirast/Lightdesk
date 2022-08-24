@@ -8,29 +8,24 @@ namespace programmer
 {
     class Programmer
     {
-        // struct ParamValues
-        // {
-        //     uint16_t shutter;
-        //     uint16_t strobe;
-        //     uint16_t pulse;
-
-        //     uint16_t intensity;
-        //     uint16_t intensityFine;
-
-        //     uint16_t colorWheel1 = OPEN;
-        //     uint16_t colorWheel2 = OPEN;
-
-        //     void clear();
-        // };
+        enum programmerValues
+        {
+            PULSE = 0,
+            SHUTTER = 0,
+            STROBE = 0,
+            INTENSITY,
+            INTENSITY_FINE,
+            COLORWHEEL
+        };
 
         fixture::Fixture* mac500_1;
         fixture::Fixture* mac500_2;
         fixture::Fixture* mac600E_1;
         fixture::Fixture* mac600E_2;
 
-        std::map<std::string, fixture::Fixture::Param> fromNavTargetToParam = 
+        std::map<std::string, int[]> fromNavTargetToParam = 
         {
-            {TITLE_SHUTTER, fixture::Fixture::Param::SHUTTER},
+            {TITLE_SHUTTER, {fixture::Fixture::Param::SHUTTER, 1}}
             {TITLE_STROBE, fixture::Fixture::Param::SHUTTER},
             {TITLE_PULSE, fixture::Fixture::Param::SHUTTER},
             {TITLE_INTENSITY, fixture::Fixture::Param::DIMMER},
@@ -54,7 +49,7 @@ namespace programmer
         public:
             Programmer(fixture::Fixture* mac500_1, fixture::Fixture* mac500_2, fixture::Fixture* mac600E_1, fixture::Fixture* mac600E_2);
             void select();
-            void adjustMenu();
+            void adjustMenu(Menu::navNode& n);
             void doOutputFromField(Menu::prompt p);
     };
 }
