@@ -30,30 +30,31 @@ namespace programmer
 
         std::map<std::string, fixture::Fixture::Param> fromNavTargetToParam = 
         {
-            {"Shutter", fixture::Fixture::Param::SHUTTER},
-            {STROBE, fixture::Fixture::Param::SHUTTER},
-            {"Pulse", fixture::Fixture::Param::SHUTTER},
-            {INTENSITY, fixture::Fixture::Param::DIMMER},
-            {"Intensity Fine", fixture::Fixture::Param::DIMMERFINE},
-            {"Colorwheel 1", fixture::Fixture::Param::COLORWHEEL1},
-            {"Colorwheel 2", fixture::Fixture::Param::COLORWHEEL2},
-            {"C", fixture::Fixture::Param::CYAN},
-            {"M", fixture::Fixture::Param::MAGENTA},
-            {"Y", fixture::Fixture::Param::YELLOW},
-            {"Gobowheel 1", fixture::Fixture::Param::GOBOWHEEL1},
-            {"Gobowheel 2", fixture::Fixture::Param::GOBOWHEEL2},
-            {"Prisma", fixture::Fixture::Param::PRISMA},
-            {"Diameter", fixture::Fixture::Param::IRIS},
-            {"Diameter fine", fixture::Fixture::Param::IRISDIAMETER},
-            {"Profilfilter 1", fixture::Fixture::Param::PROFILFILTER1},
-            {"Profilfilter 2", fixture::Fixture::Param::PROFILFILTER2},
-            {"Pan", fixture::Fixture::Param::PAN},
-            {"Tilt", fixture::Fixture::Param::TILT}
+            {TITLE_SHUTTER, fixture::Fixture::Param::SHUTTER},
+            {TITLE_STROBE, fixture::Fixture::Param::SHUTTER},
+            {TITLE_PULSE, fixture::Fixture::Param::SHUTTER},
+            {TITLE_INTENSITY, fixture::Fixture::Param::DIMMER},
+            {TITLE_INTENSITY_FINE, fixture::Fixture::Param::DIMMERFINE},
+            {TITLE_COLORWHEEL_1, fixture::Fixture::Param::COLORWHEEL1},
+            {TITLE_COLORWHEEL_2, fixture::Fixture::Param::COLORWHEEL2},
+            {TITLE_C, fixture::Fixture::Param::CYAN},
+            {TITLE_M, fixture::Fixture::Param::MAGENTA},
+            {TITLE_Y, fixture::Fixture::Param::YELLOW},
+            {TITLE_GOBOWHEEL_1, fixture::Fixture::Param::GOBOWHEEL1},
+            {TITLE_GOBOWHEEL_2, fixture::Fixture::Param::GOBOWHEEL2},
+            {TITLE_PRISMA_TOGGLE, fixture::Fixture::Param::PRISMA},
+            {TITLE_DIAMETER, fixture::Fixture::Param::IRIS},
+            {TITLE_DIAMETER_FINE, fixture::Fixture::Param::IRISDIAMETER},
+            {TITLE_PROFILFILTER_1, fixture::Fixture::Param::PROFILFILTER1},
+            {TITLE_PROFILFILTER_2, fixture::Fixture::Param::PROFILFILTER2},
+            {TITLE_PAN, fixture::Fixture::Param::PAN},
+            {TITLE_TILT, fixture::Fixture::Param::TILT}
         };
 
         public:
             Programmer(fixture::Fixture* mac500_1, fixture::Fixture* mac500_2, fixture::Fixture* mac600E_1, fixture::Fixture* mac600E_2);
             void select();
+            void adjustMenu();
             void doOutputFromField(Menu::prompt p);
     };
 }

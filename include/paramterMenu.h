@@ -40,29 +40,29 @@ result wrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
   return proceed;
 }
 
-TOGGLE(shutter, shutterOpenOrClosed, "Open / closed ", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,VALUE("Open", SHUTTER_OPEN, Menu::doNothing, Menu::noEvent)
-  ,VALUE("Closed", SHUTTER_CLOSED, Menu::doNothing, Menu::noEvent)
+TOGGLE(shutter, shutterOpenOrClosed, TITLE_SHUTTER, Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,VALUE("Open", SHUTTER_OPEN, wrapper, Menu::changeEvent)
+  ,VALUE("Closed", SHUTTER_CLOSED, wrapper, Menu::changeEvent)
 );  
 
 MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(shutterOpenOrClosed)
-  ,FIELD(strobe,STROBE,"",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(pulse,"Pulse","",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(strobe,TITLE_STROBE,"",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(pulse,TITLE_PULSE,"",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 uint16_t intensity = 0;
 uint16_t intensityFine = 0;
 MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(intensity,INTENSITY,"",0,100,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(intensityFine,"Intensity Fine","",0,100,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(intensity,TITLE_INTENSITY,"",0,100,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(intensityFine,TITLE_INTENSITY_FINE,"",0,100,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 
 uint16_t colorWheel1 = OPEN;//some variable used by your code (not necessarily an int)
-CHOOSE(colorWheel1,colorwheel1Menu,"Colorwheel 1",wrapper,Menu::enterEvent | exitEvent,Menu::noStyle
+CHOOSE(colorWheel1,colorwheel1Menu,TITLE_COLORWHEEL_1,wrapper,Menu::enterEvent | exitEvent,Menu::noStyle
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
   ,VALUE("RED",MAC550_RED_1,Menu::doNothing,Menu::noEvent)
   ,VALUE("MAGENTA",MAC550_MAGENTA,Menu::doNothing,Menu::noEvent)
@@ -75,7 +75,7 @@ CHOOSE(colorWheel1,colorwheel1Menu,"Colorwheel 1",wrapper,Menu::enterEvent | exi
 );
 
 uint16_t colorWheel2 = OPEN;//some variable used by your code (not necessarily an int)
-CHOOSE(colorWheel2,colorwheel2Menu,"Colorwheel 1",Menu::doNothing,Menu::noEvent,Menu::noStyle
+CHOOSE(colorWheel2,colorwheel2Menu,TITLE_COLORWHEEL_2,Menu::doNothing,Menu::noEvent,Menu::noStyle
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
   ,VALUE("GREEN",MAC550_GREEN_2,Menu::doNothing,Menu::noEvent)
   ,VALUE("BLUE",MAC550_BLUE_2,Menu::doNothing,Menu::noEvent)
@@ -97,9 +97,9 @@ MENU(mac550Color, "MAC550", Menu::doNothing, Menu::noEvent, Menu::noStyle
 );
 
 MENU(mac600Color, "MAC600", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(c, "C", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(m, "M", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(y, "Y", "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(c, TITLE_C, "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(m, TITLE_M, "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(y, TITLE_Y, "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
@@ -111,7 +111,7 @@ MENU(colour, "Colour", Menu::doNothing, Menu::noEvent, Menu::noStyle
 
 uint16_t gobowheel1 = OPEN;
 uint16_t gobowheel2 = OPEN;
-CHOOSE(gobowheel1,gobowheel1Menu,"Gobowheel 1",Menu::doNothing,Menu::noEvent,Menu::noTitle
+CHOOSE(gobowheel1,gobowheel1Menu,TITLE_GOBOWHEEL_1,Menu::doNothing,Menu::noEvent,Menu::noTitle
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
   ,VALUE("FIRE SUN",FIRE_SUN,Menu::doNothing,Menu::noEvent)
   ,VALUE("ROTATOR",ROTATOR,Menu::doNothing,Menu::noEvent)
@@ -121,7 +121,7 @@ CHOOSE(gobowheel1,gobowheel1Menu,"Gobowheel 1",Menu::doNothing,Menu::noEvent,Men
   ,VALUE("FLAMES",FLAMES,Menu::doNothing,Menu::noEvent)
 );
 
-CHOOSE(gobowheel2,gobowheel2Menu,"Gobowheel 2",Menu::doNothing,Menu::noEvent,Menu::noTitle
+CHOOSE(gobowheel2,gobowheel2Menu,TITLE_GOBOWHEEL_2,Menu::doNothing,Menu::noEvent,Menu::noTitle
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
   ,VALUE("CRACKLE",CRACKLE, Menu::doNothing, Menu::noEvent)
   ,VALUE("TRIANGLES",TRIANGLES,Menu::doNothing,Menu::noEvent)
@@ -142,22 +142,22 @@ MENU(gobo, "Gobo", Menu::doNothing, Menu::noEvent, Menu::noStyle
 
 uint16_t prismaOnOff = 0;
 int16_t prismaRotation = 0;
-TOGGLE(prismaOnOff, prismaOnOffMenu, "Prisma ", Menu::doNothing, Menu::noEvent, Menu::noStyle
+TOGGLE(prismaOnOff, prismaOnOffMenu, TITLE_PRISMA_TOGGLE , Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,VALUE("On", PRISMA_ON, Menu::doNothing, Menu::noEvent)
   ,VALUE("Off", PRISMA_OFF, Menu::doNothing, Menu::noEvent)
 );
 
 MENU(prismaMenu, "Prisma", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(prismaOnOffMenu)
-  ,FIELD(prismaRotation, "Rotation", "", -50, 50, 5, 5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(prismaRotation, TITLE_PRISMA_ROTATION, "", -50, 50, 5, 5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 uint16_t iris = 0;
 uint16_t irisFine = 0;
 MENU(irisMenu, "Iris", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(iris,"Diameter","",0,100,5,5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(irisFine, "Diameter fine", "", 0, 100, 5, 5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(iris,TITLE_DIAMETER,"",0,100,5,5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(irisFine, TITLE_DIAMETER_FINE, "", 0, 100, 5, 5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
@@ -170,23 +170,23 @@ result printHello()
 uint16_t focus = 0;
 
 MENU(focusMenu, "Focus", printHello, Menu::enterEvent, Menu::noStyle
-  ,FIELD(focus,"Focus","",0,100,5,5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(focus,TITLE_FOCUS,"",0,100,5,5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 u_int16_t profilfilter1 = 0;
 u_int16_t profilfilter2 = 0;
 MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(profilfilter1,"Profilfilter 1","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(profilfilter2,"Profilfilter 2","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(profilfilter1,TITLE_PROFILFILTER_1,"ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(profilfilter2,TITLE_PROFILFILTER_2,"ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 uint16_t pan = 0;
 uint16_t tilt = 0;
 MENU(position, "Position", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
-  ,FIELD(pan,"Pan","",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(tilt, "Tilt","",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(pan,TITLE_PAN,"",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(tilt, TITLE_TILT,"",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
 )
 
