@@ -47,7 +47,4 @@ void setup() {
 void loop() {
   nav.poll();
   nav.doInput();
-
-  // nav.active(
-  // Serial.print(nav.active().getText());
 }

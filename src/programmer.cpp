@@ -11,11 +11,11 @@ Programmer::Programmer(fixture::Fixture* mac500_1, fixture::Fixture* mac500_2, f
 
 void Programmer::doOutputFromField(Menu::prompt p)
 {
-    Serial.println(p.getText());
-
     const char* title = p.getText();
 
-    Serial.println(fromNavTargetToParam[title][0]);
-    mac500_1->set(fromNavTargetToParam[title][0], 255, true);
-    Serial.println(mac500_1->get(fromNavTargetToParam[title]));
+    Serial.print(p.getText());
+    Serial.print(" ");
+    mac500_1->set(fromNavTargetToParam[title][0], fromNavTargetToParam[title][1], true);
+    Serial.print("Value: ");
+    Serial.println(fromNavTargetToParam[title][1]);
 }
