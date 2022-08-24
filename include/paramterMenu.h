@@ -55,8 +55,8 @@ MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
 uint16_t intensity = 0;
 uint16_t intensityFine = 0;
 MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(intensity,"Intensity","",0,100,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(intensityFine,"Intensity Fine","",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(intensity,INTENSITY,"",0,100,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(intensityFine,"Intensity Fine","",0,100,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 

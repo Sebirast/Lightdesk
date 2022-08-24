@@ -28,12 +28,12 @@ namespace programmer
         fixture::Fixture* mac600E_1;
         fixture::Fixture* mac600E_2;
 
-        std::map<const char*, fixture::Fixture::Param> fromNavTargetToParam = 
+        std::map<std::string, fixture::Fixture::Param> fromNavTargetToParam = 
         {
             {"Shutter", fixture::Fixture::Param::SHUTTER},
             {STROBE, fixture::Fixture::Param::SHUTTER},
             {"Pulse", fixture::Fixture::Param::SHUTTER},
-            {"Intensity", fixture::Fixture::Param::DIMMER},
+            {INTENSITY, fixture::Fixture::Param::DIMMER},
             {"Intensity Fine", fixture::Fixture::Param::DIMMERFINE},
             {"Colorwheel 1", fixture::Fixture::Param::COLORWHEEL1},
             {"Colorwheel 2", fixture::Fixture::Param::COLORWHEEL2},
