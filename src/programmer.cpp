@@ -13,9 +13,7 @@ void Programmer::doOutputFromField(Menu::prompt p)
 {
     const char* title = p.getText();
 
-    Serial.print(p.getText());
-    Serial.print(" ");
-    mac500_1->set(fromNavTargetToParam[title][0], fromNavTargetToParam[title][1], true);
-    Serial.print("Value: ");
-    Serial.println(fromNavTargetToParam[title][1]);
+    Serial.println(fromNavTargetToParam[title].first);
+    Serial.println(*fromNavTargetToParam[title].second);
+    mac500_1->set(fromNavTargetToParam[title].first, *fromNavTargetToParam[title].second, true);
 }
