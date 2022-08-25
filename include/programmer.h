@@ -40,6 +40,8 @@ namespace programmer
 
             uint16_t pan = 0;
             uint16_t tilt = 0;
+
+            uint16_t focus = 0;
         };
         public:
             programmer::Programmer::programmerValues programmerValues;
@@ -69,6 +71,7 @@ namespace programmer
                 {TITLE_PRISMA_ROTATION, {(int16_t)fixture::Fixture::Param::PRISMA, &programmerValues.prismaRotation}},
                 {TITLE_DIAMETER, {(int16_t)fixture::Fixture::Param::IRIS, &programmerValues.iris}},
                 {TITLE_DIAMETER_FINE, {(int16_t)fixture::Fixture::Param::IRISDIAMETER, &programmerValues.irisFine}},
+                {TITLE_FOCUS, {(int16_t)fixture::Fixture::Param::FOCUS, &programmerValues.focus}},
                 {TITLE_PROFILFILTER_1, {(int16_t)fixture::Fixture::Param::PROFILFILTER1, &programmerValues.profilfilter1}},
                 {TITLE_PROFILFILTER_2, {(int16_t)fixture::Fixture::Param::PROFILFILTER2, &programmerValues.profilfilter2}},
                 {TITLE_PAN, {(int16_t)fixture::Fixture::Param::PAN, &programmerValues.pan}},

@@ -87,9 +87,9 @@ MENU(mac550Color, "MAC550", Menu::doNothing, Menu::noEvent, Menu::noStyle
 );
 
 MENU(mac600Color, "MAC600", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.c, TITLE_C, "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.m, TITLE_M, "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.y, TITLE_Y, "%",0,100,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.c, TITLE_C, "%",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.m, TITLE_M, "%",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.y, TITLE_Y, "%",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
@@ -129,44 +129,38 @@ MENU(gobo, "Gobo", Menu::doNothing, Menu::noEvent, Menu::noStyle
 );
 
 TOGGLE(programmer_1.programmerValues.prismaOnOff, prismaOnOffMenu, TITLE_PRISMA_TOGGLE , Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,VALUE("On", PRISMA_ON, Menu::doNothing, Menu::noEvent)
-  ,VALUE("Off", PRISMA_OFF, Menu::doNothing, Menu::noEvent)
+  ,VALUE("On", PRISMA_ON, doOutputOnFieldWrapper, Menu::changeEvent)
+  ,VALUE("Off", PRISMA_OFF, doOutputOnFieldWrapper, Menu::changeEvent)
 );
 
+// TODO int is unsigned!!!
 MENU(prismaMenu, "Prisma", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(prismaOnOffMenu)
-  ,FIELD(programmer_1.programmerValues.prismaRotation, TITLE_PRISMA_ROTATION, "", -50, 50, 5, 5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.prismaRotation, TITLE_PRISMA_ROTATION, "", -50, 50, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 MENU(irisMenu, "Iris", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.iris,TITLE_DIAMETER,"",0,100,5,5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.irisFine, TITLE_DIAMETER_FINE, "", 0, 100, 5, 5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.iris,TITLE_DIAMETER,"",0,100,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.irisFine, TITLE_DIAMETER_FINE, "", 0, 100, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
-result printHello()
-{
-  Serial.println("Hello World");
-  return 0;
-}
 
-uint16_t focus = 0;
-
-MENU(focusMenu, "Focus", printHello, Menu::enterEvent, Menu::noStyle
-  ,FIELD(focus,TITLE_FOCUS,"",0,100,5,5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+MENU(focusMenu, "Focus", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,FIELD(programmer_1.programmerValues.focus,TITLE_FOCUS,"",0,100,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.profilfilter1,TITLE_PROFILFILTER_1,"ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.profilfilter2,TITLE_PROFILFILTER_2,"ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.profilfilter1,TITLE_PROFILFILTER_1,"ms",0,1000,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.profilfilter2,TITLE_PROFILFILTER_2,"ms",0,1000,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 MENU(position, "Position", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
-  ,FIELD(programmer_1.programmerValues.pan,TITLE_PAN,"",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.tilt, TITLE_TILT,"",0,255,10,10, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.pan,TITLE_PAN,"",0,255,10,10, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.tilt, TITLE_TILT,"",0,255,10,10, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 )
 
