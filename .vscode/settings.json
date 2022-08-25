@@ -13,6 +13,8 @@
         "memory": "cpp",
         "limits": "cpp",
         "tuple": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "deque": "cpp",
+        "unordered_map": "cpp"
     }
 }

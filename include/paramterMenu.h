@@ -32,31 +32,31 @@ fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 350);
 programmer::Programmer programmer_1(&one, &two, &three, &four);
 
 
-result wrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
+result doOutputOnFieldWrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
   programmer_1.doOutputFromField(p);
   return proceed;
 }
 
 TOGGLE(programmer_1.programmerValues.shutter, shutterOpenOrClosed, TITLE_SHUTTER, Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,VALUE("Open", SHUTTER_OPEN, wrapper, Menu::changeEvent)
-  ,VALUE("Closed", SHUTTER_CLOSED, wrapper, Menu::changeEvent)
+  ,VALUE("Open", SHUTTER_OPEN, doOutputOnFieldWrapper, Menu::changeEvent)
+  ,VALUE("Closed", SHUTTER_CLOSED, doOutputOnFieldWrapper, Menu::changeEvent)
 );  
 
 MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(shutterOpenOrClosed)
-  ,FIELD(programmer_1.programmerValues.strobe,TITLE_STROBE,"",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.pulse,TITLE_PULSE,"",0,255,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.strobe,TITLE_STROBE,"",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.pulse,TITLE_PULSE,"",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.intensity,TITLE_INTENSITY,"",0,100,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.intensityFine,TITLE_INTENSITY_FINE,"",0,100,10,1, wrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.intensity,TITLE_INTENSITY,"",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.intensityFine,TITLE_INTENSITY_FINE,"",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 
-CHOOSE(programmer_1.programmerValues.colorWheel1,colorwheel1Menu,TITLE_COLORWHEEL_1,wrapper,Menu::enterEvent | exitEvent,Menu::noStyle
+CHOOSE(programmer_1.programmerValues.colorWheel1,colorwheel1Menu,TITLE_COLORWHEEL_1,doOutputOnFieldWrapper,Menu::focusEvent | exitEvent,Menu::noStyle
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
   ,VALUE("RED",MAC550_RED_1,Menu::doNothing,Menu::noEvent)
   ,VALUE("MAGENTA",MAC550_MAGENTA,Menu::doNothing,Menu::noEvent)
