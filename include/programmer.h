@@ -52,7 +52,6 @@ namespace programmer
             fixture::Fixture* mac600E_1;
             fixture::Fixture* mac600E_2;
 
-            
             std::map<std::string, std::pair<uint16_t, uint16_t*>> fromNavTargetToParam = 
             {
                 {TITLE_SHUTTER, {fixture::Fixture::SHUTTER, &programmerValues.shutter}},

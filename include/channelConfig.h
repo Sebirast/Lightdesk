@@ -2,8 +2,8 @@
 
 #define IGNITE_LAMP 232
 
-#define SHUTTER_OPEN 10
-#define SHUTTER_CLOSED 20
+#define SHUTTER_OPEN 20
+#define SHUTTER_CLOSED 10
 
 // colorwheels
 #define OPEN 0
@@ -28,7 +28,7 @@
 #define MAC550_CTC55 119
 #define MAC550_CTC32 153
 
-// mac600E colorwheel
+// mac600E colorwheel//
 #define MAC600_WHITE 182
 #define MAC600_COLOR1 177
 #define MAC600_COLOR2 172

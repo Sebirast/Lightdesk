@@ -1,6 +1,3 @@
-
-
-
 #include "fixture.h"
 #include <TeensyDMX.h>
 #include <map>
@@ -35,10 +32,8 @@ void setup() {
   Serial.println("Use keys + - * /");
   Serial.println("to control the menu navigation");
 
-  fixture1 = new fixture::Fixture(&dmx, fixture::Fixture::FixtureType::MAC600E, 200);
-
-  fixture1->set(fixture::Fixture::SHUTTER, 250, true);
-  Serial.println(fixture1->get(Fixture::SHUTTER));
+  one.set(fixture::Fixture::SHUTTER, 250);
+  two.set(fixture::Fixture::SHUTTER, 250);
 
   Timer3.initialize(1000);
   Timer3.attachInterrupt(timerIsr);

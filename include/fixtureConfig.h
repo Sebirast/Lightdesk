@@ -3,7 +3,6 @@
 #include "fixture.h"
 #include <array>
 
-
 std::array<uint8_t, 22> MAC550_config =
 {
   1, // shutter

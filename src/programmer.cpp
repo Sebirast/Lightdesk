@@ -22,10 +22,12 @@ void Programmer::doOutputFromField(Menu::prompt p)
         Serial.print(*fromNavTargetToParam[title].second);
     #endif
 
-    mac500_1->set(fromNavTargetToParam[title].first, *fromNavTargetToParam[title].second, true);
+    // mac500_1->set(fromNavTargetToParam[title].first, *fromNavTargetToParam[title].second, true);
+    mac500_2->set(fromNavTargetToParam[title].first, *fromNavTargetToParam[title].second, true);
 
     #ifdef DEBUG
         Serial.print(" Fixture: ");
-        Serial.println(mac500_1->get(fromNavTargetToParam[title].first));
-    #endif DEBUG
+        // Serial.println(mac500_1->get(fromNavTargetToParam[title].first));
+        Serial.println(mac500_2->get(fromNavTargetToParam[title].first));
+    #endif 
 }

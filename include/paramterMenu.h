@@ -24,7 +24,7 @@ Adafruit_RA8875 gfx(10, 9);
 
 int foo = 0;
 
-fixture::Fixture one(&dmx, fixture::Fixture::MAC550, 200);
+fixture::Fixture one(&dmx, fixture::Fixture::MAC600E, 200);
 fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250);
 fixture::Fixture three(&dmx, fixture::Fixture::MAC600E, 300);
 fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 350);
@@ -44,8 +44,8 @@ TOGGLE(programmer_1.programmerValues.shutter, shutterOpenOrClosed, TITLE_SHUTTER
 
 MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(shutterOpenOrClosed)
-  ,FIELD(programmer_1.programmerValues.strobe,TITLE_STROBE,"",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.pulse,TITLE_PULSE,"",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.strobe,TITLE_STROBE,"",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.pulse,TITLE_PULSE,"",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
@@ -54,7 +54,6 @@ MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(programmer_1.programmerValues.intensityFine,TITLE_INTENSITY_FINE,"",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
-
 
 CHOOSE(programmer_1.programmerValues.colorWheel1,colorwheel1Menu,TITLE_COLORWHEEL_1,doOutputOnFieldWrapper,Menu::focusEvent | exitEvent,Menu::noStyle
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
