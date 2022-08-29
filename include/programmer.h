@@ -47,10 +47,6 @@ namespace programmer
             programmer::Programmer::programmerValues programmerValues;
 
         private:
-            fixture::Fixture* mac500_1;
-            fixture::Fixture* mac500_2;
-            fixture::Fixture* mac600E_1;
-            fixture::Fixture* mac600E_2;
 
             struct paramInformation
             {
@@ -84,7 +80,8 @@ namespace programmer
             };
 
         public:
-            Programmer(fixture::Fixture* mac500_1, fixture::Fixture* mac500_2, fixture::Fixture* mac600E_1, fixture::Fixture* mac600E_2);
+            std::vector<fixture::Fixture*> fixtures;
+            Programmer(std::vector<fixture::Fixture*> lamps);
             void select();
             void adjustMenu(Menu::navNode& n);
             void doOutputFromField(Menu::prompt p);

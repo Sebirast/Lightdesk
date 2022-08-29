@@ -29,8 +29,9 @@ fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250);
 fixture::Fixture three(&dmx, fixture::Fixture::MAC600E, 300);
 fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 350);
 
-programmer::Programmer programmer_1(&one, &two, &three, &four);
+std::vector<fixture::Fixture*> lamps = {&one, &two, &three, &four};
 
+programmer::Programmer programmer_1(lamps);
 
 result doOutputOnFieldWrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
   programmer_1.doOutputFromField(p);
