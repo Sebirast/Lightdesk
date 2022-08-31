@@ -1,8 +1,10 @@
 #include "fixture.h"
 #include <TeensyDMX.h>
 #include <map>
+#include <Acebutton.h>
 
 using namespace fixture;
+using namespace ace_button;
 #define MENU_DEBUG
 
 qindesign::teensydmx::Sender dmx(Serial5);
@@ -11,11 +13,31 @@ fixture::Fixture* fixture1 = NULL;
 
 #include "paramterMenu.h"
 
+uint32_t FreeMem(){ // for Teensy 3.0
+    uint32_t stackTop;
+    uint32_t heapTop;
+
+    // current position of the stack.
+    stackTop = (uint32_t) &stackTop;
+
+    // current position of heap.
+    void* hTop = malloc(1);
+    heapTop = (uint32_t) hTop;
+    free(hTop);
+
+    // The difference is (approximately) the free, available ram.
+    return stackTop - heapTop;
+}
+
 Encoder enc(7, 8);
 Encoder enc2(2, 3);
 Encoder enc3(14, 15);
+AceButton button(41);
+
+void handleEvent(AceButton*, uint8_t, uint8_t);
 
 void setup() {
+  Serial.begin(9600);
   dmx.begin();
   gfx.begin(RA8875_800x480);
   gfx.displayOn(true);
@@ -27,7 +49,6 @@ void setup() {
   gfx.fillScreen(RA8875_BLACK);
   gfx.textEnlarge(2);
 
-  Serial.begin(9600);
   Serial.println("Menu 4.x");
   Serial.println("Use keys + - * /");
   Serial.println("to control the menu navigation");
@@ -35,11 +56,27 @@ void setup() {
   one.set(fixture::Fixture::SHUTTER, 250);
   two.set(fixture::Fixture::SHUTTER, 250);
 
-  Timer3.initialize(1000);
+  Timer3.initialize(100);
   Timer3.attachInterrupt(timerIsr);
+  pinMode(41, INPUT_PULLUP);
+
+  button.setEventHandler(handleEvent);
 }
 
 void loop() {
   nav.poll();
   nav.doInput();
+  // Serial.println(FreeMem());
+  button.check();
+}
+
+void handleEvent(AceButton* /*button*/, uint8_t eventType,
+    uint8_t /*buttonState*/) {
+  switch (eventType) {
+    case AceButton::kEventPressed:
+      Serial.println("entered event");
+      nav.useMenu(gobo);
+      Serial.println(nav.level);
+      break;
+  }
 }

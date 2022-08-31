@@ -25,7 +25,21 @@ void Programmer::doOutputFromField(Menu::prompt p)
 
     #ifdef DEBUG
         Serial.print(" Fixture: ");
-        // Serial.println(mac500_1->get(fromNavTargetToParam[title].first));
         Serial.println(fixtures[0]->get(fromNavTargetToParam[title].param));
     #endif 
+}
+
+void Programmer::resetValues()
+{
+    programmerValues = Programmer::ProgrammerValues();
+}
+
+void Programmer::loadValues()
+{
+
+}
+
+void Programmer::adjustMenu(Menu::navNode& n)
+{
+
 }

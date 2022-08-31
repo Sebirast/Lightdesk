@@ -1,9 +1,10 @@
 soligen2010/ClickEncoder@0.0.0-alpha+sha.9337a0c46c
-adafruit/Adafruit GFX Library@^1.10.15
-neu-rah/streamFlow@0.0.0-alpha+sha.bf16ce8926
-adafruit/Adafruit RA8875@^1.4.0
-ssilverman/TeensyDMX@^4.3.0-snapshot
 paulstoffregen/Encoder@^1.4.2
+adafruit/Adafruit RA8875@^1.4.0
+neu-rah/streamFlow@0.0.0-alpha+sha.bf16ce8926
+bxparks/AceButton@^1.9.2
+adafruit/Adafruit GFX Library@^1.10.15
 neu-rah/PCINT r-site.net@^4.0.8
 neu-rah/ArduinoMenu library@^4.21.4
+ssilverman/TeensyDMX@^4.3.0-snapshot
 paulstoffregen/TimerThree@^1.1

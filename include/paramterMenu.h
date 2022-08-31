@@ -122,9 +122,12 @@ CHOOSE(programmer_1.programmerValues.gobowheel2,gobowheel2Menu,TITLE_GOBOWHEEL_2
   ,VALUE("TWO TONE",TWO_TONE,Menu::doNothing,Menu::noEvent)
 );
 
+result goBack();
+
 MENU(gobo, "Gobo", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(gobowheel1Menu)
   ,SUBMENU(gobowheel2Menu)
+  ,OP("Back", goBack, enterEvent)
   ,EXIT("<Back")
 );
 
@@ -158,7 +161,7 @@ MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
-MENU(position, "Position", Menu::doNothing, Menu::noEvent, Menu::wrapStyle
+MENU(position, "Position", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(programmer_1.programmerValues.pan,TITLE_PAN,"",0,255,10,10, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,FIELD(programmer_1.programmerValues.tilt, TITLE_TILT,"",0,255,10,10, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
@@ -168,7 +171,7 @@ result drawBackGround()
 {
   gfx.fillScreen(RA8875_BLACK);
   return proceed;
-};
+}
 
 
 MENU(light, "Intensity and colour", drawBackGround, Menu::enterEvent | Menu::exitEvent, Menu::noStyle
@@ -237,4 +240,11 @@ MENU_OUTPUTS(out,MAX_DEPTH
   ,NONE
 )
 
+
 NAVROOT(nav,mainMenu,MAX_DEPTH,in,out);
+
+result goBack()
+{
+  // nav.useMenu(beam);
+  return proceed;
+}
