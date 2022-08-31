@@ -33,8 +33,10 @@ Encoder enc(7, 8);
 Encoder enc2(2, 3);
 Encoder enc3(14, 15);
 AceButton button(41);
+AceButton button2(40);
 
 void handleEvent(AceButton*, uint8_t, uint8_t);
+void handleEvent2(AceButton*, uint8_t, uint8_t);
 
 void setup() {
   Serial.begin(9600);
@@ -59,6 +61,7 @@ void setup() {
   Timer3.initialize(100);
   Timer3.attachInterrupt(timerIsr);
   pinMode(41, INPUT_PULLUP);
+  pinMode(40, INPUT_PULLUP);
 
   button.setEventHandler(handleEvent);
 }
@@ -68,15 +71,21 @@ void loop() {
   nav.doInput();
   // Serial.println(FreeMem());
   button.check();
+  button2.check();
 }
 
-void handleEvent(AceButton* /*button*/, uint8_t eventType,
+void handleEvent(AceButton* button, uint8_t eventType,
     uint8_t /*buttonState*/) {
   switch (eventType) {
     case AceButton::kEventPressed:
-      Serial.println("entered event");
+      if(button->getPin() == 40)
+      {
+        nav.useMenu(mainMenu);
+        nav.doOutput();
+        break;
+      }
       nav.useMenu(gobo);
-      Serial.println(nav.level);
+      nav.doOutput();
       break;
   }
 }

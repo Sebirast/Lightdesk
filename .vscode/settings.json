@@ -15,6 +15,7 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "deque": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "random": "cpp"
     }
 }
