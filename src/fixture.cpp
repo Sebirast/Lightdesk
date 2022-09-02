@@ -4,12 +4,8 @@
 
 using namespace fixture;
 
-Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, uint16_t address)
+Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, const uint16_t address) : dmx(dmx), address(address), type(type)
 {
-  this->dmx = dmx;
-  this->address = address;
-  this->type = type;
-
   switch(type)
   {
       case(MAC550): this->channels = MAC550_config; break;

@@ -26,7 +26,7 @@ int foo = 0;
 
 fixture::Fixture one(&dmx, fixture::Fixture::MAC600E, 200);
 fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250);
-fixture::Fixture three(&dmx, fixture::Fixture::MAC600E, 300);
+fixture::Fixture three(&dmx, fixture::Fixture::MAC550, 300);
 fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 350);
 
 std::vector<fixture::Fixture*> lamps = {&one, &two, &three, &four};
