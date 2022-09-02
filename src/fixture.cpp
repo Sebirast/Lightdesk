@@ -6,6 +6,8 @@ using namespace fixture;
 
 Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, const uint16_t address) : dmx(dmx), address(address), type(type)
 {
+  selected = false;
+
   switch(type)
   {
       case(MAC550): this->channels = MAC550_config; break;
@@ -52,23 +54,32 @@ void Fixture::igniteLamp()
   {
     case(MAC550): 
     case(MAC600E): 
-      dmx->set(address + channels[SHUTTER] - 1, IGNITE_LAMP); break;
+      set(SHUTTER, IGNITE_LAMP); break;
     case(GENERICDIMMER):
     default:
       Serial.println("This lamp cannot be ignited!");
   }
 }
 
-// TODO
 void Fixture::extinguishLamp()
 {
-  // switch(type)
-  // {
-  //   case(MAC550):
-  // }
+  switch(type)
+  {
+    case(MAC550):
+    case(MAC600E):
+      set(SHUTTER, EXTINGUISH_LAMP); break;
+    case(GENERICDIMMER):
+    default:
+      Serial.println("This lamp cannot be extinguished!");
+  }
 }
 
-void Fixture::select(bool selected)
+void Fixture::select()
 {
-  this->selected = selected;
+  this->selected = true;
+}
+
+void Fixture::deselect()
+{
+  this->selected = false;
 }

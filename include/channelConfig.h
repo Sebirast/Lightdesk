@@ -1,6 +1,7 @@
 #pragma once
 
 #define IGNITE_LAMP 232
+#define EXTINGUISH_LAMP 255
 
 #define SHUTTER_OPEN 20
 #define SHUTTER_CLOSED 10
