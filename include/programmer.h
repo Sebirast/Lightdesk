@@ -79,8 +79,17 @@ namespace programmer
                 {TITLE_TILT, {fixture::Fixture::Param::TILT, &programmerValues.tilt}}
             };
 
-        public:
+            enum FixtureAdresses
+            {
+                MAC600_1,
+                MAC550_1,
+                MAC550_2,
+                MAC600_2
+            };
+
             std::vector<fixture::Fixture*> fixtures;
+
+        public:
             Programmer(std::vector<fixture::Fixture*> lamps);
             void select();
             void adjustMenu(Menu::navNode& n);

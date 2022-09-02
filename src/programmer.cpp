@@ -21,7 +21,11 @@ void Programmer::doOutputFromField(Menu::prompt p)
         Serial.print(*fromNavTargetToParam[title].value);
     #endif
 
-    fixtures[0]->set(fromNavTargetToParam[title].param, *fromNavTargetToParam[title].value, true);
+    for(auto fixture : fixtures)
+    {
+        if(fixture->selected)
+            fixture->set(fromNavTargetToParam[title].param, *fromNavTargetToParam[title].value, true);
+    }
 
     #ifdef DEBUG
         Serial.print(" Fixture: ");
