@@ -369,7 +369,6 @@ void fieldBase::doNav(navNode& nav,navCmd cmd) {
       dirty=true;
       break;
     case upCmd:
-      // Serial.println("Hello");
       stepit(1);
       nav.event(changeEvent);
       break;

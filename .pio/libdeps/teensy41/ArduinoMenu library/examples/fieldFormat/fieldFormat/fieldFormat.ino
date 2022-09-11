@@ -53,6 +53,7 @@ void setup() {
   while(!Serial);
   Serial.println("menu 4.x testing custom fields");
   Serial.flush();
+  mainMenu[0].
 }
 
 void loop() {

@@ -67,7 +67,9 @@ void Fixture::extinguishLamp()
   {
     case(MAC550):
     case(MAC600E):
-      set(SHUTTER, EXTINGUISH_LAMP); break;
+      set(SHUTTER, EXTINGUISH_LAMP); 
+      delay(5500);
+      break;
     case(GENERICDIMMER):
     default:
       Serial.println("This lamp cannot be extinguished!");

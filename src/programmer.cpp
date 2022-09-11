@@ -47,3 +47,15 @@ void Programmer::adjustMenu(Menu::navNode& n)
 {
 
 }
+
+void Programmer::igniteAllLamps()
+{
+    for(auto fixture : fixtures)
+        fixture->igniteLamp();
+}
+
+void Programmer::extinguishAllLamps()
+{
+    for(auto fixture : fixtures)
+        fixture->extinguishLamp();
+}

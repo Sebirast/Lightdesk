@@ -38,6 +38,17 @@ result doOutputOnFieldWrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt 
   return proceed;
 }
 
+result igniteLampsWrapper()
+{
+  programmer_1.igniteAllLamps();
+}
+
+result extinguishLampsWrapper()
+{
+  programmer_1.extinguishAllLamps();
+}
+
+
 TOGGLE(programmer_1.programmerValues.shutter, shutterOpenOrClosed, TITLE_SHUTTER, Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,VALUE("Open", SHUTTER_OPEN, doOutputOnFieldWrapper, Menu::changeEvent)
   ,VALUE("Closed", SHUTTER_CLOSED, doOutputOnFieldWrapper, Menu::changeEvent)
@@ -127,7 +138,6 @@ result goBack();
 MENU(gobo, "Gobo", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(gobowheel1Menu)
   ,SUBMENU(gobowheel2Menu)
-  ,OP("Back", goBack, enterEvent)
   ,EXIT("<Back")
 );
 
@@ -203,9 +213,16 @@ MENU(effectMenu, "Effects", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
+MENU(lampMenu, "Fixture config", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,OP("Ignigte lamps", igniteLampsWrapper, Menu::enterEvent)
+  ,OP("Extinguish lamps", extinguishLampsWrapper, Menu::enterEvent)
+  ,EXIT("<Back")
+);
+
 MENU(mainMenu, "Main Menu", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(parameterMenu)  
   ,SUBMENU(effectMenu)
+  ,SUBMENU(lampMenu)
 );
 
 serialIn serial(Serial);

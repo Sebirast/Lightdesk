@@ -32,11 +32,10 @@ uint32_t FreeMem(){ // for Teensy 3.0
 Encoder enc(7, 8);
 Encoder enc2(2, 3);
 Encoder enc3(14, 15);
+
 AceButton button(41);
-AceButton button2(40);
 
 void handleEvent(AceButton*, uint8_t, uint8_t);
-void handleEvent2(AceButton*, uint8_t, uint8_t);
 
 void setup() {
   Serial.begin(9600);
@@ -71,21 +70,15 @@ void loop() {
   nav.doInput();
   // Serial.println(FreeMem());
   button.check();
-  button2.check();
 }
 
-void handleEvent(AceButton* button, uint8_t eventType,
-    uint8_t /*buttonState*/) {
+void handleEvent(AceButton* button, uint8_t eventType, uint8_t /*buttonState*/) {
   switch (eventType) {
     case AceButton::kEventPressed:
-      if(button->getPin() == 40)
+      if(button->getPin() == 41)
       {
-        nav.useMenu(mainMenu);
-        nav.doOutput();
         break;
       }
-      nav.useMenu(gobo);
-      nav.doOutput();
       break;
   }
 }

@@ -96,5 +96,8 @@ namespace programmer
             void doOutputFromField(Menu::prompt p);
             void resetValues();
             void loadValues();
+             
+            void igniteAllLamps();
+            void extinguishAllLamps();
     };
 }
