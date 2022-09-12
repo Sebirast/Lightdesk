@@ -4,9 +4,8 @@ using namespace programmer;
 
 #define DEBUG
 
-Programmer::Programmer(std::vector<fixture::Fixture*> lamps) : fixtures{lamps}
+Programmer::Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder*> encoders) : fixtures{lamps}, encoders{encoders}
 {
-
 };
 
 void Programmer::doOutputFromField(Menu::prompt p)
@@ -59,3 +58,4 @@ void Programmer::extinguishAllLamps()
     for(auto fixture : fixtures)
         fixture->extinguishLamp();
 }
+

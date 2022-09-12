@@ -1,10 +1,12 @@
 #pragma once
+
 #include "fixture.h"
 #include <menu.h>
 #include <map>
 #include <vector>
 #include "titleConfig.h"
 #include "channelConfig.h"
+#include <Encoder.h>
 
 namespace programmer
 {
@@ -90,7 +92,10 @@ namespace programmer
             std::vector<fixture::Fixture*> fixtures;
 
         public:
-            Programmer(std::vector<fixture::Fixture*> lamps);
+
+            std::vector<Encoder*> encoders;
+
+            Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder*> encoders);
             void select();
             void adjustMenu(Menu::navNode& n);
             void doOutputFromField(Menu::prompt p);
@@ -99,5 +104,7 @@ namespace programmer
              
             void igniteAllLamps();
             void extinguishAllLamps();
+
+            void onEncoderChange();
     };
 }

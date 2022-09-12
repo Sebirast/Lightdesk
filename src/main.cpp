@@ -2,6 +2,8 @@
 #include <TeensyDMX.h>
 #include <map>
 #include <Acebutton.h>
+#include <menuIO/encoderIn.h>
+#include "encIN.h"
 
 using namespace fixture;
 using namespace ace_button;
@@ -29,13 +31,14 @@ uint32_t FreeMem(){ // for Teensy 3.0
     return stackTop - heapTop;
 }
 
-Encoder enc(7, 8);
-Encoder enc2(2, 3);
-Encoder enc3(14, 15);
-
 AceButton button(41);
 
 void handleEvent(AceButton*, uint8_t, uint8_t);
+
+void printHello();
+
+
+encIN encin(upperEncoder, 3);
 
 void setup() {
   Serial.begin(9600);
@@ -68,8 +71,13 @@ void setup() {
 void loop() {
   nav.poll();
   nav.doInput();
-  // Serial.println(FreeMem());
   button.check();
+  if(encin.read() != -1)
+  {
+    if(encin.read() == 45) nav.doNav(upCmd);
+    else if(encin.read() == 43) nav.doNav(downCmd);
+  }
+
 }
 
 void handleEvent(AceButton* button, uint8_t eventType, uint8_t /*buttonState*/) {
@@ -81,4 +89,8 @@ void handleEvent(AceButton* button, uint8_t eventType, uint8_t /*buttonState*/) 
       }
       break;
   }
+}
+void printHello() 
+{
+  Serial.println("Hello World");
 }

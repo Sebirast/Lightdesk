@@ -31,7 +31,13 @@ fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 350);
 
 std::vector<fixture::Fixture*> lamps = {&one, &two, &three, &four};
 
-programmer::Programmer programmer_1(lamps);
+Encoder upperEncoder(2, 3);
+Encoder middleEncoder(4, 5);
+Encoder lowerEncoder(8, 9);
+
+std::vector<Encoder*> encoders = {&upperEncoder, &middleEncoder, &lowerEncoder};
+
+programmer::Programmer programmer_1(lamps, encoders);
 
 result doOutputOnFieldWrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
   programmer_1.doOutputFromField(p);
