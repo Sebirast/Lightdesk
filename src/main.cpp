@@ -16,6 +16,7 @@ qindesign::teensydmx::Sender dmx(Serial5);
 void timerIsr() 
 {
   clickEncoder.service();
+
   customKeypad.tick();
 
   while(customKeypad.available()){
@@ -23,6 +24,8 @@ void timerIsr()
     Serial.print((char)e.bit.KEY);
     if(e.bit.EVENT == KEY_JUST_PRESSED) Serial.println(" pressed");
     else if(e.bit.EVENT == KEY_JUST_RELEASED) Serial.println(" released");
+
+    keyMapping(e);
   }
 }
 
@@ -54,7 +57,6 @@ void setup() {
 }
 
 void loop() {
-  long start = micros();
   nav.poll();
   nav.doInput();
 

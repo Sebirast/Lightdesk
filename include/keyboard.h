@@ -15,3 +15,11 @@ byte colPins[COLS] = {33, 34}; //connect to the column pinouts of the keypad
 
 //initialize an instance of class NewKeypad
 Adafruit_Keypad customKeypad = Adafruit_Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+
+void keyMapping(keypadEvent e)
+{
+  switch(e.bit.KEY)
+  {
+    
+  }
+}
