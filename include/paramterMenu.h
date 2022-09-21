@@ -236,6 +236,7 @@ ClickEncoder clickEncoder(4,5,6);
 ClickEncoderStream encStream(clickEncoder,1);
 MENU_INPUTS(in,&encStream,&serial);
 void timerIsr() {clickEncoder.service();}
+void encoderIsr() {}
 
 // MENU_INPUTS(in, &encStream);
 
