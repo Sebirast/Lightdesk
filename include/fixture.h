@@ -57,8 +57,7 @@ namespace fixture
       void igniteLamp();
       void extinguishLamp();
       
-      void select();
-      void deselect();
+      void select(bool sel);
 
     private:
       qindesign::teensydmx::Sender* dmx;

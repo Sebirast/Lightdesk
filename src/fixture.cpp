@@ -3,6 +3,7 @@
 #include "channelConfig.h"
 
 using namespace fixture;
+#define DEBUG
 
 Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, const uint16_t address) : dmx(dmx), address(address), type(type)
 {
@@ -76,12 +77,11 @@ void Fixture::extinguishLamp()
   }
 }
 
-void Fixture::select()
+void Fixture::select(bool sel)
 {
-  this->selected = true;
-}
-
-void Fixture::deselect()
-{
-  this->selected = false;
+  this->selected = sel;
+  #ifdef DEBUG
+    Serial.print("lamp sel: ");
+    Serial.println(sel);
+  #endif
 }
