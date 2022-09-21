@@ -5,12 +5,27 @@
 #include <menuIO/encoderIn.h>
 
 using namespace fixture;
-using namespace ace_button;
+
 #define MENU_DEBUG
 
 qindesign::teensydmx::Sender dmx(Serial5);
 
 #include "paramterMenu.h"
+#include "keyboard.h"
+
+void timerIsr() 
+{
+  clickEncoder.service();
+  customKeypad.tick();
+
+  while(customKeypad.available()){
+    keypadEvent e = customKeypad.read();
+    Serial.print((char)e.bit.KEY);
+    if(e.bit.EVENT == KEY_JUST_PRESSED) Serial.println(" pressed");
+    else if(e.bit.EVENT == KEY_JUST_RELEASED) Serial.println(" released");
+  }
+}
+
 
 void setup() {
   Serial.begin(9600);
@@ -23,17 +38,26 @@ void setup() {
 
   gfx.textMode();
   gfx.fillScreen(RA8875_BLACK);
+  Serial.println("Hello World");
   gfx.textEnlarge(2);
+
 
   Serial.println("Menu 4.x");
   Serial.println("Use keys + - * /");
   Serial.println("to control the menu navigation");
 
+  customKeypad.begin();
+
   Timer3.initialize(100);
   Timer3.attachInterrupt(timerIsr);
+
 }
 
 void loop() {
+  long start = micros();
   nav.poll();
   nav.doInput();
+
+
+  // Serial.println(micros() - start);
 }

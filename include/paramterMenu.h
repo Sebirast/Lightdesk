@@ -11,7 +11,6 @@
 #include <Encoder.h>
 #include "channelConfig.h"
 #include "programmer.h"
-#include <map>
 #include "titleConfig.h"
 
 using namespace Menu;
@@ -21,8 +20,6 @@ using namespace Menu;
 int timeOn = 0;
 
 Adafruit_RA8875 gfx(10, 9);
-
-int foo = 0;
 
 fixture::Fixture one(&dmx, fixture::Fixture::MAC600E, 200);
 fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250);
@@ -235,8 +232,6 @@ serialIn serial(Serial);
 ClickEncoder clickEncoder(4,5,6);
 ClickEncoderStream encStream(clickEncoder,1);
 MENU_INPUTS(in,&encStream,&serial);
-void timerIsr() {clickEncoder.service();}
-void encoderIsr() {}
 
 // MENU_INPUTS(in, &encStream);
 
