@@ -67,40 +67,45 @@ volatile byte *Adafruit_Keypad::getKeyState(byte key) {
 /**************************************************************************/
 void Adafruit_Keypad::tick() {
   uint8_t evt;
-  for (int i = 0; i < _numCols; i++) {
-    digitalWrite(_col[i], HIGH);
-  }
 
-  int i = 0;
-  for (int c = 0; c < _numCols; c++) {
-    digitalWrite(_col[c], LOW);
-    delayMicroseconds(_KEYPAD_SETTLING_DELAY);
-    for (int r = 0; r < _numRows; r++) {
-      i = r * _numCols + c;
-      bool pressed = !digitalRead(_row[r]);
-      // Serial.print((int)pressed);
-      volatile byte *state = _keystates + i;
-      byte currentState = *state;
-      if (pressed && !(currentState & _KEY_PRESSED)) {
-        currentState |= (_JUST_PRESSED | _KEY_PRESSED);
-        evt = KEY_JUST_PRESSED;
-        _eventbuf.store_char(evt);
-        _eventbuf.store_char(*(_userKeymap + i));
-        _eventbuf.store_char(r);
-        _eventbuf.store_char(c);
-      } else if (!pressed && (currentState & _KEY_PRESSED)) {
-        currentState |= _JUST_RELEASED;
-        currentState &= ~(_KEY_PRESSED);
-        evt = KEY_JUST_RELEASED;
-        _eventbuf.store_char(evt);
-        _eventbuf.store_char(*(_userKeymap + i));
-        _eventbuf.store_char(r);
-        _eventbuf.store_char(c);
-      }
-      *state = currentState;
+  if(millis() - startTime > debounceTime)
+  {
+    for (int i = 0; i < _numCols; i++) {
+      digitalWrite(_col[i], HIGH);
     }
-    // Serial.println("");
-    digitalWrite(_col[c], HIGH);
+
+    int i = 0;
+    for (int c = 0; c < _numCols; c++) {
+      digitalWrite(_col[c], LOW);
+      delayMicroseconds(_KEYPAD_SETTLING_DELAY);
+      for (int r = 0; r < _numRows; r++) {
+        i = r * _numCols + c;
+        bool pressed = !digitalRead(_row[r]);
+        // Serial.print((int)pressed);
+        volatile byte *state = _keystates + i;
+        byte currentState = *state;
+        if (pressed && !(currentState & _KEY_PRESSED)) {
+          currentState |= (_JUST_PRESSED | _KEY_PRESSED);
+          evt = KEY_JUST_PRESSED;
+          _eventbuf.store_char(evt);
+          _eventbuf.store_char(*(_userKeymap + i));
+          _eventbuf.store_char(r);
+          _eventbuf.store_char(c);
+        } else if (!pressed && (currentState & _KEY_PRESSED)) {
+          currentState |= _JUST_RELEASED;
+          currentState &= ~(_KEY_PRESSED);
+          evt = KEY_JUST_RELEASED;
+          _eventbuf.store_char(evt);
+          _eventbuf.store_char(*(_userKeymap + i));
+          _eventbuf.store_char(r);
+          _eventbuf.store_char(c);
+        }
+        *state = currentState;
+      }
+      // Serial.println("");
+      digitalWrite(_col[c], HIGH);
+    }
+    startTime = millis();
   }
 }
 

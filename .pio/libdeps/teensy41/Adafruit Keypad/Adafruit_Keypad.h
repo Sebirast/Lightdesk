@@ -58,6 +58,8 @@ private:
   int _numCols;
 
   volatile byte *getKeyState(byte key);
+  unsigned long startTime;
+  unsigned int debounceTime = 10;
 };
 
 #endif
