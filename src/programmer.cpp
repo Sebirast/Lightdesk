@@ -59,3 +59,32 @@ void Programmer::extinguishAllLamps()
         fixture->extinguishLamp();
 }
 
+void Programmer::loadLampValues(uint8_t idx)
+{
+    // if multiple lamps selected
+
+    // universal values:
+    if(fixtures[idx]->selected)
+    {
+        programmerValues.intensity = fixtures[idx]->currentValues[fixture::Fixture::DIMMER];
+
+        programmerValues.pan = fixtures[idx]->currentValues[fixture::Fixture::PAN];
+        programmerValues.tilt = fixtures[idx]->currentValues[fixture::Fixture::TILT];
+
+        // lamp type specific values:
+        if(fixtures[idx]->type == fixture::Fixture::MAC600E)
+        {
+            programmerValues.c = fixtures[idx]->currentValues[fixture::Fixture::CYAN];
+            programmerValues.m = fixtures[idx]->currentValues[fixture::Fixture::MAGENTA];
+            programmerValues.y = fixtures[idx]->currentValues[fixture::Fixture::YELLOW];
+        }
+
+        else if(fixtures[idx]->type == fixture::Fixture::MAC550)
+        {
+            programmerValues.colorWheel1 = fixtures[idx]->currentValues[fixture::Fixture::COLORWHEEL1];
+            programmerValues.colorWheel2 = fixtures[idx]->currentValues[fixture::Fixture::COLORWHEEL2];
+            programmerValues.gobowheel1 = fixtures[idx]->currentValues[fixture::Fixture::GOBOWHEEL1];
+            programmerValues.gobowheel2 = fixtures[idx]->currentValues[fixture::Fixture::GOBOWHEEL2];
+        }
+    }
+}

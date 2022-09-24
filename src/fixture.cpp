@@ -80,6 +80,7 @@ void Fixture::extinguishLamp()
 void Fixture::select(bool sel)
 {
   this->selected = sel;
+
   #ifdef DEBUG
     Serial.print("lamp sel: ");
     Serial.println(sel);

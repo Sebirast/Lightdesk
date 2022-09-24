@@ -23,8 +23,8 @@ void keyMapping(keypadEvent e)
     switch(e.bit.KEY)
     {
       // selctor
-      case('2'): one.select(!one.selected); break;
-      case('4'): two.select(!two.selected); break;
+      case('2'): one.select(!one.selected); programmer_1.loadLampValues(0); break;
+      case('4'): two.select(!two.selected); programmer_1.loadLampValues(1); break;
       case('6'): three.select(!three.selected); break;
       case('8'): four.select(!four.selected); break;
 

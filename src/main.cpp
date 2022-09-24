@@ -21,10 +21,6 @@ void timerIsr()
 
   while(customKeypad.available()){
     keypadEvent e = customKeypad.read();
-    Serial.print((char)e.bit.KEY);
-    if(e.bit.EVENT == KEY_JUST_PRESSED) Serial.println(" pressed");
-    else if(e.bit.EVENT == KEY_JUST_RELEASED) Serial.println(" released");
-
     keyMapping(e);
   }
 }
@@ -59,7 +55,4 @@ void setup() {
 void loop() {
   nav.poll();
   nav.doInput();
-
-
-  // Serial.println(micros() - start);
 }

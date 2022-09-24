@@ -106,5 +106,7 @@ namespace programmer
             void extinguishAllLamps();
 
             void onEncoderChange();
+
+            void loadLampValues(uint8_t idx);
     };
 }

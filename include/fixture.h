@@ -59,9 +59,10 @@ namespace fixture
       
       void select(bool sel);
 
+      Fixture::FixtureType type;
+
     private:
       qindesign::teensydmx::Sender* dmx;
       uint16_t address;
-      Fixture::FixtureType type;
   };
 }

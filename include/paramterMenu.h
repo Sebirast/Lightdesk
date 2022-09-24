@@ -233,8 +233,6 @@ ClickEncoder clickEncoder(4,5,6);
 ClickEncoderStream encStream(clickEncoder,1);
 MENU_INPUTS(in,&encStream,&serial);
 
-// MENU_INPUTS(in, &encStream);
-
 #define RA8875_GRAY RGB565(128, 128, 128)
 
 const colorDef<uint16_t> colors[6] MEMMODE={
