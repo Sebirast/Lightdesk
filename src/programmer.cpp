@@ -35,6 +35,15 @@ void Programmer::doOutputFromField(Menu::prompt p)
 void Programmer::resetValues()
 {
     programmerValues = Programmer::ProgrammerValues();
+    
+    Serial.println(programmerValues.intensity);
+}
+
+void Programmer::reset()
+{
+    resetValues();
+
+    for(auto fixture : fixtures) { fixture->select(false); }
 }
 
 void Programmer::loadValues()
@@ -62,10 +71,21 @@ void Programmer::extinguishAllLamps()
 void Programmer::loadLampValues(uint8_t idx)
 {
     // if multiple lamps selected
+    uint8_t counter = 0;
+    for(auto fixture : fixtures)
+    {
+        if(fixture->selected) { counter++; };
+    }
 
-    // universal values:
+    if(counter == 0) 
+    {
+        resetValues();
+        return;
+    }
+
     if(fixtures[idx]->selected)
     {
+        // universal values:
         programmerValues.intensity = fixtures[idx]->currentValues[fixture::Fixture::DIMMER];
 
         programmerValues.pan = fixtures[idx]->currentValues[fixture::Fixture::PAN];
@@ -87,4 +107,5 @@ void Programmer::loadLampValues(uint8_t idx)
             programmerValues.gobowheel2 = fixtures[idx]->currentValues[fixture::Fixture::GOBOWHEEL2];
         }
     }
+    // adjust menu
 }

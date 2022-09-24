@@ -23,15 +23,16 @@ void keyMapping(keypadEvent e)
     switch(e.bit.KEY)
     {
       // selctor
-      case('2'): one.select(!one.selected); programmer_1.loadLampValues(0); break;
-      case('4'): two.select(!two.selected); programmer_1.loadLampValues(1); break;
-      case('6'): three.select(!three.selected); break;
-      case('8'): four.select(!four.selected); break;
+      case('2'): one.select(!one.selected); programmer_1.loadLampValues(0); nav.doOutput(); break;
+      case('4'): two.select(!two.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
+      case('6'): three.select(!three.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
+      case('8'): four.select(!four.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
 
       // jump to menus
       case('1'): nav.useMenu(mainMenu); break;
       case('3'): nav.useMenu(dimmer); break;
       case('5'): nav.useMenu(position); break;
+      case('7'): programmer_1.reset(); break;
     }
   }
 }

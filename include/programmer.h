@@ -97,9 +97,13 @@ namespace programmer
 
             Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder*> encoders);
             void select();
+
             void adjustMenu(Menu::navNode& n);
             void doOutputFromField(Menu::prompt p);
+
             void resetValues();
+            void reset();
+
             void loadValues();
              
             void igniteAllLamps();
@@ -108,5 +112,6 @@ namespace programmer
             void onEncoderChange();
 
             void loadLampValues(uint8_t idx);
+            
     };
 }
