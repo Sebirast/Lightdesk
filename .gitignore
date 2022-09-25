@@ -5,3 +5,5 @@
 .pio/build/
 
 .pio/libdeps/teensy41/Unity/
+
+.VSCodeCounter/

@@ -34,8 +34,7 @@ Encoder middleEncoder(4, 5);
 Encoder lowerEncoder(8, 9);
 
 std::vector<Encoder*> encoders = {&upperEncoder, &middleEncoder, &lowerEncoder};
-std::vector<Menu::menu*> menus;
-std::vector<Menu::menu> asdf;
+std::vector<Menu::menu*>* menus;
 
 programmer::Programmer programmer_1(lamps, encoders, menus);
 
@@ -105,9 +104,9 @@ MENU(mac550Color, "MAC550", Menu::doNothing, Menu::noEvent, Menu::noStyle
 );
 
 MENU(mac600Color, "MAC600", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.c, TITLE_C, "%",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.m, TITLE_M, "%",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.y, TITLE_Y, "%",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.c, TITLE_C, "%",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.m, TITLE_M, "%",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.y, TITLE_Y, "%",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 

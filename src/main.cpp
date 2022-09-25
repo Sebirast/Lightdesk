@@ -40,9 +40,7 @@ void setup() {
 
   gfx.textMode();
   gfx.fillScreen(RA8875_BLACK);
-  Serial.println("Hello World");
   gfx.textEnlarge(2);
-
 
   Serial.println("Menu 4.x");
   Serial.println("Use keys + - * /");
@@ -52,8 +50,6 @@ void setup() {
 
   Timer3.initialize(75);
   Timer3.attachInterrupt(timerIsr);
-
-  menus.push_back(&mainMenu);
 }
 
 void loop() {

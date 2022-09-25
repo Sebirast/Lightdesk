@@ -8,6 +8,7 @@
 #include "titleConfig.h"
 #include "channelConfig.h"
 #include <Encoder.h>
+#include "utils.h"
 
 namespace programmer
 {
@@ -91,19 +92,19 @@ namespace programmer
             };
 
             std::vector<fixture::Fixture*> fixtures;
-            std::vector<Menu::menu*> menu;
+            std::vector<Menu::menu*>* menu;
 
         public:
 
             std::vector<Encoder*> encoders;
 
-            Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder*> encoders, std::vector<Menu::menu*> menu);
+            Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder*> encoders, std::vector<Menu::menu*>* menu);
             void select();
 
             void adjustMenu(fixture::Fixture::FixtureType type);
             void doOutputFromField(Menu::prompt p);
 
-            void resetValues();
+            void resetValues(bool all);
             void reset();
 
             void loadValues();
