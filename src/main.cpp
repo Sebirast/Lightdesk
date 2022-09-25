@@ -21,6 +21,9 @@ void timerIsr()
 
   while(customKeypad.available()){
     keypadEvent e = customKeypad.read();
+    // Serial.print(e.bit.KEY);
+    // if(e.bit.EVENT == KEY_JUST_PRESSED) Serial.println(" pressed");
+    // else if(e.bit.EVENT == KEY_JUST_RELEASED) Serial.println(" released");
     keyMapping(e);
   }
 }
@@ -47,9 +50,10 @@ void setup() {
 
   customKeypad.begin();
 
-  Timer3.initialize(100);
+  Timer3.initialize(75);
   Timer3.attachInterrupt(timerIsr);
 
+  menus.push_back(&mainMenu);
 }
 
 void loop() {

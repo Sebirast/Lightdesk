@@ -4,6 +4,7 @@
 #include <menu.h>
 #include <map>
 #include <vector>
+#include <list>
 #include "titleConfig.h"
 #include "channelConfig.h"
 #include <Encoder.h>
@@ -90,15 +91,16 @@ namespace programmer
             };
 
             std::vector<fixture::Fixture*> fixtures;
+            std::vector<Menu::menu*> menu;
 
         public:
 
             std::vector<Encoder*> encoders;
 
-            Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder*> encoders);
+            Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder*> encoders, std::vector<Menu::menu*> menu);
             void select();
 
-            void adjustMenu(Menu::navNode& n);
+            void adjustMenu(fixture::Fixture::FixtureType type);
             void doOutputFromField(Menu::prompt p);
 
             void resetValues();

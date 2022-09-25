@@ -12,6 +12,7 @@
 #include "channelConfig.h"
 #include "programmer.h"
 #include "titleConfig.h"
+#include <vector>
 
 using namespace Menu;
 
@@ -33,8 +34,10 @@ Encoder middleEncoder(4, 5);
 Encoder lowerEncoder(8, 9);
 
 std::vector<Encoder*> encoders = {&upperEncoder, &middleEncoder, &lowerEncoder};
+std::vector<Menu::menu*> menus;
+std::vector<Menu::menu> asdf;
 
-programmer::Programmer programmer_1(lamps, encoders);
+programmer::Programmer programmer_1(lamps, encoders, menus);
 
 result doOutputOnFieldWrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
   programmer_1.doOutputFromField(p);
@@ -56,6 +59,7 @@ TOGGLE(programmer_1.programmerValues.shutter, shutterOpenOrClosed, TITLE_SHUTTER
   ,VALUE("Open", SHUTTER_OPEN, doOutputOnFieldWrapper, Menu::changeEvent)
   ,VALUE("Closed", SHUTTER_CLOSED, doOutputOnFieldWrapper, Menu::changeEvent)
 );  
+
 
 MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(shutterOpenOrClosed)
@@ -265,3 +269,4 @@ result goBack()
   // nav.useMenu(beam);
   return proceed;
 }
+

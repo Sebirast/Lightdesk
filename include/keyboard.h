@@ -25,8 +25,8 @@ void keyMapping(keypadEvent e)
       // selctor
       case('2'): one.select(!one.selected); programmer_1.loadLampValues(0); nav.doOutput(); break;
       case('4'): two.select(!two.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
-      case('6'): three.select(!three.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
-      case('8'): four.select(!four.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
+      case('6'): three.select(!three.selected); programmer_1.loadLampValues(2); nav.doOutput(); break;
+      case('8'): four.select(!four.selected); programmer_1.loadLampValues(3); nav.doOutput(); break;
 
       // jump to menus
       case('1'): nav.useMenu(mainMenu); break;

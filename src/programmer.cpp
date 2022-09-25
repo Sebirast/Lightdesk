@@ -4,7 +4,8 @@ using namespace programmer;
 
 #define DEBUG
 
-Programmer::Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder*> encoders) : fixtures{lamps}, encoders{encoders}
+Programmer::Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder*> encoders, std::vector<Menu::menu*> menu) 
+: fixtures{lamps}, encoders{encoders}, menu{menu}
 {
 };
 
@@ -51,9 +52,9 @@ void Programmer::loadValues()
 
 }
 
-void Programmer::adjustMenu(Menu::navNode& n)
+void Programmer::adjustMenu(fixture::Fixture::FixtureType type)
 {
-
+    
 }
 
 void Programmer::igniteAllLamps()
@@ -71,20 +72,33 @@ void Programmer::extinguishAllLamps()
 void Programmer::loadLampValues(uint8_t idx)
 {
     // if multiple lamps selected
-    uint8_t counter = 0;
-    for(auto fixture : fixtures)
-    {
-        if(fixture->selected) { counter++; };
-    }
 
-    if(counter == 0) 
-    {
-        resetValues();
-        return;
-    }
 
     if(fixtures[idx]->selected)
     {
+        std::vector<fixture::Fixture*> selectedLamps;
+        
+        uint8_t counter = 0;
+        for(auto fixture : fixtures)
+        {
+            if(fixture->selected) 
+            { 
+                counter++; 
+                selectedLamps.push_back(fixture);
+            };
+        }
+        Serial.println(selectedLamps.size());
+
+        if(counter == 0) 
+        {
+            resetValues();
+            return;
+        }
+        else 
+        {
+            if(counter == 2 && (selectedLamps[0]->type == selectedLamps[1]->type)) { adjustMenu(selectedLamps[0]->type); }
+        }
+
         // universal values:
         programmerValues.intensity = fixtures[idx]->currentValues[fixture::Fixture::DIMMER];
 
@@ -107,5 +121,4 @@ void Programmer::loadLampValues(uint8_t idx)
             programmerValues.gobowheel2 = fixtures[idx]->currentValues[fixture::Fixture::GOBOWHEEL2];
         }
     }
-    // adjust menu
 }

@@ -46,6 +46,7 @@
         "cinttypes": "cpp",
         "cstdbool": "cpp",
         "utility": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "list": "cpp"
     }
 }
