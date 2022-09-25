@@ -54,7 +54,7 @@ void Programmer::loadValues()
 
 void Programmer::adjustMenu(fixture::Fixture::FixtureType type)
 {
-    
+    Serial.println("entered adjust menu function");
 }
 
 void Programmer::igniteAllLamps()
@@ -96,7 +96,7 @@ void Programmer::loadLampValues(uint8_t idx)
         }
         else 
         {
-            if(counter == 2 && (selectedLamps[0]->type == selectedLamps[1]->type)) { adjustMenu(selectedLamps[0]->type); }
+            if(counter == 2 || counter == 1 && (selectedLamps[0]->type == selectedLamps[1]->type)) { adjustMenu(selectedLamps[0]->type); }
         }
 
         // universal values:
