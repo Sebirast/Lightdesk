@@ -26,6 +26,7 @@ namespace programmer
 
             uint16_t colorWheel1 = OPEN;//some variable used by your code (not necessarily an int)
             uint16_t colorWheel2 = OPEN;//some variable used by your code (not necessarily an int)
+            uint16_t colorWheelMac600 = MAC600_WHITE;
 
             uint16_t c = 0;
             uint16_t m = 0;

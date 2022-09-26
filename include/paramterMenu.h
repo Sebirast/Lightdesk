@@ -74,7 +74,8 @@ MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
 );
 
 CHOOSE(programmer_1.programmerValues.colorWheel1,colorwheel1Menu,TITLE_COLORWHEEL_1,doOutputOnFieldWrapper,Menu::focusEvent | exitEvent,Menu::noStyle
-  ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
+  // ,VALUE("OPEN", OPEN, doOutputOnFieldWrapper Menu::enterEvent) // => like this it is correct
+  ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::enterEvent)
   ,VALUE("RED",MAC550_RED_1,Menu::doNothing,Menu::noEvent)
   ,VALUE("MAGENTA",MAC550_MAGENTA,Menu::doNothing,Menu::noEvent)
   ,VALUE("PURPUR 1",MAC550_PURPUR_1,Menu::doNothing,Menu::noEvent)
@@ -103,10 +104,19 @@ MENU(mac550Color, "MAC550", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
+CHOOSE(programmer_1.programmerValues.colorWheelMac600, mac600colorwheelMenu, "Colorwheel", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,VALUE("OPEN", MAC600_WHITE, Menu::doNothing, Menu::noEvent)
+  ,VALUE("COLOR 1", MAC600_COLOR1, Menu::doNothing, Menu::noEvent)
+  ,VALUE("COLOR 2", MAC600_COLOR2, Menu::doNothing, Menu::noEvent)
+  ,VALUE("COLOR 3", MAC600_COLOR3, Menu::doNothing, Menu::noEvent)
+  ,VALUE("COLOR 4", MAC600_COLOR4, Menu::doNothing, Menu::noEvent)
+);
+
 MENU(mac600Color, "MAC600", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(programmer_1.programmerValues.c, TITLE_C, "%",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,FIELD(programmer_1.programmerValues.m, TITLE_M, "%",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,FIELD(programmer_1.programmerValues.y, TITLE_Y, "%",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,SUBMENU(mac600colorwheelMenu)
   ,EXIT("<Back")
 );
 
