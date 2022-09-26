@@ -16,6 +16,8 @@ Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, c
       case(GENERICDIMMER): this->channels = GENERIGDIMMER_config; break;
       default: Serial.println("No device type specified!");
   };
+
+  currentValues[SHUTTER] = SHUTTER_CLOSED;
 }
 
 void Fixture::set(Param channel, uint8_t value)

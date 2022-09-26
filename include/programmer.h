@@ -9,6 +9,7 @@
 #include "channelConfig.h"
 #include <Encoder.h>
 #include "utils.h"
+#include <math.h>
 
 namespace programmer
 {
