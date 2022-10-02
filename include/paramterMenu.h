@@ -59,7 +59,6 @@ TOGGLE(programmer_1.programmerValues.shutter, shutterOpenOrClosed, TITLE_SHUTTER
   ,VALUE("Closed", SHUTTER_CLOSED, doOutputOnFieldWrapper, Menu::changeEvent)
 );  
 
-
 MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(shutterOpenOrClosed)
   ,FIELD(programmer_1.programmerValues.strobe,TITLE_STROBE,"",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
@@ -113,9 +112,9 @@ CHOOSE(programmer_1.programmerValues.colorWheelMac600, mac600colorwheelMenu, TIT
 );
 
 MENU(mac600Color, "MAC600", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.c, TITLE_C, "%",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.m, TITLE_M, "%",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.y, TITLE_Y, "%",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.c, TITLE_C, "",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.m, TITLE_M, "",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.y, TITLE_Y, "",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,SUBMENU(mac600colorwheelMenu)
   ,EXIT("<Back")
 );
@@ -165,19 +164,24 @@ TOGGLE(programmer_1.programmerValues.prismaOnOff, prismaOnOffMenu, TITLE_PRISMA_
 // TODO int is unsigned!!!
 MENU(prismaMenu, "Prisma", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(prismaOnOffMenu)
-  ,FIELD(programmer_1.programmerValues.prismaRotation, TITLE_PRISMA_ROTATION, "", -50, 50, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.prismaRotation, TITLE_PRISMA_ROTATION, "", 0, 100, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 MENU(irisMenu, "Iris", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.iris,TITLE_DIAMETER,"",0,100,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.irisFine, TITLE_DIAMETER_FINE, "", 0, 100, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.iris,TITLE_DIAMETER,"",0,77,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.irisFine, TITLE_DIAMETER_FINE, "", 0, 255, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
+MENU(zoomMenu, "Zoom", Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,FIELD(programmer_1.programmerValues.zoom, TITLE_ZOOM, "", 0, 255, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.zoomFine, TITLE_ZOOM_FINE, "", 0, 255, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
 
 MENU(focusMenu, "Focus", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.focus,TITLE_FOCUS,"",0,100,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.focus,TITLE_FOCUS,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
@@ -187,8 +191,8 @@ TOGGLE(programmer_1.programmerValues.frost, frostMenu, TITLE_FROST, Menu::doNoth
 );
 
 MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.profilfilter1,TITLE_PROFILFILTER_1,"ms",0,1000,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.profilfilter2,TITLE_PROFILFILTER_2,"ms",0,1000,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.profilfilter1,TITLE_PROFILFILTER_1,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.profilfilter2,TITLE_PROFILFILTER_2,"",0,170,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,SUBMENU(frostMenu)
   ,EXIT("<Back")
 );
@@ -220,6 +224,7 @@ MENU(beam, "Beam", drawBackGround, Menu::enterEvent | Menu::exitEvent , Menu::no
   ,SUBMENU(irisMenu)
   ,SUBMENU(focusMenu)
   ,SUBMENU(profilfilter)
+  ,SUBMENU(zoomMenu)
   ,EXIT("<Back")
 );
 

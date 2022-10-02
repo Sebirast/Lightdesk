@@ -49,6 +49,10 @@ namespace programmer
             uint8_t tilt = 0;
 
             uint8_t focus = 0;
+            uint8_t focusFine = 0;
+
+            uint8_t zoom = 0;
+            uint8_t zoomFine = 0;
         };
         public:
 
@@ -80,13 +84,15 @@ namespace programmer
                 {TITLE_PRISMA_TOGGLE, {fixture::Fixture::Param::PRISMA, &programmerValues.prismaOnOff}},
                 {TITLE_PRISMA_ROTATION, {fixture::Fixture::Param::PRISMA, &programmerValues.prismaRotation}},
                 {TITLE_DIAMETER, {fixture::Fixture::Param::IRIS, &programmerValues.iris}},
-                {TITLE_DIAMETER_FINE, {fixture::Fixture::Param::IRISDIAMETER, &programmerValues.irisFine}},
+                {TITLE_DIAMETER_FINE, {fixture::Fixture::Param::IRIS_FINE, &programmerValues.irisFine}},
                 {TITLE_FOCUS, {fixture::Fixture::Param::FOCUS, &programmerValues.focus}},
                 {TITLE_PROFILFILTER_1, {fixture::Fixture::Param::PROFILFILTER1, &programmerValues.profilfilter1}},
                 {TITLE_PROFILFILTER_2, {fixture::Fixture::Param::PROFILFILTER2, &programmerValues.profilfilter2}},
                 {TITLE_FROST, {fixture::Fixture::Param::PROFILFILTER2, &programmerValues.frost}},
                 {TITLE_PAN, {fixture::Fixture::Param::PAN, &programmerValues.pan}},
-                {TITLE_TILT, {fixture::Fixture::Param::TILT, &programmerValues.tilt}}
+                {TITLE_TILT, {fixture::Fixture::Param::TILT, &programmerValues.tilt}},
+                {{TITLE_ZOOM}, {fixture::Fixture::Param::ZOOM, &programmerValues.zoom}},
+                {{TITLE_ZOOM_FINE}, {fixture::Fixture::Param::ZOOM_FINE, &programmerValues.zoomFine}}
             };
 
             enum FixtureAdresses

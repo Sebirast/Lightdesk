@@ -19,7 +19,7 @@ namespace fixture
         GOBOWHEEL2,
         PRISMA,
         IRIS,
-        IRISDIAMETER,
+        IRIS_FINE,
         FOCUS,
         PAN,
         PANFINE,
@@ -33,6 +33,7 @@ namespace fixture
         MAGENTA,
         YELLOW,
         MAC600_COLORWHEEL,
+        ZOOM_FINE
       };
 
     
@@ -43,8 +44,8 @@ namespace fixture
         GENERICDIMMER
       };
 
-      std::array<uint8_t, 23> channels;
-      int currentValues[23];
+      std::array<uint8_t, 24> channels;
+      int currentValues[24];
       bool selected;
 
       Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, uint16_t address);

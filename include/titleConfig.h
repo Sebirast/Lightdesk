@@ -25,6 +25,10 @@
 #define TITLE_DIAMETER_FINE "Diameter fine"
 
 #define TITLE_FOCUS "Focus"
+#define TITLE_FOCUS_FINE "Focus fine"
+
+#define TITLE_ZOOM "Zoom"
+#define TITLE_ZOOM_FINE "Zoom fine"
 
 #define TITLE_PROFILFILTER_1 "Profilfilter 1"
 #define TITLE_PROFILFILTER_2 "Profilfilter 2"

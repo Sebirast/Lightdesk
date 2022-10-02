@@ -98,7 +98,6 @@ void Programmer::resetValues(bool all)
 {
     if(!all)
     {
-        Serial.println("hello world");
         uint8_t counter = 0;
         while(counter < 4)
         {
@@ -162,6 +161,7 @@ void Programmer::loadLampValues(uint8_t idx)
     // when a fixture is selected the corresponding values are loaded into the menu:
     if(fixtures[idx]->selected)
     {
+        resetValues(true);
         // the following code should adjust the menu according to the lamp type => not fully implemented yet
         std::vector<fixture::Fixture*> selectedLamps;
         
@@ -189,6 +189,7 @@ void Programmer::loadLampValues(uint8_t idx)
         // values that are universal are loaded here:
         programmerValues.intensity = fixtures[idx]->currentValues[fixture::Fixture::DIMMER];
 
+        // pan and tilt
         programmerValues.pan = fixtures[idx]->currentValues[fixture::Fixture::PAN];
         programmerValues.tilt = fixtures[idx]->currentValues[fixture::Fixture::TILT];
 
@@ -196,9 +197,25 @@ void Programmer::loadLampValues(uint8_t idx)
         // mac600
         if(fixtures[idx]->type == fixture::Fixture::MAC600E)
         {
+            // cmy and colorwheel
             programmerValues.c = fixtures[idx]->currentValues[fixture::Fixture::CYAN];
             programmerValues.m = fixtures[idx]->currentValues[fixture::Fixture::MAGENTA];
             programmerValues.y = fixtures[idx]->currentValues[fixture::Fixture::YELLOW];
+            programmerValues.colorWheelMac600 = fixtures[idx]->currentValues[fixture::Fixture::MAC600_COLORWHEEL];
+
+            // frost- and profilfilters 
+            if(utils::inRange(fixtures[idx]->currentValues[fixture::Fixture::PROFILFILTER2], 3, 170))
+            {
+                programmerValues.frost = MAC600_PROFILFILTER_OPEN;
+                programmerValues.profilfilter1 = fixtures[idx]->currentValues[fixture::Fixture::PROFILFILTER1];
+                programmerValues.profilfilter2 = fixtures[idx]->currentValues[fixture::Fixture::PROFILFILTER2];
+            }
+            else if(fixtures[idx]->currentValues[fixture::Fixture::PROFILFILTER1] == MAC600_PROFILFILTER_FROST)
+            {
+                programmerValues.frost = MAC600_PROFILFILTER_FROST;
+                programmerValues.profilfilter1 = fixtures[idx]->currentValues[fixture::Fixture::PROFILFILTER1];
+                programmerValues.profilfilter2 = 0;
+            }
 
             // strobe
             if(utils::inRange(fixtures[idx]->currentValues[fixture::Fixture::SHUTTER], 50, 120))
@@ -219,10 +236,21 @@ void Programmer::loadLampValues(uint8_t idx)
         // mac550
         else if(fixtures[idx]->type == fixture::Fixture::MAC550)
         {
+            // colorwheels
             programmerValues.colorWheel1 = fixtures[idx]->currentValues[fixture::Fixture::COLORWHEEL1];
             programmerValues.colorWheel2 = fixtures[idx]->currentValues[fixture::Fixture::COLORWHEEL2];
+            
+            // gobowheels
             programmerValues.gobowheel1 = fixtures[idx]->currentValues[fixture::Fixture::GOBOWHEEL1];
             programmerValues.gobowheel2 = fixtures[idx]->currentValues[fixture::Fixture::GOBOWHEEL2];
+
+            // iris 
+            programmerValues.iris = fixtures[idx]->currentValues[fixture::Fixture::IRIS];
+            programmerValues.irisFine = fixtures[idx]->currentValues[fixture::Fixture::IRIS_FINE];
+
+            // zoom
+            programmerValues.zoom = fixtures[idx]->currentValues[fixture::Fixture::ZOOM];
+            programmerValues.zoomFine = fixtures[idx]->currentValues[fixture::Fixture::ZOOM_FINE];
 
             // strobe
             if(utils::inRange(fixtures[idx]->currentValues[fixture::Fixture::SHUTTER], 50, 72))
