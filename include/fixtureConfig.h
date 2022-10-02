@@ -3,7 +3,7 @@
 #include "fixture.h"
 #include <array>
 
-std::array<uint8_t, 22> MAC550_config =
+std::array<uint8_t, 23> MAC550_config =
 {
   1, // shutter
   2, // dimmer 
@@ -26,10 +26,11 @@ std::array<uint8_t, 22> MAC550_config =
   0, 
   0,
   0,
+  0,
   0
 };
 
-std::array<uint8_t, 22> MAC600E_config =
+std::array<uint8_t, 23> MAC600E_config =
 {
   1,  // shutter;  
   2,  // dimmer;   
@@ -52,10 +53,11 @@ std::array<uint8_t, 22> MAC600E_config =
   8,  // profilFilter2;  
   3,  // cyan;
   4,  // magenta;
-  5   // yellow;
+  5,  // yellow;
+  6
 };    
       
-std::array<uint8_t, 22> GENERIGDIMMER_config = 
+std::array<uint8_t, 23> GENERIGDIMMER_config = 
 {
   0, 
   1, 
@@ -78,5 +80,6 @@ std::array<uint8_t, 22> GENERIGDIMMER_config =
   0, 
   0, 
   0, 
+  0,
   0
 };

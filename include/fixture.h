@@ -31,7 +31,8 @@ namespace fixture
         PROFILFILTER2,
         CYAN,
         MAGENTA,
-        YELLOW
+        YELLOW,
+        MAC600_COLORWHEEL
       };
 
     
@@ -42,8 +43,8 @@ namespace fixture
         GENERICDIMMER
       };
 
-      std::array<uint8_t, 22> channels;
-      int currentValues[22];
+      std::array<uint8_t, 23> channels;
+      int currentValues[23];
       bool selected;
 
       Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, uint16_t address);

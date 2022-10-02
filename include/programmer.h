@@ -69,6 +69,7 @@ namespace programmer
                 {TITLE_INTENSITY_FINE, {fixture::Fixture::Param::DIMMERFINE, &programmerValues.intensityFine}},
                 {TITLE_COLORWHEEL_1, {fixture::Fixture::Param::COLORWHEEL1, &programmerValues.colorWheel1}},
                 {TITLE_COLORWHEEL_2, {fixture::Fixture::Param::COLORWHEEL2, &programmerValues.colorWheel2}},
+                {TITLE_MAC00_COLORWHEEL, {fixture::Fixture::Param::MAC600_COLORWHEEL, &programmerValues.colorWheelMac600}},
                 {TITLE_C, {fixture::Fixture::Param::CYAN, &programmerValues.c}},
                 {TITLE_M, {fixture::Fixture::Param::MAGENTA, &programmerValues.m}},
                 {TITLE_Y, {fixture::Fixture::Param::YELLOW, &programmerValues.y}},

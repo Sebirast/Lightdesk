@@ -9,6 +9,7 @@
 
 #define TITLE_COLORWHEEL_1 "Colorwheel 1"
 #define TITLE_COLORWHEEL_2 "Colorwheel 2"
+#define TITLE_MAC00_COLORWHEEL "Colorwheel"
 
 #define TITLE_C "C"
 #define TITLE_M "M"
