@@ -5,6 +5,13 @@
 using namespace fixture;
 #define DEBUG
 
+/**
+ * @brief the constructor of the fixture class. the fixture type is set as well as internal values as the address and the dmx transmitter
+ * 
+ * @param dmx pointer to a dmx transmitter
+ * @param type fixture type
+ * @param address the dmx address of the corresponding fixture
+*/
 Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, const uint16_t address) : dmx(dmx), address(address), type(type)
 {
   selected = false;
@@ -20,6 +27,12 @@ Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, c
   currentValues[SHUTTER] = SHUTTER_CLOSED;
 }
 
+/**
+ * @brief the set command for a fixture.
+ * 
+ * @param channel the channel that is to be set
+ * @param value the corresponding value
+*/
 void Fixture::set(Param channel, uint8_t value)
 {
   if(channels[channel] == 0)
@@ -31,6 +44,11 @@ void Fixture::set(Param channel, uint8_t value)
   this->dmx->set(address + channels[channel] - 1, value);
 }
 
+/**
+ * @brief the same as the set function just with the ability to record the dmx values into a array
+ * 
+ * @param recording bool that indicates if the value should be recorded or not
+*/
 void Fixture::set(Param channel, uint8_t value, bool recording)
 {
   if(channels[channel] == 0)
@@ -46,11 +64,19 @@ void Fixture::set(Param channel, uint8_t value, bool recording)
 
 }
 
+/**
+ * @brief getter function for channels that are recorded
+ * 
+ * @param channel the channel that is to be read 
+*/
 uint8_t Fixture::get(Param channel)
 {
   return currentValues[channel];
 }
 
+/**
+ * @brief lamps with illuminant lamps need to be ignited before use. this function exectues this action
+*/
 void Fixture::igniteLamp()
 {
   switch(type)
@@ -63,7 +89,9 @@ void Fixture::igniteLamp()
       Serial.println("This lamp cannot be ignited!");
   }
 }
-
+/**
+ * @brief as the lamps need to be ignited they have to be extinguished correspondingly
+*/
 void Fixture::extinguishLamp()
 {
   switch(type)
@@ -79,6 +107,12 @@ void Fixture::extinguishLamp()
   }
 }
 
+/**
+ * @brief this function is important for the programmer. it defines on which lamps the values have to 
+ *        to be changed when altering the values of the programmer
+ * 
+ * @param sel select the lamp (sel = true) or not deselect the lamp (sel = false)
+*/
 void Fixture::select(bool sel)
 {
   this->selected = sel;

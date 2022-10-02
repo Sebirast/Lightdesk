@@ -24,8 +24,8 @@ namespace programmer
             uint8_t intensity = 0;
             uint8_t intensityFine = 0;
 
-            uint8_t colorWheel1 = OPEN;//some variable used by your code (not necessarily an int)
-            uint8_t colorWheel2 = OPEN;//some variable used by your code (not necessarily an int)
+            uint8_t colorWheel1 = OPEN;
+            uint8_t colorWheel2 = OPEN;
             uint8_t colorWheelMac600 = MAC600_WHITE;
 
             uint8_t c = 0;
@@ -51,6 +51,7 @@ namespace programmer
             uint8_t focus = 0;
         };
         public:
+
             programmer::Programmer::ProgrammerValues programmerValues;
 
         private:
@@ -120,6 +121,5 @@ namespace programmer
             void onEncoderChange();
 
             void loadLampValues(uint8_t idx);
-            
     };
 }
