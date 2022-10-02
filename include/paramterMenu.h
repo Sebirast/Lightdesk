@@ -181,9 +181,15 @@ MENU(focusMenu, "Focus", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
+TOGGLE(programmer_1.programmerValues.frost, frostMenu, TITLE_FROST, Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,VALUE("OFF", MAC600_PROFILFILTER_OPEN, doOutputOnFieldWrapper, Menu::changeEvent)
+  ,VALUE("ON", MAC600_PROFILFILTER_FROST, doOutputOnFieldWrapper, Menu::changeEvent)
+);
+
 MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(programmer_1.programmerValues.profilfilter1,TITLE_PROFILFILTER_1,"ms",0,1000,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,FIELD(programmer_1.programmerValues.profilfilter2,TITLE_PROFILFILTER_2,"ms",0,1000,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,SUBMENU(frostMenu)
   ,EXIT("<Back")
 );
 

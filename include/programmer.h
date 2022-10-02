@@ -17,37 +17,38 @@ namespace programmer
     {
         struct ProgrammerValues
         {
-            uint16_t shutter = SHUTTER_CLOSED;
-            uint16_t strobe = 0;
-            uint16_t pulse = 0;
+            uint8_t shutter = SHUTTER_CLOSED;
+            uint8_t strobe = 0;
+            uint8_t pulse = 0;
 
-            uint16_t intensity = 0;
-            uint16_t intensityFine = 0;
+            uint8_t intensity = 0;
+            uint8_t intensityFine = 0;
 
-            uint16_t colorWheel1 = OPEN;//some variable used by your code (not necessarily an int)
-            uint16_t colorWheel2 = OPEN;//some variable used by your code (not necessarily an int)
-            uint16_t colorWheelMac600 = MAC600_WHITE;
+            uint8_t colorWheel1 = OPEN;//some variable used by your code (not necessarily an int)
+            uint8_t colorWheel2 = OPEN;//some variable used by your code (not necessarily an int)
+            uint8_t colorWheelMac600 = MAC600_WHITE;
 
-            uint16_t c = 0;
-            uint16_t m = 0;
-            uint16_t y = 0;
+            uint8_t c = 0;
+            uint8_t m = 0;
+            uint8_t y = 0;
 
-            uint16_t gobowheel1 = OPEN;
-            uint16_t gobowheel2 = OPEN;
+            uint8_t gobowheel1 = OPEN;
+            uint8_t gobowheel2 = OPEN;
 
-            uint16_t prismaOnOff = 0;
-            uint16_t prismaRotation = 0;
+            uint8_t prismaOnOff = 0;
+            uint8_t prismaRotation = 0;
 
-            uint16_t iris = 0;
-            uint16_t irisFine = 0;
+            uint8_t iris = 0;
+            uint8_t irisFine = 0;
 
-            uint16_t profilfilter1 = 0;
-            uint16_t profilfilter2 = 0;
+            uint8_t profilfilter1 = 0;
+            uint8_t profilfilter2 = 0;
+            uint8_t frost = MAC600_PROFILFILTER_OPEN;
 
-            uint16_t pan = 0;
-            uint16_t tilt = 0;
+            uint8_t pan = 0;
+            uint8_t tilt = 0;
 
-            uint16_t focus = 0;
+            uint8_t focus = 0;
         };
         public:
             programmer::Programmer::ProgrammerValues programmerValues;
@@ -56,8 +57,8 @@ namespace programmer
 
             struct paramInformation
             {
-                uint16_t param;
-                uint16_t* value;
+                uint8_t param;
+                uint8_t* value;
             };
 
             std::map<std::string, paramInformation> fromNavTargetToParam = 
@@ -82,6 +83,7 @@ namespace programmer
                 {TITLE_FOCUS, {fixture::Fixture::Param::FOCUS, &programmerValues.focus}},
                 {TITLE_PROFILFILTER_1, {fixture::Fixture::Param::PROFILFILTER1, &programmerValues.profilfilter1}},
                 {TITLE_PROFILFILTER_2, {fixture::Fixture::Param::PROFILFILTER2, &programmerValues.profilfilter2}},
+                {TITLE_FROST, {fixture::Fixture::Param::PROFILFILTER2, &programmerValues.frost}},
                 {TITLE_PAN, {fixture::Fixture::Param::PAN, &programmerValues.pan}},
                 {TITLE_TILT, {fixture::Fixture::Param::TILT, &programmerValues.tilt}}
             };

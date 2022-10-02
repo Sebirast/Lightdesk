@@ -29,12 +29,16 @@
 #define MAC550_CTC55 119
 #define MAC550_CTC32 153
 
-// mac600E colorwheel//
+// mac600E colorwheel
 #define MAC600_WHITE 182
 #define MAC600_COLOR1 177
 #define MAC600_COLOR2 172
 #define MAC600_COLOR3 167
 #define MAC600_COLOR4 162
+
+// mac600E profilfilter
+#define MAC600_PROFILFILTER_OPEN 0
+#define MAC600_PROFILFILTER_FROST 172
 
 // mac550 gobowheel 1
 #define FIRE_SUN 13

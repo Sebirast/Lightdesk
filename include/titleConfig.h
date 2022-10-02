@@ -28,6 +28,7 @@
 
 #define TITLE_PROFILFILTER_1 "Profilfilter 1"
 #define TITLE_PROFILFILTER_2 "Profilfilter 2"
+#define TITLE_FROST "Frostfilter"
 
 #define TITLE_PAN "Pan"
 #define TITLE_TILT "Tilt"

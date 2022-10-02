@@ -32,7 +32,7 @@ namespace fixture
         CYAN,
         MAGENTA,
         YELLOW,
-        MAC600_COLORWHEEL
+        MAC600_COLORWHEEL,
       };
 
     
