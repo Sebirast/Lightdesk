@@ -10,6 +10,7 @@
 #include <Encoder.h>
 #include "utils.h"
 #include <math.h>
+#include <ShiftRegister74HC595.h>
 
 namespace programmer
 {
@@ -94,6 +95,8 @@ namespace programmer
                 {{TITLE_ZOOM}, {fixture::Fixture::Param::ZOOM, &programmerValues.zoom}},
                 {{TITLE_ZOOM_FINE}, {fixture::Fixture::Param::ZOOM_FINE, &programmerValues.zoomFine}}
             };
+
+            ShiftRegister74HC595<1>* sr = NULL;
 
             enum FixtureAdresses
             {
