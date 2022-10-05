@@ -8,8 +8,8 @@ Programmer::Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder
 : fixtures{lamps}, encoders{encoders}, menu{menu}
 {
     sr = &ShiftRegister74HC595<1>(24, 25, 26);
-    sr->set(1, HIGH);
-    sr->set(2, HIGH);
+    // sr->set(5, HIGH);
+    sr->setAllHigh();
 };
 
 /**
@@ -42,7 +42,7 @@ void Programmer::doOutputFromField(Menu::prompt p)
                     case(fixture::Fixture::MAC600E): value = map(value, 0, 100, 50, 120); break;
                     default: Serial.println("Kein bekannter Typ");
                 }
-                programmerValues.shutter = SHUTTER_CLOSED;
+                programmerValues.shutter = SHUTTER_OPEN;
                 programmerValues.pulse = 0;
             }
 
@@ -57,10 +57,14 @@ void Programmer::doOutputFromField(Menu::prompt p)
                         Serial.println("Kein bekannter Typ");
                         value = SHUTTER_OPEN; break;
                     }
+                    if(value == 80) {value = SHUTTER_OPEN;};
                 }
-                programmerValues.shutter = SHUTTER_CLOSED;
+                programmerValues.shutter = SHUTTER_OPEN;
                 programmerValues.strobe = 0;
             }
+
+            else if((title == (std::string)TITLE_COLORWHEEL_1 || title == (std::string)TITLE_COLORWHEEL_2) && fixture->type == fixture::Fixture::MAC600E) {value = OPEN; }
+            else if(title == (std::string)TITLE_MAC00_COLORWHEEL && fixture->type == fixture::Fixture::MAC550) {value = OPEN;}
 
             else if(title == (std::string)TITLE_SHUTTER)
             {
@@ -120,6 +124,8 @@ void Programmer::reset()
     resetValues(true);
 
     for(auto fixture : fixtures) { fixture->select(false); }
+
+    sr->setAllLow();
 }
 
 void Programmer::loadValues()
@@ -164,6 +170,9 @@ void Programmer::loadLampValues(uint8_t idx)
     // when a fixture is selected the corresponding values are loaded into the menu:
     if(fixtures[idx]->selected)
     {
+        sr->set(idx, HIGH);
+        Serial.print("shift idx: ");
+        Serial.println(idx);
         resetValues(true);
         // the following code should adjust the menu according to the lamp type => not fully implemented yet
         std::vector<fixture::Fixture*> selectedLamps;
@@ -279,8 +288,25 @@ void Programmer::loadLampValues(uint8_t idx)
         }
     }
     // when the fixture is deselected, the menu gets emptied or values from the following lamp are loaded:
-    else
+    else if(!fixtures[idx]->selected)
     {
         resetValues(false);
+        sr->set(idx, LOW);
+        Serial.print("shift idx: ");
+        Serial.println(idx);
+    }
+}
+
+void Programmer::locate()
+{
+    for(auto fixture : fixtures)
+    {
+        if(fixture->selected)
+        {
+            fixture->set(fixture::Fixture::DIMMER, 100, true);
+            fixture->set(fixture::Fixture::PAN, 127, true);
+            fixture->set(fixture::Fixture::TILT, 127, true);
+            fixture->set(fixture::Fixture::SHUTTER, SHUTTER_OPEN, true);
+        }
     }
 }

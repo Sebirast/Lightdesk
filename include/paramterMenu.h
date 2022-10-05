@@ -22,10 +22,10 @@ int timeOn = 0;
 
 Adafruit_RA8875 gfx(10, 9);
 
-fixture::Fixture one(&dmx, fixture::Fixture::MAC600E, 200);
+fixture::Fixture one(&dmx, fixture::Fixture::MAC600E, 150);
 fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250);
 fixture::Fixture three(&dmx, fixture::Fixture::MAC550, 300);
-fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 350);
+fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 200);
 
 std::vector<fixture::Fixture*> lamps = {&one, &two, &three, &four};
 
@@ -125,7 +125,7 @@ MENU(colour, "Colour", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
-CHOOSE(programmer_1.programmerValues.gobowheel1,gobowheel1Menu,TITLE_GOBOWHEEL_1,Menu::doNothing,Menu::noEvent,Menu::noTitle
+CHOOSE(programmer_1.programmerValues.gobowheel1,gobowheel1Menu,TITLE_GOBOWHEEL_1,doOutputOnFieldWrapper,Menu::exitEvent,Menu::noTitle
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
   ,VALUE("FIRE SUN",FIRE_SUN,Menu::doNothing,Menu::noEvent)
   ,VALUE("ROTATOR",ROTATOR,Menu::doNothing,Menu::noEvent)
@@ -135,7 +135,7 @@ CHOOSE(programmer_1.programmerValues.gobowheel1,gobowheel1Menu,TITLE_GOBOWHEEL_1
   ,VALUE("FLAMES",FLAMES,Menu::doNothing,Menu::noEvent)
 );
 
-CHOOSE(programmer_1.programmerValues.gobowheel2,gobowheel2Menu,TITLE_GOBOWHEEL_2,Menu::doNothing,Menu::noEvent,Menu::noTitle
+CHOOSE(programmer_1.programmerValues.gobowheel2,gobowheel2Menu,TITLE_GOBOWHEEL_2,doOutputOnFieldWrapper,Menu::exitEvent,Menu::noTitle
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::noEvent)
   ,VALUE("CRACKLE",CRACKLE, Menu::doNothing, Menu::noEvent)
   ,VALUE("TRIANGLES",TRIANGLES,Menu::doNothing,Menu::noEvent)

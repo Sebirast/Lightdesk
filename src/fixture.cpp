@@ -25,6 +25,7 @@ Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, c
   };
 
   currentValues[SHUTTER] = SHUTTER_CLOSED;
+  currentValues[MAC600_COLORWHEEL] = MAC600_WHITE;
 }
 
 /**

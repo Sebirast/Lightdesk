@@ -130,5 +130,7 @@ namespace programmer
             void onEncoderChange();
 
             void loadLampValues(uint8_t idx);
+
+            void locate();
     };
 }
