@@ -35,4 +35,6 @@
 #define TITLE_FROST "Frostfilter"
 
 #define TITLE_PAN "Pan"
+#define TITLE_PAN_FINE "Pan fine"
 #define TITLE_TILT "Tilt"
+#define TITLE_TILT_FINE "Tilt fine"

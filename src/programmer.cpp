@@ -42,6 +42,8 @@ void Programmer::doOutputFromField(Menu::prompt p)
                     case(fixture::Fixture::MAC600E): value = map(value, 0, 100, 50, 120); break;
                     default: Serial.println("Kein bekannter Typ");
                 }
+
+                // strobe does not work yet
                 programmerValues.shutter = SHUTTER_OPEN;
                 programmerValues.pulse = 0;
             }
@@ -63,14 +65,18 @@ void Programmer::doOutputFromField(Menu::prompt p)
                 programmerValues.strobe = 0;
             }
 
-            else if((title == (std::string)TITLE_COLORWHEEL_1 || title == (std::string)TITLE_COLORWHEEL_2) && fixture->type == fixture::Fixture::MAC600E) {value = OPEN; }
-            else if(title == (std::string)TITLE_MAC00_COLORWHEEL && fixture->type == fixture::Fixture::MAC550) {value = OPEN;}
+            // else if((title == (std::string)TITLE_COLORWHEEL_1 || title == (std::string)TITLE_COLORWHEEL_2) && fixture->type == fixture::Fixture::MAC600E) {value = OPEN; }
+            // else if(title == (std::string)TITLE_MAC00_COLORWHEEL && fixture->type == fixture::Fixture::MAC550) {value = OPEN;}
 
             else if(title == (std::string)TITLE_SHUTTER)
             {
                 programmerValues.strobe = 0;
                 programmerValues.pulse = 0;
             }
+
+            // todo: test these if statements
+            else if(title == (std::string)TITLE_FROST) {programmerValues.profilfilter2 = MAC600_PROFILFILTER_OPEN; }
+            else if(title == (std::string)TITLE_PROFILFILTER_2) {programmerValues.frost = MAC600_PROFILFILTER_OPEN; }
 
             // if the intensity is set -> the shutter should be opened => todo later
             // else if((title == (std::string)TITLE_INTENSITY || title == (std::string)TITLE_INTENSITY_FINE) && fixture->currentValues[fixture::Fixture::SHUTTER] == SHUTTER_CLOSED)
@@ -214,6 +220,9 @@ void Programmer::loadLampValues(uint8_t idx)
             programmerValues.m = fixtures[idx]->currentValues[fixture::Fixture::MAGENTA];
             programmerValues.y = fixtures[idx]->currentValues[fixture::Fixture::YELLOW];
             programmerValues.colorWheelMac600 = fixtures[idx]->currentValues[fixture::Fixture::MAC600_COLORWHEEL];
+            
+            // intensity fine
+            programmerValues.intensityFine = fixtures[idx]->currentValues[fixture::Fixture::DIMMERFINE];
 
             // frost- and profilfilters 
             if(utils::inRange(fixtures[idx]->currentValues[fixture::Fixture::PROFILFILTER2], 3, 170))
@@ -263,6 +272,18 @@ void Programmer::loadLampValues(uint8_t idx)
             // zoom
             programmerValues.zoom = fixtures[idx]->currentValues[fixture::Fixture::ZOOM];
             programmerValues.zoomFine = fixtures[idx]->currentValues[fixture::Fixture::ZOOM_FINE];
+            
+            // prisma 
+            if(fixtures[idx]->currentValues[fixture::Fixture::PRISMA] == PRISMA_ON || fixtures[idx]->currentValues[fixture::Fixture::PRISMA] == PRISMA_OFF)
+            {
+                programmerValues.prismaOnOff = fixtures[idx]->currentValues[fixture::Fixture::PRISMA];
+                programmerValues.prismaRotation = 0;
+            }
+            else
+            {
+                programmerValues.prismaOnOff = PRISMA_ON;
+                programmerValues.prismaRotation = fixtures[idx]->currentValues[fixture::Fixture::PRISMA];
+            }
 
             // strobe
             if(utils::inRange(fixtures[idx]->currentValues[fixture::Fixture::SHUTTER], 50, 72))

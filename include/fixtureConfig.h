@@ -36,7 +36,7 @@ std::array<uint8_t, 24> MAC600E_config =
   1,  // shutter;  
   2,  // dimmer;   
   0,  // dimmerFine;  
-  6,  // colorWheel1; 
+  0,  // colorWheel1; 
   0,  // colorWheel2;  
   0,  // goboWheel1;  
   0,  // goboWheel2;  
@@ -55,7 +55,7 @@ std::array<uint8_t, 24> MAC600E_config =
   3,  // cyan;
   4,  // magenta;
   5,  // yellow;
-  6,
+  6,  // colorwheel mac 600
   0
 };    
       

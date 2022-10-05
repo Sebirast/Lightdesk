@@ -67,13 +67,12 @@ MENU(shutterMenu, "Shutter", Menu::doNothing, Menu::noEvent, Menu::noStyle
 );
 
 MENU(dimmer, "Dimmer", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.intensity,TITLE_INTENSITY,"",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.intensityFine,TITLE_INTENSITY_FINE,"",0,100,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.intensity,TITLE_INTENSITY,"",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.intensityFine,TITLE_INTENSITY_FINE,"",0,255,10,1, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 CHOOSE(programmer_1.programmerValues.colorWheel1,colorwheel1Menu,TITLE_COLORWHEEL_1,doOutputOnFieldWrapper, exitEvent,Menu::noStyle
-  // ,VALUE("OPEN", OPEN, doOutputOnFieldWrapper, Menu::enterEvent) // => like this it is correct
   ,VALUE("OPEN", OPEN, Menu::doNothing, Menu::enterEvent)
   ,VALUE("RED",MAC550_RED_1,Menu::doNothing,Menu::noEvent)
   ,VALUE("MAGENTA",MAC550_MAGENTA,Menu::doNothing,Menu::noEvent)
@@ -198,8 +197,10 @@ MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
 );
 
 MENU(position, "Position", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.pan,TITLE_PAN,"",0,255,10,10, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.tilt, TITLE_TILT,"",0,255,10,10, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.pan,TITLE_PAN,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.panFine,TITLE_PAN_FINE,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.tilt, TITLE_TILT,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.tiltFine, TITLE_TILT_FINE,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 )
 

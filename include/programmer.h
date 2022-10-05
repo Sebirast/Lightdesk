@@ -47,7 +47,9 @@ namespace programmer
             uint8_t frost = MAC600_PROFILFILTER_OPEN;
 
             uint8_t pan = 0;
+            uint8_t panFine = 0;
             uint8_t tilt = 0;
+            uint8_t tiltFine = 0;
 
             uint8_t focus = 0;
             uint8_t focusFine = 0;
@@ -91,7 +93,9 @@ namespace programmer
                 {TITLE_PROFILFILTER_2, {fixture::Fixture::Param::PROFILFILTER2, &programmerValues.profilfilter2}},
                 {TITLE_FROST, {fixture::Fixture::Param::PROFILFILTER2, &programmerValues.frost}},
                 {TITLE_PAN, {fixture::Fixture::Param::PAN, &programmerValues.pan}},
+                {TITLE_PAN_FINE, {fixture::Fixture::Param::PANFINE, &programmerValues.panFine}},
                 {TITLE_TILT, {fixture::Fixture::Param::TILT, &programmerValues.tilt}},
+                {TITLE_TILT_FINE, {fixture::Fixture::Param::TILTFINE, &programmerValues.tiltFine}},
                 {{TITLE_ZOOM}, {fixture::Fixture::Param::ZOOM, &programmerValues.zoom}},
                 {{TITLE_ZOOM_FINE}, {fixture::Fixture::Param::ZOOM_FINE, &programmerValues.zoomFine}}
             };
