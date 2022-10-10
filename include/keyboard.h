@@ -28,8 +28,20 @@ void keyMapping(keypadEvent e)
       case('6'): three.select(!three.selected); programmer_1.loadLampValues(2); nav.doOutput(); break;
       case('8'): four.select(!four.selected); programmer_1.loadLampValues(3); nav.doOutput(); break;
 
-      // jump to menus
-      case('1'): nav.useMenu(mainMenu); break;
+      // recorder...
+      case('1'): 
+      {
+        if(programmer_1.currentSceneUptodate)
+        {
+          Serial.println("hello world");
+          ex1.save(programmer_1.currentScene);
+        }
+        else
+        {
+          Serial.println("asödlfkj");
+        }
+        break;
+      }
       case('3'): programmer_1.updateCurrentScene(); break;
       case('5'): programmer_1.locate(); break;
       case('7'): programmer_1.reset(); nav.doOutput(); break;

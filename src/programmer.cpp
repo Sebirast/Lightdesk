@@ -87,7 +87,10 @@ void Programmer::doOutputFromField(Menu::prompt p)
             // }
             fixture->set(fromNavTargetToParam[title].param, value, true);
         }
+
     }
+
+    currentSceneUptodate = false;
 
     #ifdef DEBUG
         for(uint8_t i = 0; i < 4; i++)
@@ -359,4 +362,5 @@ void Programmer::updateCurrentScene()
         }
         Serial.println();
     }
+    currentSceneUptodate = true;
 }

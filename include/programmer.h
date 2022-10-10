@@ -117,6 +117,7 @@ namespace programmer
 
 
         public:
+            bool currentSceneUptodate = false;
 
             std::vector<Encoder*> encoders;
 

@@ -18,10 +18,9 @@ namespace playback
                 MAC600_TWO
             };
 
-            // Cue();
-
             std::array<int[24], 4> lampValues;
 
+            void print();
     };
 
     class Playback
@@ -36,10 +35,11 @@ namespace playback
 
             Cue scene;
 
+            PlaybackType type;
+
             Playback(PlaybackType type);
 
-            void save();
+            void save(Cue scene);
             void play(std::vector<fixture::Fixture*> fixtures);
-            void update(Cue newScene);
     };
 }
