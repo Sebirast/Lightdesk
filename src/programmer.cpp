@@ -324,7 +324,7 @@ void Programmer::locate()
     {
         if(fixture->selected)
         {
-            fixture->set(fixture::Fixture::DIMMER, 100, true);
+            fixture->set(fixture::Fixture::DIMMER, 255, true);
             fixture->set(fixture::Fixture::PAN, 127, true);
             fixture->set(fixture::Fixture::TILT, 127, true);
             fixture->set(fixture::Fixture::SHUTTER, SHUTTER_OPEN, true);
@@ -334,8 +334,11 @@ void Programmer::locate()
 
 void Programmer::updateCurrentScene()
 {
-    for(uint8_t i = 0; i < 4; i++)
+    for(int o = 0; o < 4; o++)
     {
-        currentScene.lampValues[i] = fixtures[i]->currentValues;
+        for(int i = 0; i < 24; i++)
+        {
+            currentScene.lampValues[o][i] = fixtures[o]->currentValues[i];
+        }
     }
 }

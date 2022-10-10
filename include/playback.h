@@ -7,7 +7,7 @@
 
 namespace playback
 {
-    class Cue
+    struct Cue
     {
         public:
             enum LampShortcuts
@@ -18,7 +18,10 @@ namespace playback
                 MAC600_TWO
             };
 
-            std::vector<std::vector<uint8_t>> lampValues;
+            // Cue();
+
+            std::array<int[24], 4> lampValues;
+
     };
 
     class Playback

@@ -12,6 +12,7 @@
 #include <math.h>
 #include <ShiftRegister74HC595.h>
 #include <playback.h>
+#include <iostream>
 
 namespace programmer
 {
@@ -139,7 +140,7 @@ namespace programmer
 
             void locate();
 
-            playback::Cue currentScene;
+            playback::Cue currentScene; 
 
             void updateCurrentScene();
     };

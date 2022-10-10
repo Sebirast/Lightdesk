@@ -30,7 +30,7 @@ void keyMapping(keypadEvent e)
 
       // jump to menus
       case('1'): nav.useMenu(mainMenu); break;
-      case('3'): nav.useMenu(dimmer); break;
+      case('3'): programmer_1.updateCurrentScene(); break;
       case('5'): programmer_1.locate(); break;
       case('7'): programmer_1.reset(); nav.doOutput(); break;
     }

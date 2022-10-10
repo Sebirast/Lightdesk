@@ -46,7 +46,7 @@ void Fixture::set(Param channel, uint8_t value)
 }
 
 /**
- * @brief the same as the set function just with the ability to record the dmx values into a array
+ * @brief the same as the set function just with the ability to record the dmx values into an array
  * 
  * @param recording bool that indicates if the value should be recorded or not
 */

@@ -55,4 +55,5 @@ void setup() {
 void loop() {
   nav.poll();
   nav.doInput();
+  // Serial.println("Hello wordl");
 }

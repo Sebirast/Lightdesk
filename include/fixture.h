@@ -46,7 +46,7 @@ namespace fixture
       };
 
       std::array<uint8_t, 24> channels;
-      std::vector<uint8_t> currentValues;
+      int currentValues[24];
       bool selected;
 
       Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, uint16_t address);
