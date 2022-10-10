@@ -169,6 +169,8 @@ void Programmer::extinguishAllLamps()
  *        the case when mutiple lamps are selected, with values that have to be mapped before loaded into the menu as well as with 
  *        automations that have to take place when values are loaded into the menu
  * 
+ * @todo check if all values are stored and loaded into programmer correctly
+ * 
  * @param idx: the index of the selected lamp in the fixtures array of this class
 */
 void Programmer::loadLampValues(uint8_t idx)
@@ -318,6 +320,13 @@ void Programmer::loadLampValues(uint8_t idx)
     }
 }
 
+/**
+ * @brief this method locates all fixtures. it tilts and pans all the fixture into their middle position and turns the dimmer up to 100%.
+ *        it also opens the shutter.
+ * 
+ * @todo load old scene when locate is disabled
+*/
+
 void Programmer::locate()
 {
     for(auto fixture : fixtures)
@@ -332,6 +341,11 @@ void Programmer::locate()
     }
 }
 
+/**
+ * @brief this function loads the lamp values into the currentscene in order to record a scene to a playback
+ * 
+ * @todo effects
+*/
 void Programmer::updateCurrentScene()
 {
     for(int o = 0; o < 4; o++)
@@ -339,6 +353,10 @@ void Programmer::updateCurrentScene()
         for(int i = 0; i < 24; i++)
         {
             currentScene.lampValues[o][i] = fixtures[o]->currentValues[i];
+
+            Serial.print(currentScene.lampValues[o][i]);
+            Serial.print(" ");
         }
+        Serial.println();
     }
 }
