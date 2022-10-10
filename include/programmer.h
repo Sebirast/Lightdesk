@@ -11,6 +11,7 @@
 #include "utils.h"
 #include <math.h>
 #include <ShiftRegister74HC595.h>
+#include <playback.h>
 
 namespace programmer
 {
@@ -113,6 +114,7 @@ namespace programmer
             std::vector<fixture::Fixture*> fixtures;
             std::vector<Menu::menu*>* menu;
 
+
         public:
 
             std::vector<Encoder*> encoders;
@@ -136,5 +138,9 @@ namespace programmer
             void loadLampValues(uint8_t idx);
 
             void locate();
+
+            playback::Cue currentScene;
+
+            void updateCurrentScene();
     };
 }

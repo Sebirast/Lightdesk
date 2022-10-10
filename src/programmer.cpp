@@ -331,3 +331,11 @@ void Programmer::locate()
         }
     }
 }
+
+void Programmer::updateCurrentScene()
+{
+    for(uint8_t i = 0; i < 4; i++)
+    {
+        currentScene.lampValues[i] = fixtures[i]->currentValues;
+    }
+}

@@ -2,6 +2,7 @@
 
 #include "TeensyDMX.h"
 #include <array>
+#include <vector>
 
 namespace fixture
 {
@@ -45,7 +46,7 @@ namespace fixture
       };
 
       std::array<uint8_t, 24> channels;
-      int currentValues[24];
+      std::vector<uint8_t> currentValues;
       bool selected;
 
       Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, uint16_t address);
