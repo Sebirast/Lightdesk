@@ -370,4 +370,6 @@ void Programmer::resetSelector()
 {
     for(auto fixture : fixtures)
         fixture->select(false);
+
+    programmerValues = Programmer::ProgrammerValues();
 }

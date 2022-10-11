@@ -46,6 +46,13 @@ void keyMapping(keypadEvent e)
       case('5'): programmer_1.locate(); break;
       case('7'): programmer_1.reset(); nav.doOutput(); break;
       case(48): programmer_1.resetSelector(); break;
+
+      // jump to menus:
+      case(108): nav.useMenu(mainMenu); nav.doOutput(); break;
+      case(109): nav.useMenu(light); nav.doOutput(); break;
+      case(110): nav.useMenu(beam); nav.doOutput(); break;
+      case(111): nav.useMenu(position); nav.doOutput(); break;
+      case(112): nav.useMenu(effectMenu); nav.doOutput(); break;
     }
   }
 }
