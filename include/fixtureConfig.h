@@ -90,8 +90,8 @@ std::array<uint8_t, 24> GENERIGDIMMER_config =
 
 std::array<uint8_t, 24> MAC550_PARK
 {
-  0, 
   SHUTTER_CLOSED, 
+  0, 
   0, 
   0, 
   0, 
@@ -118,8 +118,8 @@ std::array<uint8_t, 24> MAC550_PARK
 
 std::array<uint8_t, 24> MAC600E_PARK
 {
-  0, 
   SHUTTER_CLOSED, 
+  0, 
   0, 
   0, 
   0, 

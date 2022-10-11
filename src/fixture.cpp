@@ -57,7 +57,7 @@ void Fixture::set(Param channel, uint8_t value, bool recording)
 {
   if(channels[channel] == 0)
   {
-    Serial.println("This fixture does not have this function");
+    // Serial.println("This fixture does not have this function");
     return;
   }
 
@@ -122,8 +122,10 @@ void Fixture::select(bool sel)
   this->selected = sel;
 
   #ifdef DEBUG
-    Serial.print("lamp sel: ");
-    Serial.println(sel);
+    Serial.print("Fixture ");
+    Serial.print(idx);
+    Serial.print(": Select ");
+    Serial.println(selected);
   #endif
 }
 
@@ -140,6 +142,12 @@ void Fixture::play(playback::Cue scene)
   {
     set(i, scene.lampValues[idx][i], true);
   }
+
+  #ifdef DEBUG
+    Serial.print("Fixture ");
+    Serial.print(idx);
+    Serial.println(": Play");
+  #endif
 }
 
 void Fixture::park()
@@ -158,4 +166,10 @@ void Fixture::park()
   {
     set(i, park[i], true);
   }
+
+  #ifdef DEBUG
+    Serial.print("Fixture ");
+    Serial.print(idx);
+    Serial.println(": Park");
+  #endif
 }
