@@ -28,6 +28,6 @@ namespace playback
             Playback(PlaybackType type);
 
             void save(playback::Cue scene);
-            void play(std::vector<fixture::Fixture*> fixtures);
+            void play(std::vector<fixture::Fixture*> fixtures, bool active);
     };
 }

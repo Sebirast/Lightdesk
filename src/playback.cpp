@@ -45,11 +45,25 @@ void Playback::save(Cue scene)
  * @param fixtures as I didn't want to pass the fixtures to too many classes in the constructor, the fixtures are passed as a parameter
  *                 -> the class just has access to the fixtures in this specific function
 */
-void Playback::play(std::vector<fixture::Fixture*> fixtures)
+void Playback::play(std::vector<fixture::Fixture*> fixtures, bool active)
 {
-    for(auto fixture : fixtures)
+
+    Serial.println("playing scene");
+    if(active)
     {
-        fixture->play(scene);
+        for(auto fixture : fixtures)
+        {
+            fixture->play(scene);
+        }
+        scene.print();
     }
-    scene.print();
+    // todo handle multiple scenes!!
+    else
+    {
+        for(auto fixture : fixtures)
+        {
+            fixture->park();
+        }
+    }
+    this->active = active;
 }
