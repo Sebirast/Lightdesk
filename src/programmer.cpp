@@ -117,7 +117,7 @@ void Programmer::resetValues(bool all)
         uint8_t counter = 0;
         while(counter < 4)
         {
-            if(fixtures[counter]->selected) { loadLampValues(counter); return;}
+            if(fixtures[counter]->selected) { loadLampValues(counter); return; }
             counter++;
         }
     }
@@ -125,16 +125,17 @@ void Programmer::resetValues(bool all)
 }
 
 /**
- * @brief this function resets the values in the menu. it checks if there are any other lamps that are selected. => if there is more than
- *        one lamp selected the function loads the lamp value of the first selected lamp in the fixture array of this class
-*/
+ * @brief this function resets the values in the menu and the selector. 
+ */
 void Programmer::reset()
 {
     resetValues(true);
 
-    for(auto fixture : fixtures) { fixture->select(false); }
+    for(auto fixture : fixtures) { fixture->select(false); fixture->park(); }
 
     sr->setAllLow();
+
+    currentSceneUptodate = false;
 }
 
 void Programmer::loadValues()
@@ -332,6 +333,7 @@ void Programmer::loadLampValues(uint8_t idx)
 
 void Programmer::locate()
 {
+    Serial.println("locate");
     for(auto fixture : fixtures)
     {
         if(fixture->selected)

@@ -60,6 +60,8 @@ namespace fixture
 
       void play(playback::Cue scene);
 
+      void park();
+
       void igniteLamp();
       void extinguishLamp();
       

@@ -11,6 +11,7 @@ using namespace fixture;
  * @param dmx pointer to a dmx transmitter
  * @param type fixture type
  * @param address the dmx address of the corresponding fixture
+ * @param idx the id of the fixture. this is needed for the playback.
 */
 Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, const uint16_t address, uint8_t idx) 
 : dmx(dmx), address(address), type(type), idx(idx)
@@ -26,7 +27,8 @@ Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, c
   };
 
   currentValues[SHUTTER] = SHUTTER_CLOSED;
-  currentValues[MAC600_COLORWHEEL] = MAC600_WHITE;
+  if(type == MAC600E)
+    currentValues[MAC600_COLORWHEEL] = MAC600_WHITE;
 }
 
 /**
@@ -77,7 +79,7 @@ uint8_t Fixture::get(Param channel)
 }
 
 /**
- * @brief lamps with illuminant lamps need to be ignited before use. this function exectues this action
+ * @brief fixtures with illuminant lamps need to be ignited before use. this function exectues this action
 */
 void Fixture::igniteLamp()
 {
@@ -125,10 +127,35 @@ void Fixture::select(bool sel)
   #endif
 }
 
+/**
+ * @brief this function is needed for all the playbacks. it plays a scene that was created by the programmer
+ * 
+ * @todo test this function xD
+ * 
+ * @param scene the scene that is to be performed
+*/
 void Fixture::play(playback::Cue scene)
 {
   for(uint8_t i = 0; i < 24; i++)
   {
-    set(i, scene.lampValues[idx], true);
+    set(i, scene.lampValues[idx][i], true);
+  }
+}
+
+void Fixture::park()
+{
+  std::array<uint8_t, 24> park;
+  
+  switch (type)
+  {
+  case(MAC550): park = MAC550_PARK; break;
+  case(MAC600E): park = MAC600E_PARK; break;
+  default:
+    break;
+  }
+
+  for(uint8_t i = 0; i < 24; i++)
+  {
+    set(i, park[i], true);
   }
 }

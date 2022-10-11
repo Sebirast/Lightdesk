@@ -33,11 +33,11 @@ void keyMapping(keypadEvent e)
       {
         if(programmer_1.currentSceneUptodate)
         {
-          Serial.println("hello world");
           ex1.save(programmer_1.currentScene);
         }
         else
         {
+          Serial.print("playing scene");
           ex1.play(lamps);
         }
         break;

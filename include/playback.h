@@ -23,6 +23,8 @@ namespace playback
 
             PlaybackType type;
 
+            bool active = false;
+
             Playback(PlaybackType type);
 
             void save(playback::Cue scene);
