@@ -342,12 +342,13 @@ void Programmer::locate()
             fixture->set(fixture::Fixture::SHUTTER, SHUTTER_OPEN, true);
         }
     }
+    resetValues(false);
 }
 
 /**
  * @brief this function loads the lamp values into the currentscene in order to record a scene to a playback
  * 
- * @todo effects
+ * @todo effects...
 */
 void Programmer::updateCurrentScene()
 {

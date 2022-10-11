@@ -12,7 +12,8 @@ using namespace fixture;
  * @param type fixture type
  * @param address the dmx address of the corresponding fixture
 */
-Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, const uint16_t address) : dmx(dmx), address(address), type(type)
+Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, const uint16_t address, uint8_t idx) 
+: dmx(dmx), address(address), type(type), idx(idx)
 {
   selected = false;
 
@@ -122,4 +123,12 @@ void Fixture::select(bool sel)
     Serial.print("lamp sel: ");
     Serial.println(sel);
   #endif
+}
+
+void Fixture::play(playback::Cue scene)
+{
+  for(uint8_t i = 0; i < 24; i++)
+  {
+    set(i, scene.lampValues[idx], true);
+  }
 }

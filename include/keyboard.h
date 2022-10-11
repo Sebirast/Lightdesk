@@ -38,7 +38,7 @@ void keyMapping(keypadEvent e)
         }
         else
         {
-          Serial.println("asödlfkj");
+          ex1.play(lamps);
         }
         break;
       }

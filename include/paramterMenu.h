@@ -23,10 +23,10 @@ int timeOn = 0;
 
 Adafruit_RA8875 gfx(10, 9);
 
-fixture::Fixture one(&dmx, fixture::Fixture::MAC600E, 150);
-fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250);
-fixture::Fixture three(&dmx, fixture::Fixture::MAC550, 300);
-fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 200);
+fixture::Fixture one(&dmx, fixture::Fixture::MAC600E, 150, 0);
+fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250, 1);
+fixture::Fixture three(&dmx, fixture::Fixture::MAC550, 300, 2);
+fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 200, 3);
 
 std::vector<fixture::Fixture*> lamps = {&one, &two, &three, &four};
 

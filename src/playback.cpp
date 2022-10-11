@@ -28,5 +28,8 @@ void Playback::save(Cue scene)
 
 void Playback::play(std::vector<fixture::Fixture*> fixtures)
 {
-
+    for(auto fixture : fixtures)
+    {
+        fixture->play(scene);
+    }
 }

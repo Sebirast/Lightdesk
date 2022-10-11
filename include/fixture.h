@@ -3,6 +3,7 @@
 #include "TeensyDMX.h"
 #include <array>
 #include <vector>
+#include "cue.h"
 
 namespace fixture
 {
@@ -49,13 +50,15 @@ namespace fixture
       int currentValues[24];
       bool selected;
 
-      Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, uint16_t address);
+      uint8_t idx;
+
+      Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, uint16_t address, uint8_t idx);
 
       void set(Param channel, uint8_t value);
       void set(Param channel, uint8_t value, bool recording);
       uint8_t get(Param channel);
 
-      void play();
+      void play(playback::Cue scene);
 
       void igniteLamp();
       void extinguishLamp();
