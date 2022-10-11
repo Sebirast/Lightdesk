@@ -144,5 +144,7 @@ namespace programmer
             playback::Cue currentScene; 
 
             void updateCurrentScene();
+
+            void resetSelector();
     };
 }

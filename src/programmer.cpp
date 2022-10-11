@@ -248,7 +248,7 @@ void Programmer::loadLampValues(uint8_t idx)
             if(utils::inRange(fixtures[idx]->currentValues[fixture::Fixture::SHUTTER], 50, 120))
             {
                 programmerValues.strobe = map(fixtures[idx]->currentValues[fixture::Fixture::SHUTTER], 50, 120, 0, 100);
-                programmerValues.shutter = SHUTTER_CLOSED;
+                programmerValues.shutter = SHUTTER_OPEN;
                 programmerValues.pulse = 0;
             }
             // shutter
@@ -295,14 +295,14 @@ void Programmer::loadLampValues(uint8_t idx)
             if(utils::inRange(fixtures[idx]->currentValues[fixture::Fixture::SHUTTER], 50, 72))
             {
                 programmerValues.strobe = map(fixtures[idx]->currentValues[fixture::Fixture::SHUTTER], 50, 72, 0, 100);
-                programmerValues.shutter = SHUTTER_CLOSED;
+                programmerValues.shutter = SHUTTER_OPEN;
                 programmerValues.pulse = 0;
             }
             // pulse
             else if(utils::inRange(fixtures[idx]->currentValues[fixture::Fixture::SHUTTER], 80, 99))
             {
                 programmerValues.pulse = round(map(fixtures[idx]->currentValues[fixture::Fixture::SHUTTER], 80, 99, 0, 100));
-                programmerValues.shutter = SHUTTER_CLOSED;
+                programmerValues.shutter = SHUTTER_OPEN;
                 programmerValues.strobe = 0;
             }
             // shutter
@@ -360,10 +360,14 @@ void Programmer::updateCurrentScene()
         {
             currentScene.lampValues[o][i] = fixtures[o]->currentValues[i];
 
-            Serial.print(currentScene.lampValues[o][i]);
-            Serial.print(" ");
         }
-        Serial.println();
     }
+    currentScene.print();
     currentSceneUptodate = true;
+}
+
+void Programmer::resetSelector()
+{
+    for(auto fixture : fixtures)
+        fixture->select(false);
 }
