@@ -19,6 +19,7 @@ Adafruit_Keypad customKeypad = Adafruit_Keypad( makeKeymap(keys), rowPins, colPi
 
 void keyMapping(keypadEvent e)
 {
+  customKeypad.justPressed('a');
   if(e.bit.EVENT == KEY_JUST_RELEASED)
   {
     switch(e.bit.KEY)
@@ -41,6 +42,19 @@ void keyMapping(keypadEvent e)
           ex1.play(lamps, !ex1.active);
         }
         break;
+      }
+      case(98):
+      {
+        if(programmer_1.currentSceneUptodate)
+        {
+          ex2.save(programmer_1.currentScene);
+        }
+        else
+        {
+          ex2.play(lamps, !ex2.active);
+        }
+        break;
+
       }
       case('3'): programmer_1.updateCurrentScene(); break;
       case('5'): programmer_1.locate(); break;

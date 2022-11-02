@@ -13,7 +13,7 @@ qindesign::teensydmx::Sender dmx(Serial5);
 #include "paramterMenu.h"
 #include "keyboard.h"
 
-void timerIsr() 
+void timerIsr()
 {
   clickEncoder.service();
 
