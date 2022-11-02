@@ -18,6 +18,13 @@ void Cue::print()
     }
 }
 
+bool Cue::operator== (const Cue c)
+{
+    if(c.lampValues == lampValues)
+        return true;
+    return false;
+}
+
 /**
  * @brief constructor for a playback -> not needed at the moment
 */
@@ -66,4 +73,9 @@ void Playback::play(std::vector<fixture::Fixture*> fixtures, bool active)
         }
     }
     this->active = active;
+}
+
+bool Playback::operator== (const Playback p)
+{
+    // if(scene == p.scene && type == p.type && )
 }
