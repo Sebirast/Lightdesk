@@ -20,14 +20,19 @@ PlaybackController::PlaybackController(std::vector<fixture::Fixture*> fixtures) 
     playbacks.push_back(playback::Playback(playback::Playback::CUESTACK));
 }
 
-void PlaybackController::play(uint8_t playbackIdx)
+void PlaybackController::play(uint8_t playbackIdx, Cue* scene = NULL)
 {
-    if(playbacks[playbackIdx].active)
+    if(playbacks[playbackIdx].empty == false)
     {
-        activePlaybacks.push_back(&playbacks[playbackIdx]);
-        activePlaybacks[activePlaybacks.size() - 1]->play(fixtures, true);
+        if(!playbacks[playbackIdx].active)
+        {
+            activePlaybacks.push_back(&playbacks[playbackIdx]);
+            activePlaybacks[activePlaybacks.size() - 1]->play(fixtures, true);
+            return;
+        }
+
+        activePlaybacks.erase(std::remove(activePlaybacks.begin(), activePlaybacks.end(), &playbacks[playbackIdx]), activePlaybacks.end());
         return;
     }
-
-    activePlaybacks.erase(std::remove(activePlaybacks.begin(), activePlaybacks.end(), &playbacks[playbackIdx]), activePlaybacks.end());
+    // playbacks[playbackIdx].save()
 }

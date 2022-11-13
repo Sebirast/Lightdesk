@@ -146,5 +146,6 @@ namespace programmer
             void updateCurrentScene();
 
             void resetSelector();
+            void selectAll();
     };
 }

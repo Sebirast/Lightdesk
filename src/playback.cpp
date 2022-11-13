@@ -42,6 +42,7 @@ void Playback::save(Cue scene)
 {
     this->scene = scene;
     this->scene.print();
+    empty = false;
 }
 
 /**
@@ -73,9 +74,4 @@ void Playback::play(std::vector<fixture::Fixture*> fixtures, bool active)
         }
     }
     this->active = active;
-}
-
-bool Playback::operator== (const Playback p)
-{
-    // if(scene == p.scene && type == p.type && )
 }

@@ -25,41 +25,18 @@ void keyMapping(keypadEvent e)
     switch(e.bit.KEY)
     {
       // // selctor
-      case(21): one.select(!one.selected); programmer_1.loadLampValues(0); nav.doOutput(); break;
+      case(21): MAC600One.select(!MAC600One.selected); programmer_1.loadLampValues(0); nav.doOutput(); break;
       case(15): two.select(!two.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
       case(9): three.select(!three.selected); programmer_1.loadLampValues(2); nav.doOutput(); break;
       case(33): four.select(!four.selected); programmer_1.loadLampValues(3); nav.doOutput(); break;
 
-      // // recorder...
-      // case(97): 
-      // {
-      //   if(programmer_1.currentSceneUptodate)
-      //   {
-      //     ex1.save(programmer_1.currentScene);
-      //   }
-      //   else
-      //   {
-      //     ex1.play(lamps, !ex1.active);
-      //   }
-      //   break;
-      // }
-      // case(98):
-      // {
-      //   if(programmer_1.currentSceneUptodate)
-      //   {
-      //     ex2.save(programmer_1.currentScene);
-      //   }
-      //   else
-      //   {
-      //     ex2.play(lamps, !ex2.active);
-      //   }
-      //   break;
+      case(12): playbackController.play(playback::PlaybackController::EXEC1); break;
 
-      // }
-      // case('3'): programmer_1.updateCurrentScene(); break;
-      // case('5'): programmer_1.locate(); break;
+      case(34): programmer_1.updateCurrentScene(); break;
+      case(28): programmer_1.locate(); break;
       // case('7'): programmer_1.reset(); nav.doOutput(); break;
-      case(3): programmer_1.resetSelector(); break;
+      case(3): programmer_1.resetSelector(); nav.doOutput(); break;
+      case(27): programmer_1.selectAll(); nav.doOutput(); break;
 
       // jump to menus:
       case(4): nav.useMenu(mainMenu); nav.doOutput(); break;

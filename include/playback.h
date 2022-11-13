@@ -24,6 +24,7 @@ namespace playback
             PlaybackType type;
 
             bool active = false;
+            bool empty = true;
 
             Playback(PlaybackType type);
 

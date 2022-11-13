@@ -13,7 +13,7 @@
 #include "programmer.h"
 #include "titleConfig.h"
 #include <vector>
-#include "playback.h"
+#include "playbackController.h"
 
 using namespace Menu;
 
@@ -23,12 +23,12 @@ int timeOn = 0;
 
 Adafruit_RA8875 gfx(10, 9);
 
-fixture::Fixture one(&dmx, fixture::Fixture::MAC600E, 150, 0);
-fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250, 1);
-fixture::Fixture three(&dmx, fixture::Fixture::MAC550, 300, 2);
-fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 200, 3);
+fixture::Fixture MAC600One(&dmx, fixture::Fixture::MAC600E, 150, 0, 1);
+fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250, 1, 0);
+fixture::Fixture three(&dmx, fixture::Fixture::MAC550, 300, 2, 2);
+fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 200, 3, 3);
 
-std::vector<fixture::Fixture*> lamps = {&one, &two, &three, &four};
+std::vector<fixture::Fixture*> lamps = {&MAC600One, &two, &three, &four};
 
 Encoder upperEncoder(2, 3);
 Encoder middleEncoder(4, 5);
@@ -39,8 +39,7 @@ std::vector<Menu::menu*>* menus;
 
 programmer::Programmer programmer_1(lamps, encoders, menus);
 
-playback::Playback ex1(playback::Playback::EXECUTOR);
-playback::Playback ex2(playback::Playback::EXECUTOR);
+playback::PlaybackController playbackController(lamps);
 
 result doOutputOnFieldWrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
   programmer_1.doOutputFromField(p);

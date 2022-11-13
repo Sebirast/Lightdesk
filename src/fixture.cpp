@@ -13,8 +13,8 @@ using namespace fixture;
  * @param address the dmx address of the corresponding fixture
  * @param idx the id of the fixture. this is needed for the playback.
 */
-Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, const uint16_t address, uint8_t idx) 
-: dmx(dmx), address(address), type(type), idx(idx)
+Fixture::Fixture(qindesign::teensydmx::Sender* dmx, Fixture::FixtureType type, const uint16_t address, uint8_t idx, uint8_t ledAddress) 
+: dmx(dmx), address(address), type(type), idx(idx), ledAddress(ledAddress)
 {
   selected = false;
 

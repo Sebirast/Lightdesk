@@ -9,7 +9,7 @@ Programmer::Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder
 {
     sr = &ShiftRegister74HC595<2>(24, 26, 25);
     // sr->set(5, HIGH);
-    sr->setAllHigh();
+    sr->setAllLow();
 };
 
 /**
@@ -182,7 +182,7 @@ void Programmer::loadLampValues(uint8_t idx)
     // when a fixture is selected the corresponding values are loaded into the menu:
     if(fixtures[idx]->selected)
     {
-        sr->set(idx, HIGH);
+        sr->set(fixtures[idx]->ledAddress, HIGH);
         Serial.print("shift idx: ");
         Serial.println(idx);
         resetValues(true);
@@ -318,7 +318,7 @@ void Programmer::loadLampValues(uint8_t idx)
     else if(!fixtures[idx]->selected)
     {
         resetValues(false);
-        sr->set(idx, LOW);
+        sr->set(fixtures[idx]->ledAddress, LOW);
         Serial.print("shift idx: ");
         Serial.println(idx);
     }
@@ -369,7 +369,20 @@ void Programmer::updateCurrentScene()
 void Programmer::resetSelector()
 {
     for(auto fixture : fixtures)
+    {
         fixture->select(false);
+        sr->set(fixture->ledAddress, LOW);
+    }
 
     programmerValues = Programmer::ProgrammerValues();
+}
+
+void Programmer::selectAll()
+{
+    for(auto fixture : fixtures)
+    {
+        fixture->select(true);
+        sr->set(fixture->ledAddress, HIGH);
+    }
+    loadLampValues(3);
 }

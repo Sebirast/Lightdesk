@@ -12,6 +12,7 @@ namespace playback
             std::vector<playback::Playback> playbacks;
             std::vector<playback::Playback*> activePlaybacks;
 
+        public:
             enum PlaybackIdx
             {
                 EXEC1, 
@@ -29,6 +30,6 @@ namespace playback
 
         public:
             PlaybackController(std::vector<fixture::Fixture*> fixtures);
-            void play(uint8_t playbackIdx);
+            void play(uint8_t playbackIdx, Cue* scene=NULL);
     };
 }
