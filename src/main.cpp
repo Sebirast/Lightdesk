@@ -24,7 +24,7 @@ void timerIsr()
     Serial.print(e.bit.KEY);
     if(e.bit.EVENT == KEY_JUST_PRESSED) Serial.println(" pressed");
     else if(e.bit.EVENT == KEY_JUST_RELEASED) Serial.println(" released");
-    // keyMapping(e);
+    keyMapping(e);
   }
 }
 
