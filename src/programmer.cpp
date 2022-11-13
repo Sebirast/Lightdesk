@@ -7,7 +7,7 @@ using namespace programmer;
 Programmer::Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder*> encoders, std::vector<Menu::menu*>* menu) 
 : fixtures{lamps}, encoders{encoders}, menu{menu}
 {
-    sr = &ShiftRegister74HC595<1>(24, 26, 25);
+    sr = &ShiftRegister74HC595<2>(24, 26, 25);
     // sr->set(5, HIGH);
     sr->setAllHigh();
 };

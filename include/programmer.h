@@ -102,7 +102,7 @@ namespace programmer
                 {{TITLE_ZOOM_FINE}, {fixture::Fixture::Param::ZOOM_FINE, &programmerValues.zoomFine}}
             };
 
-            ShiftRegister74HC595<1>* sr = NULL;
+            ShiftRegister74HC595<2>* sr = NULL;
 
             enum FixtureAdresses
             {

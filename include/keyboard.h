@@ -1,18 +1,19 @@
 #include "Adafruit_Keypad.h"
 
 
-const byte ROWS = 5; // rows
-const byte COLS = 4; // columns
+const byte ROWS = 6; // rows
+const byte COLS = 6; // columns
 //define the symbols on the buttons of the keypads
 char keys[ROWS][COLS] = {
-  {'1','2', 'a', 'l'},
-  {'3','4', 'b', 'm'},
-  {'5','6', 'c', 'n'},
-  {'7','8', 'e', 'o'},
-  {'9','0','f', 'p'},
+  {1, 2, 3, 4, 5, 6},
+  {7, 8, 9, 10, 11, 12},
+  {13, 14, 15, 16, 17, 18}, 
+  {19, 20, 21, 22, 23, 24}, 
+  {25, 25, 27, 28, 29, 30},
+  {31, 32, 33, 34, 35, 36}
 };
-byte rowPins[ROWS] = {35, 36, 37, 38, 39}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {33, 34, 40, 41}; //connect to the column pinouts of the keypad
+byte rowPins[ROWS] = {19, 22, 18, 23, 36, 35}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {6, 16, 15, 14, 34, 33}; //connect to the column pinouts of the keypad
 
 //initialize an instance of class NewKeypad
 Adafruit_Keypad customKeypad = Adafruit_Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS);

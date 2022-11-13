@@ -258,7 +258,7 @@ MENU(mainMenu, "Main Menu", Menu::doNothing, Menu::noEvent, Menu::noStyle
 );
 
 serialIn serial(Serial);
-ClickEncoder clickEncoder(4,5,6);
+ClickEncoder clickEncoder(2, 3, 4);
 ClickEncoderStream encStream(clickEncoder,1);
 MENU_INPUTS(in,&encStream,&serial);
 
