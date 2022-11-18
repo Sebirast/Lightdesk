@@ -23,12 +23,12 @@ int timeOn = 0;
 
 Adafruit_RA8875 gfx(10, 9);
 
-fixture::Fixture MAC600One(&dmx, fixture::Fixture::MAC600E, 150, 0, 1);
-fixture::Fixture two(&dmx, fixture::Fixture::MAC550, 250, 1, 0);
-fixture::Fixture three(&dmx, fixture::Fixture::MAC550, 300, 2, 2);
-fixture::Fixture four(&dmx, fixture::Fixture::MAC600E, 200, 3, 3);
+fixture::Fixture MAC600Left(&dmx, fixture::Fixture::MAC600E, 150, 0, 1);
+fixture::Fixture MAC550Left(&dmx, fixture::Fixture::MAC550, 250, 1, 0);
+fixture::Fixture MAC550Right(&dmx, fixture::Fixture::MAC550, 300, 2, 2);
+fixture::Fixture MAC600Right(&dmx, fixture::Fixture::MAC600E, 200, 3, 3);
 
-std::vector<fixture::Fixture*> lamps = {&MAC600One, &two, &three, &four};
+std::vector<fixture::Fixture*> lamps = {&MAC600Left, &MAC550Left, &MAC550Right, &MAC600Right};
 
 Encoder upperEncoder(2, 3);
 Encoder middleEncoder(4, 5);

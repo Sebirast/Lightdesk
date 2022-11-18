@@ -25,16 +25,16 @@ void keyMapping(keypadEvent e)
     switch(e.bit.KEY)
     {
       // // selctor
-      case(21): MAC600One.select(!MAC600One.selected); programmer_1.loadLampValues(0); nav.doOutput(); break;
-      case(15): two.select(!two.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
-      case(9): three.select(!three.selected); programmer_1.loadLampValues(2); nav.doOutput(); break;
-      case(33): four.select(!four.selected); programmer_1.loadLampValues(3); nav.doOutput(); break;
+      case(21): MAC600Left.select(!MAC600Left.selected); programmer_1.loadLampValues(0); nav.doOutput(); break;
+      case(15): MAC550Left.select(!MAC550Left.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
+      case(9): MAC550Right.select(!MAC550Right.selected); programmer_1.loadLampValues(2); nav.doOutput(); break;
+      case(33): MAC600Right.select(!MAC600Right.selected); programmer_1.loadLampValues(3); nav.doOutput(); break;
 
       case(12): playbackController.play(playback::PlaybackController::EXEC1); break;
 
       case(34): programmer_1.updateCurrentScene(); break;
       case(28): programmer_1.locate(); break;
-      // case('7'): programmer_1.reset(); nav.doOutput(); break;
+      // case('7'): prog.reset(); nav.doOutput(); break;
       case(3): programmer_1.resetSelector(); nav.doOutput(); break;
       case(27): programmer_1.selectAll(); nav.doOutput(); break;
 
