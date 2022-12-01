@@ -76,12 +76,14 @@ void ShiftRegister74HC595<Size>::set(const uint8_t pin, const uint8_t value)
 template<uint8_t Size>
 void ShiftRegister74HC595<Size>::updateRegisters()
 {
+
+
     for (int i = Size - 1; i >= 0; i--) {
         shiftOut(_serialDataPin, _clockPin, MSBFIRST, _digitalValues[i]);
     }
-    
-    digitalWrite(_latchPin, HIGH); 
+
     digitalWrite(_latchPin, LOW); 
+    digitalWrite(_latchPin, HIGH); 
 }
 
 // Equivalent to set(int pin, uint8_t value), except the physical shift register is not updated.

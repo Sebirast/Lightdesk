@@ -16,7 +16,6 @@ qindesign::teensydmx::Sender dmx(Serial5);
 void timerIsr()
 {
   clickEncoder.service();
-
   customKeypad.tick();
 
   while(customKeypad.available()){
@@ -50,6 +49,7 @@ void setup() {
 
   Timer3.initialize(75);
   Timer3.attachInterrupt(timerIsr);
+  dmx.set(322, 255);
 }
 
 void loop() {

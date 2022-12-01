@@ -13,6 +13,7 @@
 #include <ShiftRegister74HC595.h>
 #include <playback.h>
 #include <iostream>
+#include <Arduino.h>
 
 namespace programmer
 {

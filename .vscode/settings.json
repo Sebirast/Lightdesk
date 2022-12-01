@@ -47,6 +47,8 @@
         "cstdbool": "cpp",
         "utility": "cpp",
         "typeinfo": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "cstring": "cpp",
+        "iostream": "cpp"
     }
 }

@@ -39,7 +39,7 @@ std::vector<Menu::menu*>* menus;
 
 programmer::Programmer programmer_1(lamps, encoders, menus);
 
-playback::PlaybackController playbackController(lamps);
+// playback::PlaybackController playbackController(lamps);
 
 result doOutputOnFieldWrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
   programmer_1.doOutputFromField(p);

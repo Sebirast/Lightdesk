@@ -30,7 +30,7 @@ void keyMapping(keypadEvent e)
       case(9): MAC550Right.select(!MAC550Right.selected); programmer_1.loadLampValues(2); nav.doOutput(); break;
       case(33): MAC600Right.select(!MAC600Right.selected); programmer_1.loadLampValues(3); nav.doOutput(); break;
 
-      case(12): playbackController.play(playback::PlaybackController::EXEC1); break;
+      // case(12): playbackController.play(playback::PlaybackController::EXEC1); break;
 
       case(34): programmer_1.updateCurrentScene(); break;
       case(28): programmer_1.locate(); break;

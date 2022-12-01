@@ -8,7 +8,6 @@ Programmer::Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder
 : fixtures{lamps}, encoders{encoders}, menu{menu}
 {
     sr = &ShiftRegister74HC595<2>(24, 26, 25);
-    // sr->set(5, HIGH);
     sr->setAllLow();
 };
 
