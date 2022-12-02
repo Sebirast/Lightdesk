@@ -32,8 +32,8 @@ void keyMapping(keypadEvent e)
     {
       // // selctor
       case(21): MAC600Left.select(!MAC600Left.selected); programmer_1.loadLampValues(0); nav.doOutput(); break;
-      case(15): MAC550Left.select(!MAC550Left.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
-      case(9): MAC550Right.select(!MAC550Right.selected); programmer_1.loadLampValues(2); nav.doOutput(); break;
+      case(15): MAC550Left.select(!MAC550Right.selected); programmer_1.loadLampValues(1); nav.doOutput(); break;
+      case(9): MAC550Right.select(!MAC550Left.selected); programmer_1.loadLampValues(2); nav.doOutput(); break;
       case(33): MAC600Right.select(!MAC600Right.selected); programmer_1.loadLampValues(3); nav.doOutput(); break;
 
       case(12): programmer_1.currentSceneUptodate = playbackController.toggle(playback::PlaybackController::EXEC1, programmer_1.currentScene, programmer_1.currentSceneUptodate); break;

@@ -357,7 +357,8 @@ void Programmer::locate()
     Serial.println("locate");
     for(int o = 0; o < 4; o++)
     {
-        fixtures[o]->play(locateScene);
+        if(fixtures[0]->selected)
+            fixtures[o]->play(locateScene);
     }
     resetValues(false);
 }
