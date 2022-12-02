@@ -73,13 +73,14 @@ void PlaybackController::deleteScene(uint8_t playbackIdx)
 void PlaybackController::checkFaders()
 {
     Serial.println(masterValue);
+    Serial.println(analogRead(A16));
     uint16_t currentValue = analogRead(A16);
-    if(utils::inRange(currentValue, masterValue - 10, masterValue + 10))
+    if(!utils::inRange(currentValue, masterValue - 20, masterValue + 20))
     {
         Serial.println("entered if");
         for(auto fixture : fixtures)
         {
-            fixture->set(fixture::Fixture::DIMMER, fixture->get(fixture::Fixture::DIMMER), true);
+            fixture->set(fixture::Fixture::DIMMER, 255, true);
         }   
         masterValue = currentValue; 
     }
