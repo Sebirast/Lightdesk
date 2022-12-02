@@ -33,6 +33,8 @@ namespace playback
             Cue* parkCue = NULL;
         public:
             PlaybackController(std::vector<fixture::Fixture*> fixtures, Cue* parkCue);
-            bool toggle(uint8_t playbackIdx, Cue scene);
+            bool toggle(uint8_t playbackIdx, Cue scene, bool currentSceneUptodate);
+            void deleteScene(uint8_t playbackIdx);
+            void checkFaders();
     };
 }

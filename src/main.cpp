@@ -56,5 +56,5 @@ void loop() {
   nav.poll();
   nav.doInput();
   // Serial.println("Hello wordl");
-  // Serial.println(analogRead(A17));
+  Serial.println(analogRead(A13));
 }

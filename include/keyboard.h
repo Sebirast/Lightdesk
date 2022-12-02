@@ -36,12 +36,12 @@ void keyMapping(keypadEvent e)
       case(9): MAC550Right.select(!MAC550Right.selected); programmer_1.loadLampValues(2); nav.doOutput(); break;
       case(33): MAC600Right.select(!MAC600Right.selected); programmer_1.loadLampValues(3); nav.doOutput(); break;
 
-      case(12): playbackController.toggle(playback::PlaybackController::EXEC1, programmer_1.currentScene); break;
-      case(30): playbackController.toggle(playback::PlaybackController::EXEC2, programmer_1.currentScene); break;
-      case(36): playbackController.toggle(playback::PlaybackController::EXEC3, programmer_1.currentScene); break;
-      case(11): playbackController.toggle(playback::PlaybackController::EXEC4, programmer_1.currentScene); break;
-      case(29): playbackController.toggle(playback::PlaybackController::EXEC5, programmer_1.currentScene); break;
-      case(35): playbackController.toggle(playback::PlaybackController::EXEC6, programmer_1.currentScene); break;
+      case(12): programmer_1.currentSceneUptodate = playbackController.toggle(playback::PlaybackController::EXEC1, programmer_1.currentScene, programmer_1.currentSceneUptodate); break;
+      case(30): programmer_1.currentSceneUptodate = playbackController.toggle(playback::PlaybackController::EXEC2, programmer_1.currentScene, programmer_1.currentSceneUptodate); break;
+      case(36): programmer_1.currentSceneUptodate = playbackController.toggle(playback::PlaybackController::EXEC3, programmer_1.currentScene, programmer_1.currentSceneUptodate); break;
+      case(11): programmer_1.currentSceneUptodate = playbackController.toggle(playback::PlaybackController::EXEC4, programmer_1.currentScene, programmer_1.currentSceneUptodate); break;
+      case(29): programmer_1.currentSceneUptodate = playbackController.toggle(playback::PlaybackController::EXEC5, programmer_1.currentScene, programmer_1.currentSceneUptodate); break;
+      case(35): programmer_1.currentSceneUptodate = playbackController.toggle(playback::PlaybackController::EXEC6, programmer_1.currentScene, programmer_1.currentSceneUptodate); break;
 
       case(34): programmer_1.updateCurrentScene(); break;
       case(28): programmer_1.locate(); break;
@@ -62,9 +62,20 @@ void keyMapping(keypadEvent e)
   }
   else
   {
-    // switch(e.bit.KEY)
-    // {
-    //   case()
-    // }
+    if(customKeypad.isPressed(32))
+    {
+      if(customKeypad.isPressed(12))
+        playbackController.deleteScene(playback::PlaybackController::EXEC1);
+      else if(customKeypad.isPressed(30))
+        playbackController.deleteScene(playback::PlaybackController::EXEC2);
+      else if(customKeypad.isPressed(36))
+        playbackController.deleteScene(playback::PlaybackController::EXEC3);
+      else if(customKeypad.isPressed(11))
+        playbackController.deleteScene(playback::PlaybackController::EXEC4);
+      else if(customKeypad.isPressed(29))
+        playbackController.deleteScene(playback::PlaybackController::EXEC5);
+      else if(customKeypad.isPressed(35))
+        playbackController.deleteScene(playback::PlaybackController::EXEC6);
+    }
   }
 }

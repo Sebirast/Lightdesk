@@ -104,6 +104,7 @@ void Programmer::doOutputFromField(Menu::prompt p)
             // }
             fixture->set(fromNavTargetToParam[title].param, value, true);
         }
+        currentSceneUptodate = false;
 
     }
 

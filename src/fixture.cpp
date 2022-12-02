@@ -60,9 +60,12 @@ void Fixture::set(Param channel, uint8_t value, bool recording)
     // Serial.println("This fixture does not have this function");
     return;
   }
+  if(channel = channels[DIMMER])
+    value *= utils::doubleMap()
 
   if(recording)
     this->currentValues[channel] = value;
+  
 
   this->dmx->set(address + channels[channel] - 1, value);
 

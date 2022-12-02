@@ -29,7 +29,7 @@ PlaybackController::PlaybackController(std::vector<fixture::Fixture*> fixtures, 
  * @param playbackIdx the index to a playback object
  * @param scene a pointer to a cue
 */
-bool PlaybackController::toggle(uint8_t playbackIdx, Cue scene)
+bool PlaybackController::toggle(uint8_t playbackIdx, Cue scene, bool currentSceneUptodate)
 {
     if(!playbacks[playbackIdx].empty)
     {
@@ -50,9 +50,25 @@ bool PlaybackController::toggle(uint8_t playbackIdx, Cue scene)
     }
     else
     {
-        Serial.println("save scene beginning");
-        playbacks[playbackIdx].save(scene);
-        Serial.println("save scene finish");
-        return true;
+        if(currentSceneUptodate)
+        {
+            playbacks[playbackIdx].save(scene);
+        }
+        else
+        {
+            Serial.println("nothing to save");
+        }
+        return false;
     }
+}
+
+void PlaybackController::deleteScene(uint8_t playbackIdx)
+{
+    Serial.println("delete scene");
+    playbacks[playbackIdx].empty = true;
+}
+
+void PlaybackController::checkFaders()
+{
+    
 }

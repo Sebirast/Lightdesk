@@ -4,6 +4,7 @@
 #include <array>
 #include <vector>
 #include "cue.h"
+#include "utils.h"
 
 namespace fixture
 {
