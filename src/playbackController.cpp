@@ -72,8 +72,6 @@ void PlaybackController::deleteScene(uint8_t playbackIdx)
 
 void PlaybackController::checkFaders()
 {
-    Serial.println(masterValue);
-    Serial.println(analogRead(A16));
     uint16_t currentValue = analogRead(A16);
     if(!utils::inRange(currentValue, masterValue - 20, masterValue + 20))
     {

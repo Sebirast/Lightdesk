@@ -49,7 +49,7 @@ void setup() {
 
   customKeypad.begin();
 
-  Timer3.initialize(75);
+  Timer3.initialize(100);
   Timer3.attachInterrupt(timerIsr);
   dmx.set(322, 255);
 }
