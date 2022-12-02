@@ -31,6 +31,8 @@ namespace playback
             std::vector<fixture::Fixture*> fixtures;
 
             Cue* parkCue = NULL;
+            
+            uint16_t masterValue = 0;
         public:
             PlaybackController(std::vector<fixture::Fixture*> fixtures, Cue* parkCue);
             bool toggle(uint8_t playbackIdx, Cue scene, bool currentSceneUptodate);

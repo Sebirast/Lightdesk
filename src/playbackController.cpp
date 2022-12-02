@@ -21,6 +21,8 @@ PlaybackController::PlaybackController(std::vector<fixture::Fixture*> fixtures, 
 
     playbacks[PARK].save(*parkCue);
     activePlaybacks.push_back(&playbacks[PARK]);
+
+    masterValue = analogRead(A16);
 }
 
 /**
@@ -70,5 +72,15 @@ void PlaybackController::deleteScene(uint8_t playbackIdx)
 
 void PlaybackController::checkFaders()
 {
-    
+    Serial.println(masterValue);
+    uint16_t currentValue = analogRead(A16);
+    if(utils::inRange(currentValue, masterValue - 10, masterValue + 10))
+    {
+        Serial.println("entered if");
+        for(auto fixture : fixtures)
+        {
+            fixture->set(fixture::Fixture::DIMMER, fixture->get(fixture::Fixture::DIMMER), true);
+        }   
+        masterValue = currentValue; 
+    }
 }

@@ -25,6 +25,8 @@ void timerIsr()
     else if(e.bit.EVENT == KEY_JUST_RELEASED) Serial.println(" released");
     keyMapping(e);
   }
+
+  playbackController.checkFaders();
 }
 
 
