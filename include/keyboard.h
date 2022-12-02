@@ -38,6 +38,10 @@ void keyMapping(keypadEvent e)
 
       case(12): playbackController.toggle(playback::PlaybackController::EXEC1, programmer_1.currentScene); break;
       case(30): playbackController.toggle(playback::PlaybackController::EXEC2, programmer_1.currentScene); break;
+      case(36): playbackController.toggle(playback::PlaybackController::EXEC3, programmer_1.currentScene); break;
+      case(11): playbackController.toggle(playback::PlaybackController::EXEC4, programmer_1.currentScene); break;
+      case(29): playbackController.toggle(playback::PlaybackController::EXEC5, programmer_1.currentScene); break;
+      case(35): playbackController.toggle(playback::PlaybackController::EXEC6, programmer_1.currentScene); break;
 
       case(34): programmer_1.updateCurrentScene(); break;
       case(28): programmer_1.locate(); break;

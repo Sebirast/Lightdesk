@@ -20,6 +20,7 @@ namespace playback
                 EXEC2, 
                 EXEC3, 
                 EXEC4, 
+                EXEC5,
                 EXEC6,
                 FADER1, 
                 FADER2, 
