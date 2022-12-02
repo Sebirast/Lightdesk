@@ -16,6 +16,5 @@ namespace playback
             std::array<int[24], 4> lampValues;
 
             void print();
-            bool operator== (const Cue c);
     };
 }

@@ -9,6 +9,24 @@ Programmer::Programmer(std::vector<fixture::Fixture*> lamps, std::vector<Encoder
 {
     sr = &ShiftRegister74HC595<2>(24, 26, 25);
     sr->setAllLow();
+
+    for(int o = 0; o < 4; o++)
+    {
+        for(int i = 0; i < 24; i++)
+        {
+            locateScene.lampValues[o][i] = locateCue[o][i];
+
+        }
+    }
+
+    for(int o = 0; o < 4; o++)
+    {
+        for(int i = 0; i < 24; i++)
+        {
+            parkScene.lampValues[o][i] = parkCue[o][i];
+        }
+    }
+
 };
 
 /**
@@ -130,7 +148,10 @@ void Programmer::reset()
 {
     resetValues(true);
 
-    for(auto fixture : fixtures) { fixture->select(false); fixture->park(); }
+    for(int o = 0; o < 4; o++)
+    {
+        fixtures[o]->play(parkScene);
+    }
 
     sr->setAllLow();
 
@@ -333,15 +354,9 @@ void Programmer::loadLampValues(uint8_t idx)
 void Programmer::locate()
 {
     Serial.println("locate");
-    for(auto fixture : fixtures)
+    for(int o = 0; o < 4; o++)
     {
-        if(fixture->selected)
-        {
-            fixture->set(fixture::Fixture::DIMMER, 255, true);
-            fixture->set(fixture::Fixture::PAN, 127, true);
-            fixture->set(fixture::Fixture::TILT, 127, true);
-            fixture->set(fixture::Fixture::SHUTTER, SHUTTER_OPEN, true);
-        }
+        fixtures[o]->play(locateScene);
     }
     resetValues(false);
 }

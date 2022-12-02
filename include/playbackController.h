@@ -15,6 +15,7 @@ namespace playback
         public:
             enum PlaybackIdx
             {
+                PARK,
                 EXEC1, 
                 EXEC2, 
                 EXEC3, 
@@ -28,8 +29,9 @@ namespace playback
             };
             std::vector<fixture::Fixture*> fixtures;
 
+            Cue* parkCue = NULL;
         public:
-            PlaybackController(std::vector<fixture::Fixture*> fixtures);
-            void play(uint8_t playbackIdx, Cue* scene=NULL);
+            PlaybackController(std::vector<fixture::Fixture*> fixtures, Cue* parkCue);
+            bool toggle(uint8_t playbackIdx, Cue scene);
     };
 }

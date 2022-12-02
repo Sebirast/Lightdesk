@@ -29,6 +29,7 @@ namespace playback
             Playback(PlaybackType type);
 
             void save(playback::Cue scene);
+            void deleteScene();
             void play(std::vector<fixture::Fixture*> fixtures, bool active);
             bool operator== (const Playback p);
     };

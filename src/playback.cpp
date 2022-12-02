@@ -18,12 +18,6 @@ void Cue::print()
     }
 }
 
-bool Cue::operator== (const Cue c)
-{
-    if(c.lampValues == lampValues)
-        return true;
-    return false;
-}
 
 /**
  * @brief constructor for a playback -> not needed at the moment
@@ -44,6 +38,12 @@ void Playback::save(Cue scene)
     this->scene.print();
     empty = false;
 }
+
+void Playback::deleteScene()
+{
+    empty = true;
+}
+
 
 /**
  * @brief when an executer is triggered the following function runs writes all values to the lamps
@@ -66,12 +66,12 @@ void Playback::play(std::vector<fixture::Fixture*> fixtures, bool active)
         scene.print();
     }
     // todo handle multiple scenes!!
-    else
-    {
-        for(auto fixture : fixtures)
-        {
-            fixture->park();
-        }
-    }
+    // else
+    // {
+    //     for(auto fixture : fixtures)
+    //     {
+    //         fixture->park();
+    //     }
+    // }
     this->active = active;
 }
