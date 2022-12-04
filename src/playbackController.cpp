@@ -30,6 +30,7 @@ PlaybackController::PlaybackController(std::vector<fixture::Fixture*> fixtures, 
  * 
  * @param playbackIdx the index to a playback object
  * @param scene a pointer to a cue
+ * @param currentSceneUptodate a bool that indicates if the currentScene of the programmer object is uptodate
 */
 bool PlaybackController::toggle(uint8_t playbackIdx, Cue scene, bool currentSceneUptodate)
 {
@@ -37,11 +38,13 @@ bool PlaybackController::toggle(uint8_t playbackIdx, Cue scene, bool currentScen
     {
         if(!playbacks[playbackIdx].active)
         {
+            // play scene
             activePlaybacks[activePlaybacks.size() - 1]->active = false;
             activePlaybacks.push_back(&playbacks[playbackIdx]);
         }
         else
         {
+            // deactivate scene
             activePlaybacks[activePlaybacks.size() - 1]->active = false;
             activePlaybacks.erase(std::remove(activePlaybacks.begin(), activePlaybacks.end(), &playbacks[playbackIdx]), activePlaybacks.end());
         }
@@ -52,6 +55,7 @@ bool PlaybackController::toggle(uint8_t playbackIdx, Cue scene, bool currentScen
     }
     else
     {
+        // store scene
         if(currentSceneUptodate)
         {
             playbacks[playbackIdx].save(scene);
@@ -64,18 +68,25 @@ bool PlaybackController::toggle(uint8_t playbackIdx, Cue scene, bool currentScen
     }
 }
 
+/**
+ * @brief this function can delete/(deactivate) a scene that is stored in a executor
+ * 
+ * @param playbackIdx: the executor from where the scene is to be deleted 
+*/
 void PlaybackController::deleteScene(uint8_t playbackIdx)
 {
     Serial.println("delete scene");
     playbacks[playbackIdx].empty = true;
 }
 
+/**
+ * @brief this function checks the master fader and adjusts the brightness of the lamps if necessary
+*/
 void PlaybackController::checkFaders()
 {
     uint16_t currentValue = analogRead(A16);
     if(!utils::inRange(currentValue, masterValue - 20, masterValue + 20))
     {
-        Serial.println("entered if");
         for(auto fixture : fixtures)
         {
             fixture->set(fixture::Fixture::DIMMER, 255, true);

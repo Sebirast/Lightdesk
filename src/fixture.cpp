@@ -111,7 +111,7 @@ void Fixture::extinguishLamp()
     case(MAC550):
     case(MAC600E):
       set(SHUTTER, EXTINGUISH_LAMP); 
-      delay(5500);
+      // delay(5500);
       break;
     case(GENERICDIMMER):
     default:
@@ -158,6 +158,9 @@ void Fixture::play(playback::Cue scene)
   #endif
 }
 
+/**
+ * @brief the lamps are positioned at their 0-position. The dimmer is turned to 0%
+*/
 void Fixture::park()
 {
   std::array<uint8_t, 24> park;

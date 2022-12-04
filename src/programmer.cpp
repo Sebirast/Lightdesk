@@ -159,10 +159,10 @@ void Programmer::reset()
     currentSceneUptodate = false;
 }
 
-void Programmer::loadValues()
-{
-}
-
+/**
+ * @brief I wanted to implement a function that adjusts the menus to a specific lamp type as different lamp types have different functions.
+ *        the function however did not work as it is notorously difficult to adjust a menu in a other class.
+*/
 void Programmer::adjustMenu(fixture::Fixture::FixtureType type)
 {
     // Serial.println(menu->size());
@@ -357,7 +357,7 @@ void Programmer::locate()
     Serial.println("locate");
     for(int o = 0; o < 4; o++)
     {
-        if(fixtures[0]->selected)
+        if(fixtures[o]->selected)
             fixtures[o]->play(locateScene);
     }
     resetValues(false);
@@ -382,6 +382,10 @@ void Programmer::updateCurrentScene()
     currentSceneUptodate = true;
 }
 
+/**
+ * @brief the selector is reset
+*/
+
 void Programmer::resetSelector()
 {
     for(auto fixture : fixtures)
@@ -393,6 +397,9 @@ void Programmer::resetSelector()
     programmerValues = Programmer::ProgrammerValues();
 }
 
+/**
+ * @brief every lamp is selected
+*/
 void Programmer::selectAll()
 {
     for(auto fixture : fixtures)

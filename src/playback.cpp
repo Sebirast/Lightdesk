@@ -3,7 +3,7 @@
 using namespace playback;
 
 /**
- * @brief with this functio a cue with all its value is printed easily
+ * @brief with this functio a cue with all its values is printed easily
 */
 void Cue::print()
 {
@@ -65,13 +65,5 @@ void Playback::play(std::vector<fixture::Fixture*> fixtures, bool active)
         }
         scene.print();
     }
-    // todo handle multiple scenes!!
-    // else
-    // {
-    //     for(auto fixture : fixtures)
-    //     {
-    //         fixture->park();
-    //     }
-    // }
     this->active = active;
 }
