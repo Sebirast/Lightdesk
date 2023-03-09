@@ -340,8 +340,8 @@ void Programmer::loadLampValues(uint8_t idx)
     {
         resetValues(false);
         sr->set(fixtures[idx]->ledAddress, LOW);
-        Serial.print("shift idx: ");
-        Serial.println(idx);
+        // Serial.print("shift idx: ");
+        // Serial.println(idx);
     }
 }
 

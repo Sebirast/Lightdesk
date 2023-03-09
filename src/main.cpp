@@ -49,13 +49,13 @@ void setup() {
 
   customKeypad.begin();
 
-  Timer3.initialize(100);
+  clickEncoder.setAccelerationEnabled(true);
+
+  Timer3.initialize(1000);
   Timer3.attachInterrupt(timerIsr);
-  dmx.set(322, 255);
+  
 }
 
 void loop() {
   nav.poll();
-  nav.doInput();
-  // Serial.println("Hello wordl");
 }

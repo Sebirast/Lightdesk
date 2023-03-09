@@ -258,7 +258,7 @@ MENU(mainMenu, "Main Menu", Menu::doNothing, Menu::noEvent, Menu::noStyle
 
 serialIn serial(Serial);
 ClickEncoder clickEncoder(2, 3, 4);
-ClickEncoderStream encStream(clickEncoder,1);
+ClickEncoderStream encStream(clickEncoder,2);
 MENU_INPUTS(in,&encStream,&serial);
 
 #define RA8875_GRAY RGB565(128, 128, 128)

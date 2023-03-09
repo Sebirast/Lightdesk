@@ -99,6 +99,7 @@ ex: -A0 means: pin A0 normally high, low when button pushed (reverse logic)
                 oldPos += sensivity;
             else if (ch == options->navCodes[downCmd].ch)//menu::downCode)
                 oldPos -= sensivity;
+            Serial.println(ch);
             return ch;
         }
 
