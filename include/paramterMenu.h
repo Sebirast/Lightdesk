@@ -19,6 +19,9 @@ using namespace Menu;
 
 #define MAX_DEPTH 6
 
+#define SLOW_RATE 1
+#define FAST_RATE 10
+
 int timeOn = 0;
 
 Adafruit_RA8875 gfx(10, 9);
@@ -166,24 +169,24 @@ TOGGLE(programmer_1.programmerValues.prismaOnOff, prismaOnOffMenu, TITLE_PRISMA_
 // TODO int is unsigned!!!
 MENU(prismaMenu, "Prisma", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(prismaOnOffMenu)
-  ,FIELD(programmer_1.programmerValues.prismaRotation, TITLE_PRISMA_ROTATION, "", 0, 100, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.prismaRotation, TITLE_PRISMA_ROTATION, "", 0, 100, FAST_RATE, SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 MENU(irisMenu, "Iris", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.iris,TITLE_DIAMETER,"",0,77,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.irisFine, TITLE_DIAMETER_FINE, "", 0, 255, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.iris,TITLE_DIAMETER,"",0,77,FAST_RATE, SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.irisFine, TITLE_DIAMETER_FINE, "", 0, 255, FAST_RATE, SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 MENU(zoomMenu, "Zoom", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(programmer_1.programmerValues.zoom, TITLE_ZOOM, "", 0, 255, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.zoomFine, TITLE_ZOOM_FINE, "", 0, 255, 5, 5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.zoomFine, TITLE_ZOOM_FINE, "", 0, 255, FAST_RATE, SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
 MENU(focusMenu, "Focus", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.focus,TITLE_FOCUS,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.focus,TITLE_FOCUS,"",0,255,FAST_RATE,SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 );
 
@@ -193,17 +196,17 @@ TOGGLE(programmer_1.programmerValues.frost, frostMenu, TITLE_FROST, Menu::doNoth
 );
 
 MENU(profilfilter, "Profilfilter", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.profilfilter1,TITLE_PROFILFILTER_1,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.profilfilter2,TITLE_PROFILFILTER_2,"",0,170,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.profilfilter1,TITLE_PROFILFILTER_1,"",0,255,FAST_RATE, SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.profilfilter2,TITLE_PROFILFILTER_2,"",0,170,FAST_RATE, SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,SUBMENU(frostMenu)
   ,EXIT("<Back")
 );
 
 MENU(position, "Position", Menu::doNothing, Menu::noEvent, Menu::noStyle
-  ,FIELD(programmer_1.programmerValues.pan,TITLE_PAN,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.panFine,TITLE_PAN_FINE,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.tilt, TITLE_TILT,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
-  ,FIELD(programmer_1.programmerValues.tiltFine, TITLE_TILT_FINE,"",0,255,5,5, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.pan,TITLE_PAN,"",0,255,FAST_RATE, SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.panFine,TITLE_PAN_FINE,"",0,255,FAST_RATE, SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.tilt, TITLE_TILT,"",0,255,FAST_RATE, SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
+  ,FIELD(programmer_1.programmerValues.tiltFine, TITLE_TILT_FINE,"",0,255,FAST_RATE, SLOW_RATE, doOutputOnFieldWrapper, Menu::changeEvent, Menu::noStyle)
   ,EXIT("<Back")
 )
 
@@ -258,7 +261,7 @@ MENU(mainMenu, "Main Menu", Menu::doNothing, Menu::noEvent, Menu::noStyle
 
 serialIn serial(Serial);
 ClickEncoder clickEncoder(2, 3, 4);
-ClickEncoderStream encStream(clickEncoder,2);
+ClickEncoderStream encStream(clickEncoder,1);
 MENU_INPUTS(in,&encStream,&serial);
 
 #define RA8875_GRAY RGB565(128, 128, 128)
