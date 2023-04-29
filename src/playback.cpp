@@ -3,7 +3,7 @@
 using namespace playback;
 
 /**
- * @brief with this functio a cue with all its values is printed easily
+ * @brief with this function a cue with all its values is printed easily
 */
 void Cue::print()
 {

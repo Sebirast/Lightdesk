@@ -85,9 +85,15 @@ ex: -A0 means: pin A0 normally high, low when button pushed (reverse logic)
 
           int d = pos - oldPos;
           if (d <= -sensivity)
+          {
+              Serial.println("down");
               return options->navCodes[downCmd].ch;//menu::downCode;
+          }
           if (d >= sensivity)
+          {
+              Serial.println("up");
               return options->navCodes[upCmd].ch;//menu::upCode;
+          }
           return -1;
         }
 
@@ -99,7 +105,6 @@ ex: -A0 means: pin A0 normally high, low when button pushed (reverse logic)
                 oldPos += sensivity;
             else if (ch == options->navCodes[downCmd].ch)//menu::downCode)
                 oldPos -= sensivity;
-            Serial.println(ch);
             return ch;
         }
 

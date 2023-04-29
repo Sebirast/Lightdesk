@@ -53,7 +53,6 @@ void setup() {
 
   Timer3.initialize(1000);
   Timer3.attachInterrupt(timerIsr);
-  
 }
 
 void loop() {

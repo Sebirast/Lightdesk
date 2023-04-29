@@ -9,10 +9,11 @@ namespace playback
     class PlaybackController
     {
         private:
-            std::vector<playback::Playback> playbacks;
             std::vector<playback::Playback*> activePlaybacks;
 
         public:
+            std::vector<playback::Playback> playbacks;
+
             enum PlaybackIdx
             {
                 PARK,
