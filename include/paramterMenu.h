@@ -14,6 +14,7 @@
 #include "titleConfig.h"
 #include <vector>
 #include "playbackController.h"
+#include "showController.h"
 
 using namespace Menu;
 
@@ -43,6 +44,10 @@ std::vector<Menu::menu*>* menus;
 programmer::Programmer programmer_1(lamps, encoders, menus);
 
 playback::PlaybackController playbackController(lamps, &programmer_1.parkScene);
+
+show::ShowController showController();
+
+std::vector<playback::Cue*> cues;
 
 result doOutputOnFieldWrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
   programmer_1.doOutputFromField(p);
