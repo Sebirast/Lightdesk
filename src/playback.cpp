@@ -2,6 +2,24 @@
 
 using namespace playback;
 
+Cue::Cue()
+{
+    int parkCue[4][24] = 
+    {
+        {10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 182, 0},
+        {10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        {10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        {10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 182, 0} 
+    };
+    
+    for(auto i = 0; i < 4; i ++)
+    {
+        for(auto o = 0; o < 24; o ++)
+        {
+            lampValues[i][o] = parkCue[i][o];
+        }
+    }
+}
 /**
  * @brief with this function a cue with all its values is printed easily
 */
