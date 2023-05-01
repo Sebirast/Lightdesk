@@ -20,8 +20,12 @@ namespace show
         public:
             ShowController();
 
+            void initSD();
+
             show::Show getShow(std::vector<playback::Cue*> cues);
+
             void saveShow(uint8_t index);
-            void loadShow(uint8_t index);
+
+            void loadShow(uint8_t index, std::vector<playback::Cue*> cues);
     };  
 }

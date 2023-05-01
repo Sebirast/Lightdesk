@@ -2,11 +2,6 @@
 
 show::ShowController::ShowController()
 {
-    if (!SD.begin(chipSelect)) {
-        Serial.println("initialization failed!");
-        return;
-    }
-    Serial.println("initialization done.");
 }
 
 show::Show show::ShowController::getShow(std::vector<playback::Cue*> cues)
@@ -18,15 +13,20 @@ show::Show show::ShowController::getShow(std::vector<playback::Cue*> cues)
         newShow.cues.push_back(cues[i]);
     }
 
-    for(auto i = 0; i < 11; i ++)
-    {
-        newShow.cues[i]->print();
-    }
+    // for(auto i = 0; i < 11; i ++)
+    // {
+    //     newShow.cues[i]->print();
+    // }
 
     return newShow;
 }
 
-void show::ShowController::loadShow(uint8_t index)
+void show::ShowController::initSD()
+{
+
+}
+
+void show::ShowController::loadShow(uint8_t index, std::vector<playback::Cue*> cues)
 {
 
 }

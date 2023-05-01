@@ -45,7 +45,7 @@ programmer::Programmer programmer_1(lamps, encoders, menus);
 
 playback::PlaybackController playbackController(lamps, &programmer_1.parkScene);
 
-show::ShowController showController();
+show::ShowController showController_1;
 
 std::vector<playback::Cue*> cues;
 

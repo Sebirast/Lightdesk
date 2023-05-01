@@ -3,6 +3,7 @@
 #include <map>
 #include <Acebutton.h>
 #include <menuIO/encoderIn.h>
+#include <SD.h>
 
 using namespace fixture;
 
@@ -53,6 +54,21 @@ void setup() {
 
   Timer3.initialize(1000);
   Timer3.attachInterrupt(timerIsr);
+
+  if (!SD.begin(BUILTIN_SDCARD)) {
+      Serial.println("SD initialization failed!");
+      return;
+  }
+
+  Serial.println("SD initialization done.");
+
+  for(auto i = 0; i < 11; i ++)
+  {
+    cues.push_back(&playbackController.playbacks[1].scene);
+  }
+
+  showController_1.getShow(cues);
+  showController_1.saveShow(0);
 }
 
 void loop() {
