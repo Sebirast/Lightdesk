@@ -15,6 +15,7 @@ namespace playback
 
             std::array<int[24], 4> lampValues;
 
+            void emptyCue();
             Cue();
 
             void print();

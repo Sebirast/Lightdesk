@@ -64,11 +64,11 @@ void setup() {
 
   for(auto i = 0; i < 11; i ++)
   {
-    cues.push_back(&playbackController.playbacks[1].scene);
+    cues.push_back(&playbackController.playbacks[i]);
   }
 
   showController_1.getShow(cues);
-  showController_1.saveShow(0);
+  showController_1.initSD();
 }
 
 void loop() {

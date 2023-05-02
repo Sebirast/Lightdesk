@@ -4,17 +4,20 @@
 #include <vector>
 #include <array>
 #include "cue.h"
+#include "playback.h"
 
 namespace show
 {
     struct Show
     {
-        std::vector<playback::Cue*> cues;
+        std::vector<playback::Playback*> showPlaybacks;
     };
 
     class ShowController
     {
         show::Show shows[5];
+        File showFiles[5];
+        std::vector<const char *> showNames = {"show_one.txt", "show_two.txt", "show_three.txt", "show_four.txt", "show_five.txt"};
         const uint8_t chipSelect = BUILTIN_SDCARD;
 
         public:
@@ -22,10 +25,10 @@ namespace show
 
             void initSD();
 
-            show::Show getShow(std::vector<playback::Cue*> cues);
+            show::Show getShow(std::vector<playback::Playback*> playbacks);
 
             void saveShow(uint8_t index);
 
-            void loadShow(uint8_t index, std::vector<playback::Cue*> cues);
+            void loadShow(uint8_t index, std::vector<playback::Playback*> playbacks);
     };  
 }

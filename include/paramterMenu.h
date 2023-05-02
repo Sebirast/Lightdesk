@@ -47,7 +47,7 @@ playback::PlaybackController playbackController(lamps, &programmer_1.parkScene);
 
 show::ShowController showController_1;
 
-std::vector<playback::Cue*> cues;
+std::vector<playback::Playback*> cues;
 
 result doOutputOnFieldWrapper(Menu::eventMask e, Menu::navNode& n, Menu::prompt p) {
   programmer_1.doOutputFromField(p);

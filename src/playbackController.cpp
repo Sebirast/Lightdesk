@@ -19,6 +19,10 @@ PlaybackController::PlaybackController(std::vector<fixture::Fixture*> fixtures, 
     // cue stack
     playbacks.push_back(playback::Playback(playback::Playback::CUESTACK));
 
+    // empty cues (should happen in the constructor but surprisingly it does not work with these two playbacks)
+    playbacks[9].scene.emptyCue();
+    playbacks[10].scene.emptyCue();
+
     playbacks[PARK].save(*parkCue);
     activePlaybacks.push_back(&playbacks[PARK]);
 

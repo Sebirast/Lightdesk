@@ -2,7 +2,10 @@
 
 using namespace playback;
 
-Cue::Cue()
+/**
+ * @brief fill parkCue to lampValues
+*/
+void Cue::emptyCue()
 {
     int parkCue[4][24] = 
     {
@@ -18,6 +21,10 @@ Cue::Cue()
             lampValues[i][o] = parkCue[i][o];
         }
     }
+}
+Cue::Cue()
+{
+    emptyCue();
 }
 /**
  * @brief with this function a cue with all its values is printed easily
@@ -42,7 +49,6 @@ void Cue::print()
 */
 Playback::Playback(PlaybackType type) :type(type)
 {
-
 }
 
 /**

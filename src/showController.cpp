@@ -4,18 +4,18 @@ show::ShowController::ShowController()
 {
 }
 
-show::Show show::ShowController::getShow(std::vector<playback::Cue*> cues)
+show::Show show::ShowController::getShow(std::vector<playback::Playback*> playbacks)
 {
     show::Show newShow;
 
     for(auto i = 0; i < 11; i ++)
     {
-        newShow.cues.push_back(cues[i]);
+        newShow.showPlaybacks.push_back(playbacks[i]);
     }
 
     // for(auto i = 0; i < 11; i ++)
     // {
-    //     newShow.cues[i]->print();
+    //     newShow.showPlaybacks[i]->scene.print();
     // }
 
     return newShow;
@@ -23,10 +23,24 @@ show::Show show::ShowController::getShow(std::vector<playback::Cue*> cues)
 
 void show::ShowController::initSD()
 {
+    for(auto i = 0; i < 5; i ++)
+    {
+        if(!SD.exists(showNames[i]))
+        {
+            // Serial.print(showNames[i]);
+            // Serial.println(" doesn't exist.");
+            SD.open(showNames[i], FILE_WRITE);
+        }
 
+        // if (SD.exists(showNames[i])) 
+        // {
+        //     Serial.print(showNames[i]);
+        //     Serial.println(" exists.");
+        // }
+    }
 }
 
-void show::ShowController::loadShow(uint8_t index, std::vector<playback::Cue*> cues)
+void show::ShowController::loadShow(uint8_t index, std::vector<playback::Playback*> playbacks)
 {
 
 }
