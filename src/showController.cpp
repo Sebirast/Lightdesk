@@ -49,8 +49,23 @@ void show::ShowController::loadShow(uint8_t index, std::vector<playback::Playbac
     {
         showData.push_back(showFiles[index].read());
     }
+
+    Serial.println(showData.size());
+
+    for(auto i = 0; i < 11; i ++)
+    {
+        playbacks[i]->empty = showData[i + i * 25];
+        std::vector<uint8_t> subVec = {showData.begin() + i * 96 + i + 1, showData.end() - (10 - i) * 97};
+        for(auto n : subVec)
+        {
+            Serial.print(n);
+            Serial.print(" ");
+        }
+        Serial.println("end vector");
+        subVec.clear();
+    }
     
-    Serial.println("ended");
+    Serial.println("loaded show");
 }
 
 void show::ShowController::saveShow(uint8_t index, show::Show currentShow)

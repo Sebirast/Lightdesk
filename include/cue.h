@@ -16,6 +16,8 @@ namespace playback
             std::array<byte[24], 4> lampValues;
 
             void emptyCue();
+
+            std::array<byte[24], 4> getLampValues(std::vector<uint8_t> lampValues);
             Cue();
 
             void print();
