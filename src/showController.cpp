@@ -42,13 +42,24 @@ void show::ShowController::initSD()
 
 void show::ShowController::loadShow(uint8_t index, std::vector<playback::Playback*> playbacks)
 {
+    showFiles[index] = SD.open(showNames[index], FILE_READ);
+    std::vector<uint8_t> showData;
 
+    while (showFiles[index].available()) 
+    {
+        showData.push_back(showFiles[index].read());
+    }
+    
+    Serial.println("ended");
 }
 
 void show::ShowController::saveShow(uint8_t index, show::Show currentShow)
 {
     SD.remove(showNames[index]);
     showFiles[index] = SD.open(showNames[index], FILE_WRITE | O_TRUNC);
+
+    // idk why it's necessary but I cannot save a bool value without creating these two arrays. I guess it has to with the Serial.print and Serial.write method (ints are read differently)
+    // since I am using serial.print I have to use the file.write method. It takes an array plus the length of the array 
 
     byte full[] = {1};
     byte empty[] = {0};
@@ -88,5 +99,5 @@ void show::ShowController::saveShow(uint8_t index, show::Show currentShow)
 
 void show::ShowController::resetShow(uint8_t index)
 {
-    
+
 }

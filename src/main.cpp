@@ -69,6 +69,7 @@ void setup() {
 
   showController_1.initSD();
   showController_1.saveShow(0, showController_1.getShow(cues));
+  showController_1.loadShow(0, cues);
 }
 
 void loop() {
