@@ -27,16 +27,8 @@ void show::ShowController::initSD()
     {
         if(!SD.exists(showNames[i]))
         {
-            // Serial.print(showNames[i]);
-            // Serial.println(" doesn't exist.");
             SD.open(showNames[i], FILE_WRITE);
         }
-
-        // if (SD.exists(showNames[i])) 
-        // {
-        //     Serial.print(showNames[i]);
-        //     Serial.println(" exists.");
-        // }
     }
 }
 
@@ -56,14 +48,18 @@ void show::ShowController::loadShow(uint8_t index, std::vector<playback::Playbac
     {
         playbacks[i]->empty = showData[i + i * 25];
         std::vector<uint8_t> subVec = {showData.begin() + i * 96 + i + 1, showData.end() - (10 - i) * 97};
-        for(auto n : subVec)
-        {
-            Serial.print(n);
-            Serial.print(" ");
-        }
-        Serial.println("end vector");
-        subVec.clear();
+
+        // for(auto n : subVec)
+        // {
+        //     Serial.print(n);
+        //     Serial.print(" ");
+        // }
+
+        playbacks[i]->scene.lampValues = playback::Cue::getLampValues(subVec);
+        playbacks[i]->scene.print();
     }
+
+    showFiles[index].close();
     
     Serial.println("loaded show");
 }

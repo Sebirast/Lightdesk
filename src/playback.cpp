@@ -26,8 +26,23 @@ Cue::Cue()
 {
     emptyCue();
 }
+
+std::array<uint8_t[24], 4> Cue::getLampValues(std::vector<uint8_t> values)
+{
+    std::array<uint8_t[24], 4> res = {};
+    for(auto i = 0; i < 4; i++)
+    {
+        for(auto o = 0; o < 24; o++)
+        {
+            res[i][o] = values[o + i * 24];
+        }
+    }
+
+    return res;
+}
+
 /**
- * @brief with this function a cue with all its values is printed easily
+ * @brief wit0]h this function a cue with all its values is printed easily
 */
 void Cue::print()
 {
