@@ -50,6 +50,9 @@ void show::ShowController::saveShow(uint8_t index, show::Show currentShow)
     SD.remove(showNames[index]);
     showFiles[index] = SD.open(showNames[index], FILE_WRITE | O_TRUNC);
 
+    byte full[] = {1};
+    byte empty[] = {0};
+
     if(showFiles[index])
     {
 
@@ -57,11 +60,11 @@ void show::ShowController::saveShow(uint8_t index, show::Show currentShow)
         {
             if(currentShow.showPlaybacks[i]->empty) 
             {
-                showFiles[index].println(0);
+                showFiles[index].write(empty, 1);
             }
             else
             {
-                showFiles[index].println(1);
+                showFiles[index].write(full, 1);
             }
 
             for(auto o = 0; o < 4; o++)
@@ -72,17 +75,18 @@ void show::ShowController::saveShow(uint8_t index, show::Show currentShow)
     }
     showFiles[index].close();
 
+    // showFiles[index] = SD.open(showNames[index]);
 
-    showFiles[index] = SD.open(showNames[index]);
+    // while (showFiles[index].available()) 
+    // {
+    // 	Serial.print((int)showFiles[index].read());
+    //     Serial.print(" ");
+    // }
 
-    while (showFiles[index].available()) 
-    {
-    	Serial.write(showFiles[index].read());
-    }
-    Serial.println("ended");
+    Serial.println("Saved show");
 }
 
 void show::ShowController::resetShow(uint8_t index)
 {
-
+    
 }
