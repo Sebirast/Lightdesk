@@ -247,6 +247,44 @@ MENU(parameterMenu, "Parameter", drawBackGround, Menu::enterEvent | Menu::exitEv
   ,EXIT("<Back")
 );
 
+void loadShowWrapper()
+{
+  showController_1.loadShow(showController_1.loadShowIndex, cues);
+}
+
+CHOOSE(showController_1.loadShowIndex, loadShowMenu,TITLE_LOAD_SHOW, loadShowWrapper,Menu::exitEvent,Menu::noStyle
+  ,VALUE("1", 0, Menu::doNothing, Menu::noEvent)
+  ,VALUE("2", 1,Menu::doNothing,Menu::noEvent)
+  ,VALUE("3",2,Menu::doNothing,Menu::noEvent)
+  ,VALUE("4",3,Menu::doNothing,Menu::noEvent)
+  ,VALUE("5",4,Menu::doNothing,Menu::noEvent)
+);
+
+void saveShowWrapper()
+{
+  for(auto i = 0; i < 11; i ++)
+  {
+    cues.push_back(&playbackController.playbacks[i]);
+  }
+  showController_1.saveShow(showController_1.saveShowIndex, showController_1.getShow(cues));
+}
+
+CHOOSE(showController_1.saveShowIndex, saveShowMenu,TITLE_SAVE_SHOW, saveShowWrapper,Menu::exitEvent,Menu::noStyle
+  ,VALUE("1", 0, Menu::doNothing, Menu::noEvent)
+  ,VALUE("2", 1,Menu::doNothing,Menu::noEvent)
+  ,VALUE("3",2,Menu::doNothing,Menu::noEvent)
+  ,VALUE("4",3,Menu::doNothing,Menu::noEvent)
+  ,VALUE("5",4,Menu::doNothing,Menu::noEvent)
+);
+
+
+MENU(showControlMenu, "Shows", drawBackGround, Menu::enterEvent | Menu::exitEvent, Menu::noStyle
+  ,SUBMENU(saveShowMenu)
+  ,SUBMENU(loadShowMenu)
+  ,EXIT("<Back")
+);
+
+
 MENU(effectMenu, "Effects", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,EXIT("<Back")
@@ -262,6 +300,7 @@ MENU(mainMenu, "Main Menu", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(parameterMenu)  
   ,SUBMENU(effectMenu)
   ,SUBMENU(lampMenu)
+  ,SUBMENU(showControlMenu)
 );
 
 serialIn serial(Serial);

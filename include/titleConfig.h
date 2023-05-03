@@ -38,3 +38,6 @@
 #define TITLE_PAN_FINE "Pan fine"
 #define TITLE_TILT "Tilt"
 #define TITLE_TILT_FINE "Tilt fine"
+
+#define TITLE_LOAD_SHOW "Load show"
+#define TITLE_SAVE_SHOW "Save show"

@@ -21,6 +21,8 @@ namespace show
         const uint8_t chipSelect = BUILTIN_SDCARD;
 
         public:
+            uint8_t loadShowIndex = 0;
+            uint8_t saveShowIndex = 0;
             ShowController();
 
             void initSD();
