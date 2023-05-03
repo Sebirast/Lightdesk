@@ -52,25 +52,32 @@ void show::ShowController::saveShow(uint8_t index, show::Show currentShow)
 
     if(showFiles[index])
     {
+
         for(auto i = 0; i < 11; i++)
         {
             if(currentShow.showPlaybacks[i]->empty) 
             {
-                showFiles[index].print("1");
+                showFiles[index].println(0);
             }
             else
             {
-                showFiles[index].print("0");
+                showFiles[index].println(1);
+            }
+
+            for(auto o = 0; o < 4; o++)
+            {
+                showFiles[index].write(currentShow.showPlaybacks[i]->scene.lampValues[o], 24);
             }
         }
     }
     showFiles[index].close();
 
+
     showFiles[index] = SD.open(showNames[index]);
 
     while (showFiles[index].available()) 
     {
-    	Serial.println(showFiles[index].read());
+    	Serial.write(showFiles[index].read());
     }
     Serial.println("ended");
 }

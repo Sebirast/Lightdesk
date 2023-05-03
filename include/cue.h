@@ -13,7 +13,7 @@ namespace playback
                 MAC600_TWO
             };
 
-            std::array<int[24], 4> lampValues;
+            std::array<uint8_t[24], 4> lampValues;
 
             void emptyCue();
             Cue();
