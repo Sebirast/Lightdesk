@@ -67,8 +67,8 @@ void setup() {
     cues.push_back(&playbackController.playbacks[i]);
   }
 
-  showController_1.getShow(cues);
   showController_1.initSD();
+  showController_1.saveShow(0, showController_1.getShow(cues));
 }
 
 void loop() {

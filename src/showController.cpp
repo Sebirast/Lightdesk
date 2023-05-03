@@ -45,7 +45,37 @@ void show::ShowController::loadShow(uint8_t index, std::vector<playback::Playbac
 
 }
 
-void show::ShowController::saveShow(uint8_t index)
+void show::ShowController::saveShow(uint8_t index, show::Show currentShow)
+{
+    SD.remove(showNames[index]);
+    showFiles[index] = SD.open(showNames[index], FILE_WRITE | O_TRUNC);
+
+    if(showFiles[index])
+    {
+        for(auto i = 0; i < 11; i++)
+        {
+            if(currentShow.showPlaybacks[i]->empty) 
+            {
+                showFiles[index].print("1");
+            }
+            else
+            {
+                showFiles[index].print("0");
+            }
+        }
+    }
+    showFiles[index].close();
+
+    showFiles[index] = SD.open(showNames[index]);
+
+    while (showFiles[index].available()) 
+    {
+    	Serial.println(showFiles[index].read());
+    }
+    Serial.println("ended");
+}
+
+void show::ShowController::resetShow(uint8_t index)
 {
 
 }

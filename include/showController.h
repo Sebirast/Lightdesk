@@ -27,8 +27,10 @@ namespace show
 
             show::Show getShow(std::vector<playback::Playback*> playbacks);
 
-            void saveShow(uint8_t index);
+            void saveShow(uint8_t index, show::Show currentShow);
 
             void loadShow(uint8_t index, std::vector<playback::Playback*> playbacks);
+
+            void resetShow(uint8_t index);
     };  
 }
