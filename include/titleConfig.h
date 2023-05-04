@@ -42,3 +42,8 @@
 #define TITLE_LOAD_SHOW "Load show"
 #define TITLE_SAVE_SHOW "Save show"
 #define TITLE_RESET_SHOW "Reset show"
+
+#define TITLE_SELECT_ONE "Lamp 1"
+#define TITLE_SELECT_TWO "Lamp 2"
+#define TITLE_SELECT_THREE "Lamp 3"
+#define TITLE_SELECT_FOUR "Lamp 4"

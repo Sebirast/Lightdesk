@@ -295,7 +295,6 @@ CHOOSE(showController_1.resetShowIndex, resetShowMenu, TITLE_RESET_SHOW, resetSh
   ,VALUE("5",4,Menu::doNothing,Menu::noEvent)
 );
 
-
 MENU(showControlMenu, "Shows", drawBackGround, Menu::enterEvent | Menu::exitEvent, Menu::noStyle
   ,SUBMENU(saveShowMenu)
   ,SUBMENU(loadShowMenu)
@@ -303,7 +302,57 @@ MENU(showControlMenu, "Shows", drawBackGround, Menu::enterEvent | Menu::exitEven
   ,EXIT("<Back")
 );
 
+TOGGLE(lamps[0]->selected, selectorLampOne, TITLE_SELECT_ONE, Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,VALUE("Sel", true, Menu::doNothing, Menu::changeEvent)
+  ,VALUE("Not sel", false, Menu::doNothing, Menu::changeEvent)
+);  
 
+TOGGLE(lamps[1]->selected, selectorLampTwo, TITLE_SELECT_TWO, Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,VALUE("Sel", true, Menu::doNothing, Menu::changeEvent)
+  ,VALUE("Not sel", false, Menu::doNothing, Menu::changeEvent)
+);  
+
+TOGGLE(lamps[2]->selected, selectorLampThree, TITLE_SELECT_THREE, Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,VALUE("Sel", true, Menu::doNothing, Menu::changeEvent)
+  ,VALUE("Not sel", false, Menu::doNothing, Menu::changeEvent)
+);  
+
+TOGGLE(lamps[3]->selected, selectorLampFour, TITLE_SELECT_FOUR, Menu::doNothing, Menu::noEvent, Menu::noStyle
+  ,VALUE("Sel", true, Menu::doNothing, Menu::changeEvent)
+  ,VALUE("Not sel", false, Menu::doNothing, Menu::changeEvent)
+);  
+
+void selectAllWrapper()
+{
+  for(auto fixture : lamps)
+  {
+    fixture->selected = true;
+  }
+}
+
+void unselectAllWrapper()
+{
+  for(auto fixture : lamps)
+  {
+    fixture->selected = false;
+  }
+}
+
+void locateWrapper()
+{
+  programmer_1.locate();
+}
+
+MENU(selectorMenu, "Selector", drawBackGround, Menu::enterEvent | Menu::exitEvent, Menu::noStyle
+  ,SUBMENU(selectorLampOne)
+  ,SUBMENU(selectorLampTwo)
+  ,SUBMENU(selectorLampThree)
+  ,SUBMENU(selectorLampFour)
+  ,OP("Select all", selectAllWrapper, Menu::enterEvent)
+  ,OP("Unselect all", unselectAllWrapper, Menu::enterEvent)
+  ,OP("Locate", locateWrapper, Menu::enterEvent)
+  ,EXIT("<Back")
+);
 
 MENU(effectMenu, "Effects", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,FIELD(timeOn,"On","ms",0,1000,10,1, Menu::doNothing, Menu::noEvent, Menu::noStyle)
@@ -321,6 +370,7 @@ MENU(mainMenu, "Main Menu", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(effectMenu)
   ,SUBMENU(lampMenu)
   ,SUBMENU(showControlMenu)
+  ,SUBMENU(selectorMenu)
 );
 
 serialIn serial(Serial);
