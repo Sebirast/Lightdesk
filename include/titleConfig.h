@@ -41,3 +41,4 @@
 
 #define TITLE_LOAD_SHOW "Load show"
 #define TITLE_SAVE_SHOW "Save show"
+#define TITLE_RESET_SHOW "Reset show"

@@ -10,19 +10,21 @@ namespace show
 {
     struct Show
     {
+        bool empty = true;
         std::vector<playback::Playback*> showPlaybacks;
     };
 
     class ShowController
     {
         show::Show shows[5];
-        File showFiles[5];
         std::vector<const char *> showNames = {"show_one.txt", "show_two.txt", "show_three.txt", "show_four.txt", "show_five.txt"};
         const uint8_t chipSelect = BUILTIN_SDCARD;
 
         public:
+            File showFiles[5];
             uint8_t loadShowIndex = 0;
             uint8_t saveShowIndex = 0;
+            uint8_t resetShowIndex = 0;
             ShowController();
 
             void initSD();

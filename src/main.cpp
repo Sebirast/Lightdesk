@@ -62,10 +62,6 @@ void setup() {
 
   Serial.println("SD initialization done.");
 
-  for(auto i = 0; i < 11; i ++)
-  {
-    cues.push_back(&playbackController.playbacks[i]);
-  }
   showController_1.initSD();
 }
 
