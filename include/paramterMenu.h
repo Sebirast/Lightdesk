@@ -367,6 +367,7 @@ MENU(lampMenu, "Fixture config", Menu::doNothing, Menu::noEvent, Menu::noStyle
 
 void storeToEx1Wrapper()
 {
+  programmer_1.updateCurrentScene();
   programmer_1.currentSceneUptodate = playbackController.toggle(playback::PlaybackController::EXEC1, programmer_1.currentScene, programmer_1.currentSceneUptodate);
   return proceed;
 }

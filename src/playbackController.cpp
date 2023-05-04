@@ -64,6 +64,7 @@ bool PlaybackController::toggle(uint8_t playbackIdx, Cue scene, bool currentScen
         // store scene
         if(currentSceneUptodate)
         {
+            Serial.println("stored scene");
             playbacks[playbackIdx].save(scene);
         }
         else
