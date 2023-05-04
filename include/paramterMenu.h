@@ -221,14 +221,12 @@ result drawBackGround()
   return proceed;
 }
 
-
 MENU(light, "Intensity and colour", drawBackGround, Menu::enterEvent | Menu::exitEvent, Menu::noStyle
   ,SUBMENU(shutterMenu)
   ,SUBMENU(dimmer)
   ,SUBMENU(colour)
   ,EXIT("<Back")
 );
-
 
 MENU(beam, "Beam", drawBackGround, Menu::enterEvent | Menu::exitEvent , Menu::noStyle
   ,SUBMENU(gobo)
@@ -302,22 +300,24 @@ MENU(showControlMenu, "Shows", drawBackGround, Menu::enterEvent | Menu::exitEven
   ,EXIT("<Back")
 );
 
-TOGGLE(lamps[0]->selected, selectorLampOne, TITLE_SELECT_ONE, Menu::doNothing, Menu::noEvent, Menu::noStyle
+result selectWrapper(uint8_t i);
+
+TOGGLE(lamps[0]->selected, selectorLampOne, TITLE_SELECT_ONE, selectWrapper(0), Menu::enterEvent, Menu::noStyle
   ,VALUE("Sel", true, Menu::doNothing, Menu::changeEvent)
   ,VALUE("Not sel", false, Menu::doNothing, Menu::changeEvent)
 );  
 
-TOGGLE(lamps[1]->selected, selectorLampTwo, TITLE_SELECT_TWO, Menu::doNothing, Menu::noEvent, Menu::noStyle
+TOGGLE(lamps[1]->selected, selectorLampTwo, TITLE_SELECT_TWO, selectWrapper(1), Menu::enterEvent, Menu::noStyle
   ,VALUE("Sel", true, Menu::doNothing, Menu::changeEvent)
   ,VALUE("Not sel", false, Menu::doNothing, Menu::changeEvent)
 );  
 
-TOGGLE(lamps[2]->selected, selectorLampThree, TITLE_SELECT_THREE, Menu::doNothing, Menu::noEvent, Menu::noStyle
+TOGGLE(lamps[2]->selected, selectorLampThree, TITLE_SELECT_THREE, selectWrapper(2), Menu::enterEvent, Menu::noStyle
   ,VALUE("Sel", true, Menu::doNothing, Menu::changeEvent)
   ,VALUE("Not sel", false, Menu::doNothing, Menu::changeEvent)
 );  
 
-TOGGLE(lamps[3]->selected, selectorLampFour, TITLE_SELECT_FOUR, Menu::doNothing, Menu::noEvent, Menu::noStyle
+TOGGLE(lamps[3]->selected, selectorLampFour, TITLE_SELECT_FOUR, selectWrapper(3), Menu::enterEvent, Menu::noStyle
   ,VALUE("Sel", true, Menu::doNothing, Menu::changeEvent)
   ,VALUE("Not sel", false, Menu::doNothing, Menu::changeEvent)
 );  
@@ -365,12 +365,19 @@ MENU(lampMenu, "Fixture config", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,EXIT("<Back")
 );
 
+void storeToEx1Wrapper()
+{
+  programmer_1.currentSceneUptodate = playbackController.toggle(playback::PlaybackController::EXEC1, programmer_1.currentScene, programmer_1.currentSceneUptodate);
+  return proceed;
+}
+
 MENU(mainMenu, "Main Menu", Menu::doNothing, Menu::noEvent, Menu::noStyle
   ,SUBMENU(parameterMenu)  
   ,SUBMENU(effectMenu)
   ,SUBMENU(lampMenu)
   ,SUBMENU(showControlMenu)
   ,SUBMENU(selectorMenu)
+  ,OP("Store to EX1", storeToEx1Wrapper , Menu::enterEvent)
 );
 
 serialIn serial(Serial);
@@ -411,3 +418,8 @@ result goBack()
   return proceed;
 }
 
+result selectWrapper(uint8_t i)
+{
+  programmer_1.loadLampValues(i);
+  return proceed;
+}
