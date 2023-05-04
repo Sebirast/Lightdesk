@@ -22,11 +22,22 @@ void Cue::emptyCue()
         }
     }
 }
+
+/**
+ * @brief constructor of the cue class. the cue is emptied as this makes things simpler when saving and loading a show
+*/
 Cue::Cue()
 {
     emptyCue();
 }
 
+/**
+ * @brief this function converts the values that come from the SD card to the right format
+ * 
+ * @param values a vector that is directly loaded from the SD card
+ * 
+ * @return the std::vector is converted to a std::array<uint8_t[24], 4> 
+*/
 std::array<uint8_t[24], 4> Cue::getLampValues(std::vector<uint8_t> values)
 {
     std::array<uint8_t[24], 4> res = {};
